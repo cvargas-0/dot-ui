@@ -4,17 +4,57 @@
   "version": "0.0.0",
   "type": "module",
   "license": "MIT",
+  "main": "./dist/dot-ui.umd.js",
+  "module": "./dist/dot-ui.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/dot-ui.es.js",
+      "require": "./dist/dot-ui.umd.js"
+    },
+    "./css": "./dist/dot-ui.css"
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint . --ext .ts,.js,.css",
+    "lint:fix": "eslint . --ext .ts,.js,.css --fix",
+    "prepare": "husky",
+    "format": "prettier --write \"src/**/*.{ts,js,css}\""
+  },
+  "lint-staged": {
+    "src/**/*.{ts,js}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "src/**/*.css": [
+      "prettier --write"
+    ]
   },
   "devDependencies": {
+    "@eslint/css": "^1.1.0",
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^25.5.2",
+    "eslint": "^10.2.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.4.0",
+    "husky": "^9.1.7",
+    "jiti": "^2.6.1",
+    "lint-staged": "^16.4.0",
+    "prettier": "^3.8.1",
     "typescript": "~6.0.2",
+    "typescript-eslint": "^8.58.1",
     "vite": "^8.0.4"
   },
   "engines": {
     "node": ">=22.x"
   },
-  "packageManager": "pnpm@10.33.0"
+  "packageManager": "pnpm@10.33.0",
+  "dependencies": {
+    "@fontsource-variable/dm-sans": "^5.2.8",
+    "@fontsource/dm-mono": "^5.2.7"
+  }
 }
