@@ -3,6 +3,7 @@ import '@fontsource-variable/dm-sans/wght-italic.css'
 import '@fontsource/dm-mono/400.css'
 import '@fontsource/dm-mono/500.css'
 
-import './tokens/fonts.css'
+import '@/tokens/fonts.css'
+import '@/tokens/tokens.css'
 
-import './tokens/tokens.css'
+export { DotButton } from '@/components/dot-button/dot-button'
