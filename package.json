@@ -23,7 +23,8 @@
     "lint": "eslint . --ext .ts,.js,.css",
     "lint:fix": "eslint . --ext .ts,.js,.css --fix",
     "prepare": "husky",
-    "format": "prettier --write \"src/**/*.{ts,js,css}\""
+    "format": "prettier --write \"src/**/*.{ts,js,css}\"",
+    "bump": "node --experimental-strip-types scripts/bump-version.ts"
   },
   "lint-staged": {
     "src/**/*.{ts,js}": [
