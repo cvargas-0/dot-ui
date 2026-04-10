@@ -1,134 +1,134 @@
 :host {
-  display: inline-block;
-  font-family: var(--dot-font-sans);
+    display: inline-block;
+    font-family: var(--dot-font-sans);
 }
 
 :host([block]) {
-  display: block;
-  width: 100%;
+    display: block;
+    width: 100%;
 }
 
 .btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--dot-space-2);
-  font-family: inherit;
-  font-size: var(--dot-text-sm);
-  font-weight: var(--dot-weight-medium);
-  line-height: var(--dot-leading-tight);
-  border-radius: var(--dot-radius-md);
-  border: 1px solid transparent;
-  cursor: pointer;
-  text-decoration: none;
-  white-space: nowrap;
-  transition:
-    background-color var(--dot-duration-base) var(--dot-ease),
-    border-color var(--dot-duration-base) var(--dot-ease),
-    color var(--dot-duration-base) var(--dot-ease),
-    box-shadow var(--dot-duration-base) var(--dot-ease);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--dot-space-2);
+    font-family: inherit;
+    font-size: var(--dot-text-sm);
+    font-weight: var(--dot-weight-medium);
+    line-height: var(--dot-leading-tight);
+    border-radius: var(--dot-radius-md);
+    border: 1px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+        background-color var(--dot-duration-base) var(--dot-ease),
+        border-color var(--dot-duration-base) var(--dot-ease),
+        color var(--dot-duration-base) var(--dot-ease),
+        box-shadow var(--dot-duration-base) var(--dot-ease);
 }
 
 :host([block]) .btn {
-  width: 100%;
+    width: 100%;
 }
 
 /* ---- sizes ---- */
 .btn--sm {
-  padding: var(--dot-space-1) var(--dot-space-3);
-  font-size: var(--dot-text-xs);
+    padding: var(--dot-space-1) var(--dot-space-3);
+    font-size: var(--dot-text-xs);
 }
 
 .btn--md {
-  padding: var(--dot-space-2) var(--dot-space-4);
-  font-size: var(--dot-text-sm);
+    padding: var(--dot-space-2) var(--dot-space-4);
+    font-size: var(--dot-text-sm);
 }
 
 .btn--lg {
-  padding: var(--dot-space-3) var(--dot-space-6);
-  font-size: var(--dot-text-base);
+    padding: var(--dot-space-3) var(--dot-space-6);
+    font-size: var(--dot-text-base);
 }
 
 /* ---- variant: solid (default) ---- */
 .btn--solid {
-  background-color: var(--dot-accent);
-  border-color: var(--dot-accent);
-  color: var(--dot-accent-fg);
+    background-color: var(--dot-accent);
+    border-color: var(--dot-accent);
+    color: var(--dot-accent-fg);
 }
 
 .btn--solid:hover:not(:disabled) {
-  background-color: var(--dot-accent-hover);
-  border-color: var(--dot-accent-hover);
+    background-color: var(--dot-accent-hover);
+    border-color: var(--dot-accent-hover);
 }
 
 /* ---- variant: outline ---- */
 .btn--outline {
-  background-color: transparent;
-  border-color: var(--dot-border);
-  color: var(--dot-text);
+    background-color: transparent;
+    border-color: var(--dot-border);
+    color: var(--dot-text);
 }
 
 .btn--outline:hover:not(:disabled) {
-  background-color: var(--dot-surface);
-  border-color: var(--dot-border-focus);
+    background-color: var(--dot-surface);
+    border-color: var(--dot-border-focus);
 }
 
 /* ---- variant: ghost ---- */
 .btn--ghost {
-  background-color: transparent;
-  border-color: transparent;
-  color: var(--dot-text);
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--dot-text);
 }
 
 .btn--ghost:hover:not(:disabled) {
-  background-color: var(--dot-surface);
+    background-color: var(--dot-surface);
 }
 
 /* ---- variant: danger ---- */
 .btn--danger {
-  background-color: var(--dot-danger-bg);
-  border-color: var(--dot-danger-bg);
-  color: var(--dot-danger-fg);
+    background-color: var(--dot-danger-bg);
+    border-color: var(--dot-danger-bg);
+    color: var(--dot-danger-fg);
 }
 
 .btn--danger:hover:not(:disabled) {
-  background-color: var(--dot-danger);
-  border-color: var(--dot-danger);
-  color: #ffffff;
+    background-color: var(--dot-danger);
+    border-color: var(--dot-danger);
+    color: #ffffff;
 }
 
 /* ---- focus ---- */
 .btn:focus-visible {
-  outline: 2px solid var(--dot-border-focus);
-  outline-offset: 2px;
+    outline: 2px solid var(--dot-border-focus);
+    outline-offset: 2px;
 }
 
 /* ---- disabled ---- */
 .btn:disabled,
 :host([disabled]) .btn {
-  opacity: 0.4;
-  cursor: not-allowed;
-  pointer-events: none;
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
 }
 
 /* ---- loading ---- */
 :host([loading]) .btn {
-  cursor: wait;
-  pointer-events: none;
+    cursor: wait;
+    pointer-events: none;
 }
 
 .btn__spinner {
-  width: 14px;
-  height: 14px;
-  border: 1.5px solid currentColor;
-  border-top-color: transparent;
-  border-radius: var(--dot-radius-full);
-  animation: dot-spin var(--dot-duration-slow) linear infinite;
-  flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+    border: 1.5px solid currentColor;
+    border-top-color: transparent;
+    border-radius: var(--dot-radius-full);
+    animation: dot-spin var(--dot-duration-slow) linear infinite;
+    flex-shrink: 0;
 }
 
 @keyframes dot-spin {
-  to {
-    transform: rotate(360deg);
-  }
+    to {
+        transform: rotate(360deg);
+    }
 }

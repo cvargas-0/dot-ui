@@ -1,34 +1,80 @@
-import styles from '@/components/dot-button/dot-button.css?inline'
+import { DotElement } from '@/core/dot-element'
+import styles from './dot-button.css?inline'
 
-const styleSheet = new CSSStyleSheet()
-styleSheet.replaceSync(styles)
+const sheet = new CSSStyleSheet()
+sheet.replaceSync(styles)
 
-export class DotButton extends HTMLElement {
+export default class DotButton extends DotElement {
     static observedAttributes = ['variant', 'size', 'disabled', 'loading', 'block']
+
+    get variant() {
+        return this.attr('variant', 'solid')
+    }
+    set variant(value: string) {
+        this.setAttr('variant', value)
+    }
+
+    get size() {
+        return this.attr('size', 'md')
+    }
+    set size(value: string) {
+        this.setAttr('size', value)
+    }
+
+    get disabled() {
+        return this.boolAttr('disabled')
+    }
+    set disabled(value: boolean) {
+        this.setAttr('disabled', value)
+    }
+
+    get loading() {
+        return this.boolAttr('loading')
+    }
+    set loading(value: boolean) {
+        this.setAttr('loading', value)
+    }
+
+    get block() {
+        return this.boolAttr('block')
+    }
+    set block(value: boolean) {
+        this.setAttr('block', value)
+    }
 
     connectedCallback() {
         this.attachShadow({ mode: 'open' })
-        this.shadowRoot!.adoptedStyleSheets = [styleSheet]
+        this.shadowRoot!.adoptedStyleSheets = [sheet]
         this.render()
     }
+
+    disconnectedCallback() {}
 
     attributeChangedCallback() {
         if (this.shadowRoot) this.render()
     }
 
-    private render() {
-        const variant = this.getAttribute('variant') ?? 'solid'
-        const size = this.getAttribute('size') ?? 'md'
-        const loading = this.hasAttribute('loading')
-        const disabled = this.hasAttribute('disabled')
-
+    render() {
         this.shadowRoot!.innerHTML = /*html*/ `
-      <button class="btn btn--${variant} btn--${size}" ${disabled || loading ? 'disabled' : ''} part="button" aria-busy="${loading}">
-        ${loading ? '<span class="btn__spinner" aria-hidden="true"></span>' : ''}
+      <button
+        class="btn btn--${this.variant} btn--${this.size}"
+        ${this.disabled || this.loading ? 'disabled' : ''}
+        part="base"
+        aria-busy="${this.loading}"
+        aria-disabled="${this.disabled}"
+      >
+        ${this.loading ? '<span class="btn__spinner" aria-hidden="true"></span>' : ''}
+        <slot name="start"></slot>
         <slot></slot>
+        <slot name="end"></slot>
       </button>
     `
     }
-}
 
-customElements.define('dot-button', DotButton)
+    focus() {
+        this.shadowRoot?.querySelector('button')?.focus()
+    }
+    blur() {
+        this.shadowRoot?.querySelector('button')?.blur()
+    }
+}
