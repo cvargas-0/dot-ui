@@ -1,0 +1,90 @@
+:root,
+:host,
+.dot-theme-light {
+    /* color — background */
+    --dot-bg: #ffffff;
+    --dot-surface: #f7f6f3;
+    --dot-surface-2: #eceae4;
+
+    /* color — border */
+    --dot-border: #c9c7bf;
+    --dot-border-focus: #3d3d3a;
+
+    /* color — text */
+    --dot-text: #111110;
+    --dot-text-sub: #3d3d3a;
+    --dot-text-muted: #a0a098;
+
+    /* color — accent */
+    --dot-accent: #111110;
+    --dot-accent-hover: #2c2c2a;
+    --dot-accent-fg: #ffffff;
+
+    /* color — semantic */
+    --dot-success: #3b6d11;
+    --dot-success-bg: #eaf3de;
+    --dot-success-fg: #27500a;
+
+    --dot-danger: #a32d2d;
+    --dot-danger-bg: #fcebeb;
+    --dot-danger-fg: #791f1f;
+
+    --dot-warning: #854f0b;
+    --dot-warning-bg: #faeeda;
+    --dot-warning-fg: #633806;
+
+    --dot-info: #185fa5;
+    --dot-info-bg: #e6f1fb;
+    --dot-info-fg: #0c447c;
+
+    /* spacing */
+    --dot-space-1: 4px;
+    --dot-space-2: 8px;
+    --dot-space-3: 12px;
+    --dot-space-4: 16px;
+    --dot-space-5: 20px;
+    --dot-space-6: 24px;
+    --dot-space-8: 32px;
+    --dot-space-10: 40px;
+    --dot-space-12: 48px;
+    --dot-space-16: 64px;
+
+    /* border radius */
+    --dot-radius-none: 0px;
+    --dot-radius-xs: 2px;
+    --dot-radius-sm: 4px;
+    --dot-radius-md: 6px;
+    --dot-radius-lg: 8px;
+    --dot-radius-full: 9999px;
+
+    /* shadows */
+    --dot-shadow-none: none;
+    --dot-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.04);
+    --dot-shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.05);
+    --dot-shadow-md: 0 2px 8px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.05);
+
+    /* typography */
+    --dot-font-sans: 'DM Sans Variable', sans-serif;
+    --dot-font-mono: 'DM Mono', monospace;
+
+    --dot-text-xs: 11px;
+    --dot-text-sm: 13px;
+    --dot-text-base: 15px;
+    --dot-text-lg: 18px;
+    --dot-text-xl: 22px;
+    --dot-text-2xl: 28px;
+
+    --dot-leading-tight: 1.25;
+    --dot-leading-base: 1.5;
+    --dot-leading-loose: 1.75;
+
+    --dot-weight-normal: 400;
+    --dot-weight-medium: 500;
+    --dot-weight-bold: 600;
+
+    /* transitions */
+    --dot-duration-fast: 100ms;
+    --dot-duration-base: 150ms;
+    --dot-duration-slow: 250ms;
+    --dot-ease: ease-in-out;
+}

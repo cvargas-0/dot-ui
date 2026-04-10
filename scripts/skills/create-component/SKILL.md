@@ -83,7 +83,6 @@ export class Dot[Name] extends DotElement {
   // List every attribute that triggers a re-render
   static observedAttributes = ['variant', 'size', 'disabled']
 
-  // ---- JS properties ↔ HTML attributes ----
   // Every observed attribute MUST have a getter + setter
   // Use this.attr() for string attributes (never getAttribute directly)
   // Use this.boolAttr() for boolean attributes (never hasAttribute directly)
@@ -101,7 +100,6 @@ export class Dot[Name] extends DotElement {
   get disabled() { return this.boolAttr('disabled') }
   set disabled(value: boolean) { this.setAttr('disabled', value) }
 
-  // ---- Lifecycle ----
 
   connectedCallback() {
     this.attachShadow({ mode: 'open' })
@@ -118,7 +116,6 @@ export class Dot[Name] extends DotElement {
     if (this.shadowRoot) this.render()
   }
 
-  // ---- Render ----
   // Build the full shadowRoot innerHTML on every call
   // Use /*html*/ template literal for editor syntax highlighting
   // Always expose part="base" on the root element

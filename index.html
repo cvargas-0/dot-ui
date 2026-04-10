@@ -3,37 +3,276 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>dot-ui</title>
+  <title>dot-ui — playground</title>
+
+  <link rel="stylesheet" href="/src/themes/light.css" />
+  <link rel="stylesheet" href="/src/themes/dark.css" />
+
+  <script type="module">
+    import '@fontsource-variable/dm-sans'
+    import '@fontsource-variable/dm-sans/wght-italic.css'
+    import '@fontsource/dm-mono/400.css'
+    import '@fontsource/dm-mono/500.css'
+    import '/src/styles/fonts.css'
+    import '/src/components/dot-button/index.ts'
+  </script>
+
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--dot-font-sans);
+      background: var(--dot-bg);
+      color: var(--dot-text);
+      padding: 48px 32px;
+      max-width: 900px;
+      margin: 0 auto;
+      transition: background-color 150ms ease-in-out, color 150ms ease-in-out;
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .version {
+      font-size: 12px;
+      font-family: var(--dot-font-mono);
+      color: var(--dot-text-muted);
+      margin-bottom: 48px;
+    }
+
+    .section {
+      margin-bottom: 48px;
+    }
+
+    .section-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--dot-text-muted);
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--dot-border);
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .row+.row {
+      margin-top: 8px;
+    }
+
+    code {
+      font-family: var(--dot-font-mono);
+      font-size: 11px;
+      color: var(--dot-text-muted);
+      background: var(--dot-surface);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    input {
+      padding: 8px 12px;
+      border: 1px solid var(--dot-border);
+      border-radius: 6px;
+      background: var(--dot-bg);
+      color: var(--dot-text);
+      font-size: 13px;
+      font-family: var(--dot-font-sans);
+      outline: none;
+      transition: border-color 150ms ease-in-out;
+    }
+
+    input:focus {
+      border-color: var(--dot-border-focus);
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      font-size: 12px;
+      font-family: var(--dot-font-mono);
+      background: var(--dot-surface);
+      border: 1px solid var(--dot-border);
+      color: var(--dot-text);
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 150ms ease-in-out, border-color 150ms ease-in-out;
+    }
+
+    .theme-toggle:hover {
+      background: var(--dot-surface-2);
+      border-color: var(--dot-border-focus);
+    }
+  </style>
 </head>
 
 <body>
-  <div id="button">
-    <!-- solid -->
-    <dot-button>Save</dot-button>
 
-    <!-- outline -->
-    <dot-button variant="outline">Cancel</dot-button>
+  <button class="theme-toggle" id="themeToggle">toggle dark</button>
 
-    <!-- ghost -->
-    <dot-button variant="ghost">See more</dot-button>
+  <h1>dot-ui</h1>
+  <p class="version">dot-button · v0.0.2</p>
 
-    <!-- danger -->
-    <dot-button variant="danger">Delete</dot-button>
-
-    <!-- sizes -->
-    <dot-button size="sm">Small</dot-button>
-    <dot-button size="lg">Large</dot-button>
-
-    <!-- estados -->
-    <dot-button disabled>Disabled</dot-button>
-    <dot-button loading>Loading</dot-button>
-
-    <!-- block -->
-    <dot-button block>Full width</dot-button>
+  <!-- VARIANTS -->
+  <div class="section">
+    <p class="section-title">Variants</p>
+    <div class="row">
+      <dot-button>Solid</dot-button>
+      <dot-button variant="outline">Outline</dot-button>
+      <dot-button variant="ghost">Ghost</dot-button>
+      <dot-button variant="danger">Danger</dot-button>
+    </div>
   </div>
-  <script type="module" src="/src/index.ts"></script>
+
+  <!-- SIZES -->
+  <div class="section">
+    <p class="section-title">Sizes</p>
+    <div class="row">
+      <dot-button size="sm">Small</dot-button>
+      <dot-button size="md">Medium</dot-button>
+      <dot-button size="lg">Large</dot-button>
+    </div>
+    <div class="row">
+      <dot-button variant="outline" size="sm">Small</dot-button>
+      <dot-button variant="outline" size="md">Medium</dot-button>
+      <dot-button variant="outline" size="lg">Large</dot-button>
+    </div>
+  </div>
+
+  <!-- STATES -->
+  <div class="section">
+    <p class="section-title">States</p>
+    <div class="row">
+      <dot-button>Default</dot-button>
+      <dot-button active>Active</dot-button>
+      <dot-button disabled>Disabled</dot-button>
+      <dot-button loading>Loading</dot-button>
+    </div>
+    <div class="row">
+      <dot-button variant="outline">Default</dot-button>
+      <dot-button variant="outline" active>Active</dot-button>
+      <dot-button variant="outline" disabled>Disabled</dot-button>
+      <dot-button variant="outline" loading>Loading</dot-button>
+    </div>
+    <div class="row">
+      <dot-button variant="danger">Default</dot-button>
+      <dot-button variant="danger" disabled>Disabled</dot-button>
+      <dot-button variant="danger" loading>Loading</dot-button>
+    </div>
+  </div>
+
+  <!-- SLOTS -->
+  <div class="section">
+    <p class="section-title">Slots — start / end</p>
+    <div class="row">
+      <dot-button><span slot="start">←</span> Back</dot-button>
+      <dot-button>Continue <span slot="end">→</span></dot-button>
+      <dot-button variant="outline"><span slot="start">⊕</span> Add item</dot-button>
+      <dot-button variant="ghost">Settings <span slot="end">⚙</span></dot-button>
+    </div>
+  </div>
+
+  <!-- AS LINK -->
+  <div class="section">
+    <p class="section-title">As link — href</p>
+    <div class="row">
+      <dot-button href="https://github.com" target="_blank">GitHub ↗</dot-button>
+      <dot-button href="#" variant="outline">Internal link</dot-button>
+      <dot-button href="#" variant="ghost" disabled>Disabled link</dot-button>
+    </div>
+    <div class="row">
+      <code>target="_blank" auto-adds rel="noreferrer noopener"</code>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <div class="section">
+    <p class="section-title">Form integration — type submit / reset</p>
+    <form id="testForm" style="display: flex; flex-direction: column; gap: 12px; max-width: 320px;">
+      <input type="text" name="username" placeholder="Enter something..." />
+      <div class="row">
+        <dot-button type="submit">Submit</dot-button>
+        <dot-button type="reset" variant="outline">Reset</dot-button>
+      </div>
+    </form>
+    <p id="formResult" style="margin-top: 12px; font-size: 13px; color: var(--dot-text-muted);"></p>
+  </div>
+
+  <!-- BLOCK -->
+  <div class="section">
+    <p class="section-title">Block</p>
+    <div style="max-width: 320px; display: flex; flex-direction: column; gap: 8px;">
+      <dot-button block>Full width solid</dot-button>
+      <dot-button block variant="outline">Full width outline</dot-button>
+    </div>
+  </div>
+
+  <!-- EVENTS -->
+  <div class="section">
+    <p class="section-title">Events — dot:focus / dot:blur</p>
+    <div class="row">
+      <dot-button id="eventBtn" variant="outline">Focus me</dot-button>
+    </div>
+    <p id="eventLog"
+      style="margin-top: 12px; font-size: 13px; font-family: var(--dot-font-mono); color: var(--dot-text-muted);">
+      Waiting for events...
+    </p>
+  </div>
+
+  <script>
+    const toggle = document.getElementById('themeToggle')
+
+    // Init from OS preference
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.classList.add('dot-theme-dark')
+      toggle.textContent = 'toggle light'
+    }
+
+    toggle.addEventListener('click', () => {
+      const isDark = document.documentElement.classList.toggle('dot-theme-dark')
+      toggle.textContent = isDark ? 'toggle light' : 'toggle dark'
+    })
+
+    const form = document.getElementById('testForm')
+    const formResult = document.getElementById('formResult')
+    form.addEventListener('submit', (e) => {
+      e.preventDefault()
+      const data = new FormData(form)
+      formResult.textContent = `Submitted: username = "${data.get('username')}"`
+    })
+    form.addEventListener('reset', () => {
+      formResult.textContent = 'Form reset'
+    })
+
+    const eventBtn = document.getElementById('eventBtn')
+    const eventLog = document.getElementById('eventLog')
+    eventBtn.addEventListener('dot:focus', () => {
+      eventLog.textContent = '● dot:focus fired'
+      eventLog.style.color = 'var(--dot-success)'
+    })
+    eventBtn.addEventListener('dot:blur', () => {
+      eventLog.textContent = '○ dot:blur fired'
+      eventLog.style.color = 'var(--dot-text-muted)'
+    })
+  </script>
+
 </body>
 
 </html>
