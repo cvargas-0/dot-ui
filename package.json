@@ -1,6 +1,6 @@
 {
-  "name": "dot-ui",
-  "description": "Minimal Web Components design system. TypeScript, CSS custom properties, no dependencies.",
+  "name": "@usedot/ui",
+  "description": "Minimal design system built with Web Components, TypeScript, CSS custom properties, and no dependencies.",
   "version": "0.0.3",
   "type": "module",
   "license": "MIT",

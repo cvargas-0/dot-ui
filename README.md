@@ -1,52 +1,48 @@
-# dot-ui
+# @usedot/ui
 
-Minimal Web Components design system. Vanilla TypeScript, CSS custom properties, no dependencies.
+> ⚠️ API may change between versions.
+
+Minimal design system built with Web Components, TypeScript, CSS custom properties, and no dependencies.
 
 ## Install
 
 ```bash
-pnpm add dot-ui
+pnpm add @usedot/ui
 ```
 
-## Usage
+## Setup
 
-```html
-<!-- Load both themes -->
-<link rel="stylesheet" href="dot-ui/dist/themes/light.css" />
-<link rel="stylesheet" href="dot-ui/dist/themes/dark.css" />
+Import the components and stylesheet once in your app entry point:
 
-<!-- Import components -->
-<script type="module">
-  import 'dot-ui'
-</script>
-
-<!-- Use -->
-<dot-button>Save</dot-button>
-<dot-button variant="outline">Cancel</dot-button>
+```js
+import '@usedot/ui'       // registers all components
+import '@usedot/ui/css'   // design tokens + themes
 ```
 
 ## Dark mode
 
-Toggle `.dot-theme-dark` on `<html>`:
+Add `dot-theme-dark` to your `<html>` element to switch themes:
 
 ```js
 document.documentElement.classList.toggle('dot-theme-dark')
 ```
 
+## Usage
+
+Components are standard HTML elements — use them anywhere:
+
+```html
+<dot-button>Save</dot-button>
+<dot-button variant="outline">Cancel</dot-button>
+<dot-button variant="danger" loading>Deleting…</dot-button>
+<dot-button href="/home">Go home</dot-button>
+```
+
 ## Components
 
-| Component     | Status       |
-| ------------- | ------------ |
-| `dot-button`  | experimental |
-
-## Dev
-
-```bash
-pnpm dev        # playground
-pnpm build      # build → dist/
-pnpm lint       # lint
-pnpm bump       # version bump
-```
+| Component    | Status       |
+| ------------ | ------------ |
+| `dot-button` | experimental |
 
 ## License
 
