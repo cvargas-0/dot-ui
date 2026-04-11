@@ -230,6 +230,16 @@ export class Dot[Name] extends DotElement {
 
 ---
 
+## Component inventory
+
+| Component     | Tag            | Status       | Since  | Notes                                    |
+| ------------- | -------------- | ------------ | ------ | ---------------------------------------- |
+| `DotButton`   | `<dot-button>` | experimental | 0.0.3  | variants, sizes, states, href, form      |
+| `DotBadge`    | `<dot-badge>`  | experimental | 0.0.4  | variants, sizes, pill                    |
+| `DotAlert`    | `<dot-alert>`  | experimental | 0.0.4  | variants, open/closable, icon slot, dot:close |
+
+---
+
 ## New component template
 
 Read `scripts/skills/create-component/SKILL.md` for the full step-by-step guide.
