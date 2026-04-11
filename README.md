@@ -50,4 +50,4 @@ pnpm bump       # version bump
 
 ## License
 
-MIT
+[MIT](LICENSE)
