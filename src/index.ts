@@ -8,3 +8,4 @@ import '@/themes/light.css'
 import '@/themes/dark.css'
 
 export { default as DotButton } from '@/components/dot-button'
+export { default as DotBadge } from '@/components/dot-badge'

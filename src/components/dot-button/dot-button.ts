@@ -148,8 +148,6 @@ export default class DotButton extends DotElement {
         this.setAttr('active', value)
     }
 
-    // ---- Lifecycle ----
-
     connectedCallback() {
         this.attachShadow({ mode: 'open' })
         this.shadowRoot!.adoptedStyleSheets = [sheet]

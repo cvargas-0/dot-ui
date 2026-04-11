@@ -1,0 +1,64 @@
+:host {
+    display: inline-block;
+    font-family: var(--dot-font-sans);
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--dot-radius-md);
+    font-weight: var(--dot-weight-medium);
+    line-height: var(--dot-leading-tight);
+    white-space: nowrap;
+    transition:
+        background-color var(--dot-duration-base) var(--dot-ease),
+        color var(--dot-duration-base) var(--dot-ease);
+}
+
+/* Sizes */
+.badge--sm {
+    font-size: var(--dot-text-xs);
+    padding: var(--dot-space-1) var(--dot-space-2);
+}
+
+.badge--md {
+    font-size: var(--dot-text-sm);
+    padding: var(--dot-space-1) var(--dot-space-2);
+}
+
+.badge--lg {
+    font-size: var(--dot-text-base);
+    padding: var(--dot-space-1) var(--dot-space-3);
+}
+
+/* Variants */
+.badge--default {
+    background-color: var(--dot-surface-2);
+    color: var(--dot-text-sub);
+}
+
+.badge--success {
+    background-color: var(--dot-success-bg);
+    color: var(--dot-success-fg);
+}
+
+.badge--danger {
+    background-color: var(--dot-danger-bg);
+    color: var(--dot-danger-fg);
+}
+
+.badge--warning {
+    background-color: var(--dot-warning-bg);
+    color: var(--dot-warning-fg);
+}
+
+.badge--info {
+    background-color: var(--dot-info-bg);
+    color: var(--dot-info-fg);
+}
+
+/* Pill shape */
+:host([pill]) .badge {
+    border-radius: var(--dot-radius-full);
+}

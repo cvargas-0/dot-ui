@@ -16,6 +16,7 @@
     import '@fontsource/dm-mono/500.css'
     import '/src/styles/fonts.css'
     import '/src/components/dot-button/index.ts'
+    import '/src/components/dot-badge/index.ts'
   </script>
 
   <style>
@@ -234,6 +235,49 @@
       style="margin-top: 12px; font-size: 13px; font-family: var(--dot-font-mono); color: var(--dot-text-muted);">
       Waiting for events...
     </p>
+  </div>
+
+  <!-- DOT-BADGE -->
+  <h2 style="font-size: 18px; font-weight: 500; margin-top: 64px; margin-bottom: 4px;">dot-badge</h2>
+  <p class="version">badge · v0.0.4</p>
+
+  <!-- BADGE VARIANTS -->
+  <div class="section">
+    <p class="section-title">Variants</p>
+    <div class="row">
+      <dot-badge>Default</dot-badge>
+      <dot-badge variant="success">Success</dot-badge>
+      <dot-badge variant="danger">Danger</dot-badge>
+      <dot-badge variant="warning">Warning</dot-badge>
+      <dot-badge variant="info">Info</dot-badge>
+    </div>
+  </div>
+
+  <!-- BADGE SIZES -->
+  <div class="section">
+    <p class="section-title">Sizes</p>
+    <div class="row">
+      <dot-badge size="sm">Small</dot-badge>
+      <dot-badge size="md">Medium</dot-badge>
+      <dot-badge size="lg">Large</dot-badge>
+    </div>
+    <div class="row">
+      <dot-badge variant="success" size="sm">Small</dot-badge>
+      <dot-badge variant="success" size="md">Medium</dot-badge>
+      <dot-badge variant="success" size="lg">Large</dot-badge>
+    </div>
+  </div>
+
+  <!-- BADGE PILL -->
+  <div class="section">
+    <p class="section-title">Pill</p>
+    <div class="row">
+      <dot-badge pill>Default</dot-badge>
+      <dot-badge pill variant="success">Success</dot-badge>
+      <dot-badge pill variant="danger">Danger</dot-badge>
+      <dot-badge pill variant="warning">Warning</dot-badge>
+      <dot-badge pill variant="info">Info</dot-badge>
+    </div>
   </div>
 
   <script>
