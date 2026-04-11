@@ -68,7 +68,7 @@ dot-ui/
 │   │       ├── index.ts            # component entry point
 │   │       ├── dot-[name].ts       # component class
 │   │       └── dot-[name].css      # component styles
-│   ├── tokens/
+│   ├── styles/
 │   │   ├── tokens.css              # global design tokens
 │   │   └── fonts.css               # font-display override
 │   ├── env.d.ts                    # global type declarations
@@ -127,10 +127,10 @@ dot-ui/
 
 ## Design tokens
 
-All tokens are defined in `src/tokens/tokens.css` under `:root`.
+All tokens are defined in `src/styles/tokens.css` under `:root`.
 **Never hardcode values in component styles** — always use tokens.
 
-### Available tokens
+### Available styles
 
 ```css
 /* colors — background */

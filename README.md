@@ -14,19 +14,39 @@ yarn add @usedot/ui
 
 ## Setup
 
-Import the components and stylesheet once in your app entry point:
+Import the components and a theme once in your app entry point:
 
 ```js
-import '@usedot/ui'       // registers all components
-import '@usedot/ui/css'   // design tokens + themes
+import '@usedot/ui'              // registers all components
+import '@usedot/ui/themes/light' // light theme
+```
+
+For dark mode, import the dark theme instead — or import both and toggle with a class:
+
+```js
+import '@usedot/ui/themes/light'
+import '@usedot/ui/themes/dark'
+```
+
+If you need access to the raw design tokens stylesheet:
+
+```js
+import '@usedot/ui/styles' // design tokens only
 ```
 
 ## Dark mode
 
-Add `dot-theme-dark` to your `<html>` element to switch themes:
+The theme system supports three modes:
+
+| Mode             | How to activate                          |
+| ---------------- | ---------------------------------------- |
+| Automatic        | No class — follows `prefers-color-scheme` |
+| Force light      | Add `.light` to `<html>`                 |
+| Force dark       | Add `.dark` to `<html>`                  |
 
 ```js
-document.documentElement.classList.toggle('dot-theme-dark')
+// toggle dark mode manually
+document.documentElement.classList.toggle('dark')
 ```
 
 ## Usage

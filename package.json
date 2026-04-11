@@ -11,7 +11,9 @@
       "import": "./dist/dot-ui.es.js",
       "require": "./dist/dot-ui.umd.js"
     },
-    "./css": "./dist/dot-ui.css"
+    "./themes/light": "./dist/themes/light.css",
+    "./themes/dark": "./dist/themes/dark.css",
+    "./styles": "./dist/dot-ui.css"
   },
   "files": [
     "dist"

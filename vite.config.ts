@@ -1,8 +1,21 @@
+import { copyFileSync, mkdirSync } from 'node:fs'
 import { resolve } from 'node:path'
-import { defineConfig } from 'vite'
+import { defineConfig, type Plugin } from 'vite'
+
+function copyThemes(): Plugin {
+    return {
+        name: 'copy-themes',
+        closeBundle() {
+            mkdirSync('dist/themes', { recursive: true })
+            copyFileSync('src/themes/light.css', 'dist/themes/light.css')
+            copyFileSync('src/themes/dark.css', 'dist/themes/dark.css')
+        },
+    }
+}
 
 export default defineConfig({
     root: '.',
+    plugins: [copyThemes()],
     build: {
         lib: {
             entry: resolve(__dirname, 'src/index.ts'),
