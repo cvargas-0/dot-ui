@@ -62,9 +62,11 @@ Components are standard HTML elements — use them anywhere:
 
 ## Components
 
-| Component    | Status       |
-| ------------ | ------------ |
-| `dot-button` | experimental |
+| Component    | Attrs                                        | Status       |
+| ------------ | -------------------------------------------- | ------------ |
+| `dot-button` | `variant` `size` `disabled` `loading` `href` | experimental |
+| `dot-badge`  | `variant` `size` `pill`                      | experimental |
+| `dot-alert`  | `variant` `open` `closable`                  | experimental |
 
 ## License
 
