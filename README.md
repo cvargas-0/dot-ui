@@ -7,7 +7,9 @@ Minimal design system built with Web Components, TypeScript, CSS custom properti
 ## Install
 
 ```bash
+npm install @usedot/ui
 pnpm add @usedot/ui
+yarn add @usedot/ui
 ```
 
 ## Setup
