@@ -28,6 +28,25 @@
     "format": "prettier --write \"src/**/*.{ts,js,css}\"",
     "bump": "node --experimental-strip-types scripts/bump-version.ts"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cvargas-0/dot-ui.git"
+  },
+  "author": "Camilo Vargas",
+  "bugs": {
+    "url": "https://github.com/cvargas-0/dot-ui/issues"
+  },
+  "homepage": "https://github.com/cvargas-0/dot-ui",
+  "keywords": [
+    "typescript",
+    "javascript",
+    "web-components",
+    "css",
+    "html",
+    "design-system",
+    "no-dependencies",
+    "ui"
+  ],
   "lint-staged": {
     "src/**/*.{ts,js}": [
       "eslint --fix",
