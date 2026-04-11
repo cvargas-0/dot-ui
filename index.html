@@ -17,6 +17,7 @@
     import '/src/styles/fonts.css'
     import '/src/components/dot-button/index.ts'
     import '/src/components/dot-badge/index.ts'
+    import '/src/components/dot-alert/index.ts'
   </script>
 
   <style>
@@ -280,6 +281,49 @@
     </div>
   </div>
 
+  <!-- DOT-ALERT -->
+  <h2 style="font-size: 18px; font-weight: 500; margin-top: 64px; margin-bottom: 4px;">dot-alert</h2>
+  <p class="version">alert · v0.0.4</p>
+
+  <!-- ALERT VARIANTS -->
+  <div class="section">
+    <p class="section-title">Variants</p>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <dot-alert open>Default — something to let you know.</dot-alert>
+      <dot-alert open variant="success">Success — your changes have been saved.</dot-alert>
+      <dot-alert open variant="danger">Danger — this action cannot be undone.</dot-alert>
+      <dot-alert open variant="warning">Warning — your storage is almost full.</dot-alert>
+      <dot-alert open variant="info">Info — a new version is available.</dot-alert>
+    </div>
+  </div>
+
+  <!-- ALERT WITH ICON -->
+  <div class="section">
+    <p class="section-title">With icon slot</p>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <dot-alert open variant="success"><span slot="icon">✓</span>Profile updated successfully.</dot-alert>
+      <dot-alert open variant="danger"><span slot="icon">✕</span>Failed to connect to the server.</dot-alert>
+      <dot-alert open variant="warning"><span slot="icon">⚠</span>This feature is deprecated.</dot-alert>
+      <dot-alert open variant="info"><span slot="icon">i</span>Scheduled maintenance on Sunday.</dot-alert>
+    </div>
+  </div>
+
+  <!-- ALERT CLOSABLE -->
+  <div class="section">
+    <p class="section-title">Closable</p>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <dot-alert open closable id="alert-default">Default — click × to dismiss.</dot-alert>
+      <dot-alert open closable variant="success" id="alert-success"><span slot="icon">✓</span>Success —
+        dismissible.</dot-alert>
+      <dot-alert open closable variant="danger" id="alert-danger">Danger — dismissible.</dot-alert>
+      <dot-alert open closable variant="info" id="alert-info">Info — dismissible.</dot-alert>
+    </div>
+    <p id="alertLog"
+      style="margin-top: 12px; font-size: 13px; font-family: var(--dot-font-mono); color: var(--dot-text-muted);">
+      Waiting for dot:close...
+    </p>
+  </div>
+
   <script>
     const toggle = document.getElementById('themeToggle')
 
@@ -303,6 +347,15 @@
     })
     form.addEventListener('reset', () => {
       formResult.textContent = 'Form reset'
+    })
+
+    const alertLog = document.getElementById('alertLog');
+
+    ['alert-default', 'alert-success', 'alert-danger', 'alert-info'].forEach(id => {
+      document.getElementById(id)?.addEventListener('dot:close', (e) => {
+        alertLog.textContent = `dot:close fired — #${e.target.id}`
+        alertLog.style.color = 'var(--dot-success)'
+      })
     })
 
     const eventBtn = document.getElementById('eventBtn')

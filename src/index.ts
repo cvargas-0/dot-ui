@@ -9,3 +9,4 @@ import '@/themes/dark.css'
 
 export { default as DotButton } from '@/components/dot-button'
 export { default as DotBadge } from '@/components/dot-badge'
+export { default as DotAlert } from '@/components/dot-alert'
