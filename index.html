@@ -20,6 +20,7 @@
     import '/src/components/dot-alert/index.ts'
     import '/src/components/dot-spinner/index.ts'
     import '/src/components/dot-input/index.ts'
+    import '/src/components/dot-card/index.ts'
   </script>
 
   <style>
@@ -324,6 +325,65 @@
       style="margin-top: 12px; font-size: 13px; font-family: var(--dot-font-mono); color: var(--dot-text-muted);">
       Waiting for dot:close...
     </p>
+  </div>
+
+  <!-- DOT-CARD -->
+  <h2 style="font-size: 18px; font-weight: 500; margin-top: 64px; margin-bottom: 4px;">dot-card</h2>
+  <p class="version">card · v0.0.6</p>
+
+  <!-- CARD VARIANTS -->
+  <div class="section">
+    <p class="section-title">Variants</p>
+    <div class="row" style="align-items: flex-start;">
+      <dot-card style="width: 200px;">
+        <span>Default — surface background with subtle border.</span>
+      </dot-card>
+      <dot-card variant="outlined" style="width: 200px;">
+        <span>Outlined — page background with explicit border.</span>
+      </dot-card>
+      <dot-card variant="elevated" style="width: 200px;">
+        <span>Elevated — surface background with shadow.</span>
+      </dot-card>
+    </div>
+  </div>
+
+  <!-- CARD PADDING -->
+  <div class="section">
+    <p class="section-title">Padding</p>
+    <div class="row" style="align-items: flex-start;">
+      <dot-card padding="none" style="width: 160px;"><span style="background: var(--dot-surface-2); display: block; padding: 8px;">padding none</span></dot-card>
+      <dot-card padding="sm" style="width: 160px;"><span>padding sm</span></dot-card>
+      <dot-card padding="md" style="width: 160px;"><span>padding md</span></dot-card>
+      <dot-card padding="lg" style="width: 160px;"><span>padding lg</span></dot-card>
+    </div>
+  </div>
+
+  <!-- CARD SLOTS -->
+  <div class="section">
+    <p class="section-title">Slots — header / body / footer</p>
+    <div class="row" style="align-items: flex-start;">
+      <dot-card style="width: 240px;">
+        <div slot="header" style="font-weight: 500; font-size: 14px;">Card title</div>
+        <p style="font-size: 13px; color: var(--dot-text-sub); margin: 0;">Body content goes here. This is the default slot.</p>
+        <div slot="footer" style="display: flex; gap: 8px;">
+          <dot-button size="sm">Action</dot-button>
+          <dot-button size="sm" variant="ghost">Cancel</dot-button>
+        </div>
+      </dot-card>
+
+      <dot-card variant="elevated" style="width: 240px;">
+        <div slot="header" style="font-weight: 500; font-size: 14px;">Elevated card</div>
+        <p style="font-size: 13px; color: var(--dot-text-sub); margin: 0;">Header + body only, no footer slot used.</p>
+      </dot-card>
+
+      <dot-card variant="outlined" padding="none" style="width: 240px;">
+        <img slot="media" src="https://picsum.photos/seed/dot/480/200" alt="placeholder" style="width:100%;height:auto;display:block;" />
+        <div style="padding: 16px;">
+          <p style="font-weight: 500; font-size: 14px; margin: 0 0 4px;">Media card</p>
+          <p style="font-size: 13px; color: var(--dot-text-sub); margin: 0;">Media slot fills edge-to-edge.</p>
+        </div>
+      </dot-card>
+    </div>
   </div>
 
   <!-- DOT-INPUT -->
