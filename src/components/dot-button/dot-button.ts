@@ -8,7 +8,7 @@ sheet.replaceSync(styles)
 /**
  * @summary Buttons represent actions that are available to the user.
  * @status experimental
- * @since 0.0.3
+ * @since 0.0.5
  *
  * @dependency dot-spinner - Used to render the loading indicator.
  *
