@@ -1,0 +1,56 @@
+/* ---- Host ---- */
+:host {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    --_speed: 700ms;
+}
+
+/* ---- Base ---- */
+.spinner {
+    width: var(--_size);
+    height: var(--_size);
+    border: var(--_thickness) solid var(--_track-color);
+    border-top-color: var(--_color);
+    border-radius: var(--dot-radius-full);
+    animation: dot-spin var(--_speed) linear infinite;
+}
+
+/* ---- Sizes ---- */
+.spinner--sm {
+    --_size: 16px;
+    --_thickness: 2px;
+}
+
+.spinner--md {
+    --_size: 24px;
+    --_thickness: 2.5px;
+}
+
+.spinner--lg {
+    --_size: 32px;
+    --_thickness: 3px;
+}
+
+/* ---- Variants ---- */
+.spinner--default {
+    --_color: var(--dot-accent);
+    --_track-color: var(--dot-border);
+}
+
+.spinner--muted {
+    --_color: var(--dot-text-muted);
+    --_track-color: var(--dot-surface-2);
+}
+
+.spinner--current {
+    --_color: currentColor;
+    --_track-color: transparent;
+}
+
+/* ---- Animation ---- */
+@keyframes dot-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

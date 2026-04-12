@@ -1,5 +1,6 @@
 import { DotElement } from '@/core/dot-element'
 import styles from './dot-button.css?inline'
+import '@/components/dot-spinner'
 
 const sheet = new CSSStyleSheet()
 sheet.replaceSync(styles)
@@ -9,6 +10,8 @@ sheet.replaceSync(styles)
  * @status experimental
  * @since 0.0.3
  *
+ * @dependency dot-spinner - Used to render the loading indicator.
+ *
  * @event {CustomEvent} dot:focus - Emitted when the button gains focus.
  * @event {CustomEvent} dot:blur - Emitted when the button loses focus.
  *
@@ -17,7 +20,7 @@ sheet.replaceSync(styles)
  * @slot end - A presentational suffix icon or similar element.
  *
  * @csspart base - The component's base wrapper (button or anchor element).
- * @csspart spinner - The spinner shown when the button is in the loading state.
+ * @csspart spinner - The dot-spinner element shown when the button is in the loading state.
  *
  * @attr {string} variant - The visual style. Options: solid | outline | ghost | danger.
  * @attr {string} size - The button size. Options: sm | md | lg.
@@ -49,8 +52,6 @@ export default class DotButton extends DotElement {
     ]
 
     #controller: AbortController | null = null
-
-    // ---- JS properties ↔ HTML attributes ----
 
     /** The visual style of the button. */
     get variant() {
@@ -176,6 +177,7 @@ export default class DotButton extends DotElement {
         const isLink = !!this.href
         const tag = isLink ? 'a' : 'button'
         const rel = this.#resolveRel()
+        const spinnerSize = this.size === 'lg' ? 'md' : 'sm'
 
         this.shadowRoot!.innerHTML = /*html*/ `
             <${tag}
@@ -191,7 +193,7 @@ export default class DotButton extends DotElement {
                 aria-disabled="${this.disabled}"
                 aria-pressed="${this.active}"
             >
-                ${this.loading ? '<span class="btn__spinner" part="spinner" aria-hidden="true"></span>' : ''}
+                ${this.loading ? `<dot-spinner part="spinner" size="${spinnerSize}" variant="current" aria-hidden="true"></dot-spinner>` : ''}
                 <slot name="start"></slot>
                 <slot></slot>
                 <slot name="end"></slot>

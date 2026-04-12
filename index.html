@@ -18,6 +18,7 @@
     import '/src/components/dot-button/index.ts'
     import '/src/components/dot-badge/index.ts'
     import '/src/components/dot-alert/index.ts'
+    import '/src/components/dot-spinner/index.ts'
   </script>
 
   <style>
@@ -322,6 +323,48 @@
       style="margin-top: 12px; font-size: 13px; font-family: var(--dot-font-mono); color: var(--dot-text-muted);">
       Waiting for dot:close...
     </p>
+  </div>
+
+  <!-- DOT-SPINNER -->
+  <h2 style="font-size: 18px; font-weight: 500; margin-top: 64px; margin-bottom: 4px;">dot-spinner</h2>
+  <p class="version">spinner · v0.0.5</p>
+
+  <!-- SPINNER VARIANTS -->
+  <div class="section">
+    <p class="section-title">Variants</p>
+    <div class="row">
+      <dot-spinner></dot-spinner>
+      <dot-spinner variant="muted"></dot-spinner>
+      <dot-spinner variant="current" style="color: var(--dot-accent);"></dot-spinner>
+      <code>default</code>
+      <code>muted</code>
+      <code>current</code>
+    </div>
+  </div>
+
+  <!-- SPINNER SIZES -->
+  <div class="section">
+    <p class="section-title">Sizes</p>
+    <div class="row">
+      <dot-spinner size="sm"></dot-spinner>
+      <dot-spinner size="md"></dot-spinner>
+      <dot-spinner size="lg"></dot-spinner>
+      <code>sm</code>
+      <code>md</code>
+      <code>lg</code>
+    </div>
+  </div>
+
+  <!-- SPINNER IN CONTEXT -->
+  <div class="section">
+    <p class="section-title">In context — inside a button</p>
+    <div class="row">
+      <dot-button loading>Loading</dot-button>
+      <dot-button variant="outline" style="display: inline-flex; gap: 8px; align-items: center;">
+        <dot-spinner size="sm" slot="start"></dot-spinner>
+        Processing
+      </dot-button>
+    </div>
   </div>
 
   <script>

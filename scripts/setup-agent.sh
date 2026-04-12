@@ -2,8 +2,10 @@
 # dot-ui — AI Agent Setup
 #
 # Configures Claude Code by:
-#   - Creating .claude/skills/ symlink → scripts/skills/
 #   - Copying AGENT.md → CLAUDE.md
+#   - Creating .claude/skills/    symlink → scripts/skills/
+#   - Creating .claude/commands/  symlink → scripts/commands/
+#   - Copying scripts/claude-settings.json → .claude/settings.json
 #
 # Usage:
 #   ./scripts/setup-agent.sh
@@ -14,8 +16,12 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(dirname "$SCRIPT_DIR")"
 SOURCE="$REPO_ROOT/AGENT.md"
 SKILLS_SOURCE="$SCRIPT_DIR/skills"
+COMMANDS_SOURCE="$SCRIPT_DIR/commands"
+SETTINGS_SOURCE="$SCRIPT_DIR/claude-settings.json"
 CLAUDE_DIR="$REPO_ROOT/.claude"
-TARGET="$CLAUDE_DIR/skills"
+SKILLS_TARGET="$CLAUDE_DIR/skills"
+COMMANDS_TARGET="$CLAUDE_DIR/commands"
+SETTINGS_TARGET="$CLAUDE_DIR/settings.json"
 
 # Colors
 RED='\033[0;31m'
@@ -25,10 +31,6 @@ BLUE='\033[0;34m'
 BOLD='\033[1m'
 NC='\033[0m'
 
-# =============================================================================
-# HELPERS
-# =============================================================================
-
 check_source() {
     if [ ! -f "$SOURCE" ]; then
         echo -e "${RED}  ✗ AGENT.md not found at $SOURCE${NC}"
@@ -36,10 +38,14 @@ check_source() {
     fi
 }
 
-ensure_skills_dir() {
+ensure_scripts_dirs() {
     if [ ! -d "$SKILLS_SOURCE" ]; then
         mkdir -p "$SKILLS_SOURCE"
         echo -e "${GREEN}  ✓ Created scripts/skills/${NC}"
+    fi
+    if [ ! -d "$COMMANDS_SOURCE" ]; then
+        mkdir -p "$COMMANDS_SOURCE"
+        echo -e "${GREEN}  ✓ Created scripts/commands/${NC}"
     fi
 }
 
@@ -51,39 +57,42 @@ ensure_claude_dir() {
 }
 
 setup_symlink() {
-    # Remove existing symlink
-    if [ -L "$TARGET" ]; then
-        rm "$TARGET"
-        echo -e "${YELLOW}  ! Removed existing symlink${NC}"
+    local target="$1"
+    local relative_source="$2"
+    local label="$3"
+
+    # Remove existing symlink or directory (Windows Git Bash surfaces junctions as dirs)
+    if [ -L "$target" ] || [ -d "$target" ]; then
+        rm -rf "$target"
+        echo -e "${YELLOW}  ! Removed existing $label${NC}"
     fi
 
-    # Backup existing directory
-    if [ -d "$TARGET" ]; then
-        mv "$TARGET" "${TARGET}.backup.$(date +%s)"
-        echo -e "${YELLOW}  ! Existing .claude/skills/ backed up${NC}"
-    fi
-
-    # Compute relative path from .claude/ to scripts/skills/
-    # .claude/ is one level deep from repo root
-    # scripts/skills/ is also one level deep from repo root
-    # So from .claude/ the relative path is: ../scripts/skills
-    local relative_target="../scripts/skills"
-
-    # Create symlink from inside .claude/ using relative path
-    ln -s "$relative_target" "$TARGET"
-
-    echo -e "${GREEN}  ✓ .claude/skills → ../scripts/skills (relative)${NC}"
+    ln -s "$relative_source" "$target"
+    echo -e "${GREEN}  ✓ $label → $relative_source (relative)${NC}"
 }
 
 verify_symlink() {
-    if [ -d "$TARGET" ]; then
-        local skill_count
-        skill_count=$(find "$TARGET" -name "SKILL.md" 2>/dev/null | wc -l | tr -d ' ')
-        echo -e "${GREEN}  ✓ Symlink verified — ${skill_count} skill(s) accessible${NC}"
+    local target="$1"
+    local pattern="$2"
+    local label="$3"
+
+    if [ -d "$target" ]; then
+        local count
+        count=$(find "$target" -name "$pattern" 2>/dev/null | wc -l | tr -d ' ')
+        echo -e "${GREEN}  ✓ $label verified — ${count} file(s) accessible${NC}"
     else
-        echo -e "${RED}  ✗ Symlink does not resolve — check that scripts/skills/ exists${NC}"
+        echo -e "${RED}  ✗ $label does not resolve${NC}"
         exit 1
     fi
+}
+
+copy_settings() {
+    if [ ! -f "$SETTINGS_SOURCE" ]; then
+        echo -e "${YELLOW}  ! scripts/claude-settings.json not found — skipping${NC}"
+        return
+    fi
+    cp "$SETTINGS_SOURCE" "$SETTINGS_TARGET"
+    echo -e "${GREEN}  ✓ scripts/claude-settings.json → .claude/settings.json${NC}"
 }
 
 copy_agent_md() {
@@ -91,9 +100,6 @@ copy_agent_md() {
     echo -e "${GREEN}  ✓ AGENT.md → CLAUDE.md${NC}"
 }
 
-# =============================================================================
-# MAIN
-# =============================================================================
 
 echo ""
 echo -e "${BOLD}dot-ui — AI Agent Setup${NC}"
@@ -103,23 +109,24 @@ echo -e "${BLUE}Configuring Claude Code...${NC}"
 echo ""
 
 check_source
-ensure_skills_dir
+ensure_scripts_dirs
 ensure_claude_dir
-setup_symlink
-verify_symlink
+setup_symlink "$SKILLS_TARGET"   "../scripts/skills"    ".claude/skills/"
+verify_symlink "$SKILLS_TARGET"  "SKILL.md"             ".claude/skills/"
+setup_symlink "$COMMANDS_TARGET" "../scripts/commands"  ".claude/commands/"
+verify_symlink "$COMMANDS_TARGET" "*.md"                ".claude/commands/"
+copy_settings
 copy_agent_md
-
-# =============================================================================
-# SUMMARY
-# =============================================================================
 
 echo ""
 echo -e "${GREEN}✅ Done!${NC}"
 echo ""
 echo "  .claude/"
-echo "  └── skills/  →  ../scripts/skills/"
-echo "                      $(find "$SKILLS_SOURCE" -maxdepth 1 -mindepth 1 -type d | while read -r d; do echo "├── $(basename "$d")/SKILL.md"; done | tr '\n' ' ')"
+echo "  ├── skills/    →  ../scripts/skills/"
+echo "  ├── commands/  →  ../scripts/commands/"
+echo "  └── settings.json"
 echo ""
-echo -e "${BLUE}Tip: AGENT.md is the source of truth.${NC}"
+echo -e "${BLUE}Tip: AGENT.md is the source of truth for rules and conventions.${NC}"
 echo -e "${BLUE}     Edit it and re-run this script to sync.${NC}"
+echo -e "${BLUE}     Slash commands live in scripts/commands/.${NC}"
 echo ""

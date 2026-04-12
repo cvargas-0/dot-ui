@@ -13,6 +13,7 @@ after the `sheet` module-level constant and before `export`.
 
 The JSDoc block is the public contract of the component. It documents:
 - What the component does (`@summary`)
+- If it depends on another component (`@dependency`)
 - Its status in the system (`@status`)
 - Which version it was added (`@since`)
 - Every custom event it emits (`@event`)
@@ -31,6 +32,8 @@ The JSDoc block is the public contract of the component. It documents:
  * @status stable | beta | experimental
  * @since 0.1.0
  *
+ * @dependency dot:[name] - Description of the dependency.
+ * 
  * @event {CustomEvent} dot:[name] - Description of when this event fires.
  *
  * @slot - The component's default content.
