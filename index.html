@@ -19,6 +19,7 @@
     import '/src/components/dot-badge/index.ts'
     import '/src/components/dot-alert/index.ts'
     import '/src/components/dot-spinner/index.ts'
+    import '/src/components/dot-input/index.ts'
   </script>
 
   <style>
@@ -325,6 +326,67 @@
     </p>
   </div>
 
+  <!-- DOT-INPUT -->
+  <h2 style="font-size: 18px; font-weight: 500; margin-top: 64px; margin-bottom: 4px;">dot-input</h2>
+  <p class="version">input · v0.0.5</p>
+
+  <!-- INPUT SIZES -->
+  <div class="section">
+    <p class="section-title">Sizes</p>
+    <div style="display: flex; flex-direction: column; gap: 8px; max-width: 320px;">
+      <dot-input size="sm" placeholder="Small"></dot-input>
+      <dot-input size="md" placeholder="Medium"></dot-input>
+      <dot-input size="lg" placeholder="Large"></dot-input>
+    </div>
+  </div>
+
+  <!-- INPUT TYPES -->
+  <div class="section">
+    <p class="section-title">Types</p>
+    <div style="display: flex; flex-direction: column; gap: 8px; max-width: 320px;">
+      <dot-input type="text" placeholder="Text"></dot-input>
+      <dot-input type="email" placeholder="Email"></dot-input>
+      <dot-input type="password" placeholder="Password"></dot-input>
+      <dot-input type="number" placeholder="Number"></dot-input>
+      <dot-input type="search" placeholder="Search"></dot-input>
+    </div>
+  </div>
+
+  <!-- INPUT STATES -->
+  <div class="section">
+    <p class="section-title">States</p>
+    <div style="display: flex; flex-direction: column; gap: 8px; max-width: 320px;">
+      <dot-input placeholder="Default"></dot-input>
+      <dot-input value="Prefilled value"></dot-input>
+      <dot-input disabled placeholder="Disabled"></dot-input>
+      <dot-input readonly value="Read-only value"></dot-input>
+      <dot-input invalid placeholder="Invalid"></dot-input>
+      <dot-input invalid value="Invalid with value"></dot-input>
+    </div>
+  </div>
+
+  <!-- INPUT SLOTS -->
+  <div class="section">
+    <p class="section-title">Slots — start / end</p>
+    <div style="display: flex; flex-direction: column; gap: 8px; max-width: 320px;">
+      <dot-input placeholder="Search..."><span slot="start">⌕</span></dot-input>
+      <dot-input type="email" placeholder="Email"><span slot="start">@</span></dot-input>
+      <dot-input placeholder="Amount"><span slot="start">$</span><span slot="end">USD</span></dot-input>
+    </div>
+  </div>
+
+  <!-- INPUT EVENTS -->
+  <div class="section">
+    <p class="section-title">Events — dot:input / dot:change / dot:focus / dot:blur</p>
+    <div style="max-width: 320px;">
+      <dot-input id="eventInput" placeholder="Type something..."></dot-input>
+    </div>
+    <p id="inputLog"
+      style="margin-top: 12px; font-size: 13px; font-family: var(--dot-font-mono); color: var(--dot-text-muted);">
+      Waiting for events...
+    </p>
+  </div>
+
   <!-- DOT-SPINNER -->
   <h2 style="font-size: 18px; font-weight: 500; margin-top: 64px; margin-bottom: 4px;">dot-spinner</h2>
   <p class="version">spinner · v0.0.5</p>
@@ -399,6 +461,25 @@
         alertLog.textContent = `dot:close fired — #${e.target.id}`
         alertLog.style.color = 'var(--dot-success)'
       })
+    })
+
+    const eventInput = document.getElementById('eventInput')
+    const inputLog = document.getElementById('inputLog')
+    eventInput?.addEventListener('dot:input', (e) => {
+      inputLog.textContent = `dot:input — "${e.detail.value}"`
+      inputLog.style.color = 'var(--dot-text-sub)'
+    })
+    eventInput?.addEventListener('dot:change', (e) => {
+      inputLog.textContent = `dot:change — "${e.detail.value}"`
+      inputLog.style.color = 'var(--dot-success)'
+    })
+    eventInput?.addEventListener('dot:focus', () => {
+      inputLog.textContent = '● dot:focus'
+      inputLog.style.color = 'var(--dot-accent)'
+    })
+    eventInput?.addEventListener('dot:blur', () => {
+      inputLog.textContent = '○ dot:blur'
+      inputLog.style.color = 'var(--dot-text-muted)'
     })
 
     const eventBtn = document.getElementById('eventBtn')
