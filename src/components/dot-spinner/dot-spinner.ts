@@ -1,8 +1,7 @@
+import { html, unsafeCSS } from 'lit'
+import { customElement, property } from 'lit/decorators.js'
 import { DotElement } from '@/core/dot-element'
 import styles from './dot-spinner.css?inline'
-
-const sheet = new CSSStyleSheet()
-sheet.replaceSync(styles)
 
 /**
  * @summary Spinner indicates that content is loading or an action is in progress.
@@ -11,42 +10,18 @@ sheet.replaceSync(styles)
  *
  * @csspart base - The spinner's animated circle element.
  *
- * @attr {string} variant - The color variant. Options: default | muted | current.
- * @attr {string} size - The spinner size. Options: sm | md | lg.
+ * @attr {string} variant - The color variant. Options: default | muted | current. Defaults to "default".
+ * @attr {string} size - The spinner size. Options: sm | md | lg. Defaults to "md".
  */
+@customElement('dot-spinner')
 export default class DotSpinner extends DotElement {
-    static observedAttributes = ['variant', 'size']
+    static styles = unsafeCSS(styles)
 
-    /** The color variant of the spinner. */
-    get variant() {
-        return this.attr('variant', 'default')
-    }
-    set variant(value: string) {
-        this.setAttr('variant', value)
-    }
-
-    /** The spinner size. */
-    get size() {
-        return this.attr('size', 'md')
-    }
-    set size(value: string) {
-        this.setAttr('size', value)
-    }
-
-    connectedCallback() {
-        this.attachShadow({ mode: 'open' })
-        this.shadowRoot!.adoptedStyleSheets = [sheet]
-        this.render()
-    }
-
-    disconnectedCallback() {}
-
-    attributeChangedCallback() {
-        if (this.shadowRoot) this.render()
-    }
+    @property({ type: String }) variant: 'default' | 'muted' | 'current' = 'default'
+    @property({ type: String }) size: 'sm' | 'md' | 'lg' = 'md'
 
     render() {
-        this.shadowRoot!.innerHTML = /*html*/ `
+        return html`
             <div
                 part="base"
                 class="spinner spinner--${this.variant} spinner--${this.size}"
@@ -54,5 +29,11 @@ export default class DotSpinner extends DotElement {
                 aria-label="Loading"
             ></div>
         `
+    }
+}
+
+declare global {
+    interface HTMLElementTagNameMap {
+        'dot-spinner': DotSpinner
     }
 }

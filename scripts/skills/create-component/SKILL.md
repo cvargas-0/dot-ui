@@ -9,8 +9,8 @@ Triggers: "create a dot-[name] component", "add a new [name] component", "build 
 ## Before you start
 
 1. Read `src/core/dot-element.ts` to understand the base class API
-2. Read `src/tokens/tokens.css` to know which tokens are available
-3. Read `src/components/dot-button/` as the reference implementation
+2. Read `src/styles/tokens.css` to know which tokens are available
+3. Read `src/components/dot-badge/dot-badge.ts` as the reference implementation (simplest component)
 4. Read `scripts/skills/jsdoc/SKILL.md` — JSDoc is required on every component
 5. Confirm the component name follows the `dot-[name]` convention
 
@@ -20,30 +20,31 @@ Triggers: "create a dot-[name] component", "add a new [name] component", "build 
 
 Before writing any code, define:
 
-| Item               | Question to answer                                      |
-| ------------------ | ------------------------------------------------------- |
-| **Tag**            | What is the HTML tag? `dot-[name]`                      |
-| **Class**          | What is the TS class name? `Dot[Name]`                  |
-| **Attributes**     | What attributes does it observe?                        |
-| **Variants**       | Does it have visual variants? Which ones?               |
-| **Sizes**          | Does it support `sm`, `md`, `lg`?                       |
-| **Boolean attrs**  | Which attributes are boolean (presence = true)?         |
-| **Events**         | What CustomEvents does it emit?                         |
-| **Slots**          | What slots does it expose?                              |
-| **Parts**          | What CSS parts does it expose?                          |
-| **Public methods** | Does it need `focus()`, `show()`, `hide()`, etc.?       |
-| **display**        | What is the `:host` display? `inline-block` or `block`? |
+| Item | Question to answer |
+| --- | --- |
+| **Tag** | What is the HTML tag? `dot-[name]` |
+| **Class** | What is the TS class name? `Dot[Name]` |
+| **Properties** | What `@property()` does it expose? Type and default for each. |
+| **Internal state** | What `@state()` does it need internally? |
+| **Variants** | Does it have visual variants? Which ones? |
+| **Sizes** | Does it support `sm`, `md`, `lg`? |
+| **Boolean attrs** | Which booleans need `reflect: true` for CSS `:host([attr])` selectors? |
+| **Events** | What `dot:` events does it emit? What is the `detail` payload? |
+| **Slots** | What slots does it expose? Which named slots can be empty? |
+| **Parts** | What CSS parts does it expose? `base` is always required. |
+| **Public methods** | Does it need `focus()`, `show()`, `hide()`, etc.? |
+| **Queries** | Does it need `@query()` to access shadow DOM elements? |
+| **display** | What is the `:host` display? `inline-block`, `block`, or `contents`? |
 
 ---
 
 ## Step 2 — Create the files
 
-Create exactly **3 files** inside `src/components/dot-[name]/`. Nothing more.
+Create exactly **2 files** inside `src/components/dot-[name]/`. Nothing more.
 
 ```
 src/components/dot-[name]/
-├── index.ts            ← entry point
-├── dot-[name].ts       ← component class
+├── dot-[name].ts       ← component class + declare global
 └── dot-[name].css      ← component styles
 ```
 
@@ -51,109 +52,102 @@ src/components/dot-[name]/
 
 ## Step 3 — dot-[name].ts
 
-The class must include a JSDoc block. Read `scripts/skills/jsdoc/SKILL.md` for the full spec.
-The block goes **after** the `sheet` constant and **before** the `export class` declaration.
-
 ```typescript
+import { html, unsafeCSS } from 'lit'
+import { customElement, property, state, query } from 'lit/decorators.js'
+import { classMap } from 'lit/directives/class-map.js'
+import { ifDefined } from 'lit/directives/if-defined.js'
 import { DotElement } from '@/core/dot-element'
 import styles from './dot-[name].css?inline'
 
-// CSSStyleSheet is created at MODULE LEVEL — never inside the class
-const sheet = new CSSStyleSheet()
-sheet.replaceSync(styles)
+// declare global goes AFTER the class — TypeScript augmentation for HTML autocomplete
+declare global {
+    interface HTMLElementTagNameMap {
+        'dot-[name]': Dot[Name]
+    }
+}
 
 /**
  * @summary One sentence describing what this component does.
  * @status experimental
  * @since [current version from package.json]
  *
- * @event {CustomEvent} dot:[name] - Emitted when ...
+ * @event {CustomEvent} dot:[event] - Emitted when ...
  *
  * @slot - The component's default content.
  * @slot start - A presentational prefix icon or similar element.
- * @slot end - A presentational suffix icon or similar element.
  *
  * @csspart base - The component's base wrapper.
  *
- * @attr {string} variant - The visual style. Options: ...
- * @attr {string} size - The component size. Options: sm | md | lg.
- * @attr {boolean} disabled - Disables the component.
+ * @attr {string} variant - The visual style. Options: default | ...  Defaults to "default".
+ * @attr {string} size - The component size. Options: sm | md | lg. Defaults to "md".
+ * @attr {boolean} disabled - When present, disables the component.
  */
-export class Dot[Name] extends DotElement {
-  // List every attribute that triggers a re-render
-  static observedAttributes = ['variant', 'size', 'disabled']
+@customElement('dot-[name]')
+export default class Dot[Name] extends DotElement {
+    static styles = unsafeCSS(styles)
 
-  // Every observed attribute MUST have a getter + setter
-  // Use this.attr() for string attributes (never getAttribute directly)
-  // Use this.boolAttr() for boolean attributes (never hasAttribute directly)
-  // Use this.setAttr() to write (never setAttribute/removeAttribute directly)
+    // Public properties — reflected as HTML attributes
+    @property({ type: String }) variant = 'default'
+    @property({ type: String }) size: 'sm' | 'md' | 'lg' = 'md'
+    @property({ type: Boolean }) disabled = false
+    // Use reflect: true only when needed for CSS :host([attr]) selectors
+    @property({ type: Boolean, reflect: true }) open = false
 
-  /** The visual style of the component. */
-  get variant() { return this.attr('variant', 'default') }
-  set variant(value: string) { this.setAttr('variant', value) }
+    // Internal reactive state — not reflected as HTML attributes
+    @state() private _hasIcon = false
 
-  /** The component size. */
-  get size() { return this.attr('size', 'md') }
-  set size(value: string) { this.setAttr('size', value) }
+    // Shadow DOM queries — available after first render
+    @query('[part="base"]') private _base!: HTMLElement
 
-  /** Disables the component, preventing user interaction. */
-  get disabled() { return this.boolAttr('disabled') }
-  set disabled(value: boolean) { this.setAttr('disabled', value) }
+    render() {
+        return html`
+            <div
+                part="base"
+                class=${classMap({
+                    '[name]': true,
+                    [`[name]--${this.variant}`]: true,
+                    [`[name]--${this.size}`]: true,
+                })}
+                aria-disabled=${this.disabled}
+            >
+                <slot name="start"></slot>
+                <slot></slot>
+            </div>
+        `
+    }
 
+    /** Sets focus on the underlying native element. */
+    focus() {
+        this._base?.focus()
+    }
 
-  connectedCallback() {
-    this.attachShadow({ mode: 'open' })
-    this.shadowRoot!.adoptedStyleSheets = [sheet]
-    this.render()
-  }
-
-  disconnectedCallback() {
-    // Remove any event listeners, observers, or timers added in connectedCallback
-  }
-
-  attributeChangedCallback() {
-    // Guard: only re-render if shadow DOM is already attached
-    if (this.shadowRoot) this.render()
-  }
-
-  // Build the full shadowRoot innerHTML on every call
-  // Use /*html*/ template literal for editor syntax highlighting
-  // Always expose part="base" on the root element
-  // Always include relevant aria-* attributes
-
-  render() {
-    this.shadowRoot!.innerHTML = /*html*/ `
-      <div
-        part="base"
-        class="[name] [name]--${this.variant} [name]--${this.size}"
-        aria-disabled="${this.disabled}"
-      >
-        <slot name="start"></slot>
-        <slot></slot>
-        <slot name="end"></slot>
-      </div>
-    `
-  }
-
-  // ---- Public methods (if needed) ----
-
-  /** Sets focus on the underlying native element. */
-  focus() { this.shadowRoot?.querySelector<HTMLElement>('[part="base"]')?.focus() }
-
-  /** Removes focus from the underlying native element. */
-  blur()  { this.shadowRoot?.querySelector<HTMLElement>('[part="base"]')?.blur() }
+    /** Removes focus from the underlying native element. */
+    blur() {
+        this._base?.blur()
+    }
 }
 ```
 
 ### Rules for dot-[name].ts
 
-- `sheet` is declared **outside** the class at module level — only one instance per module
-- `render()` is **not** private — it is the abstract method from `DotElement`
-- `disconnectedCallback()` must always be present, even if empty
-- `attributeChangedCallback()` always guards with `if (this.shadowRoot)`
-- Never call `customElements.define()` directly — that happens in `index.ts`
+- `declare global` block goes **before** the JSDoc and `@customElement` — no exceptions
+- `@customElement('dot-[name]')` handles registration — never call `customElements.define()` directly
+- `export default` is required — `src/index.ts` imports the default export
 - Never import from `../../` — always use the `@/` alias
+- Only import directives that the component actually uses
+- `@state()` for internal reactive state — not reflected to HTML attributes
+- `@query()` replaces `this.shadowRoot?.querySelector()`
 - JSDoc block is **required** — see `scripts/skills/jsdoc/SKILL.md`
+
+### Directives reference
+
+| Directive | Import | When to use |
+| --- | --- | --- |
+| `classMap` | `lit/directives/class-map.js` | Conditional class names |
+| `ifDefined` | `lit/directives/if-defined.js` | Optional attrs — avoids empty `attr=""` in DOM |
+| `live` | `lit/directives/live.js` | Controlled inputs — forces value sync |
+| `nothing` | `lit` | Conditional block with no empty node |
 
 ---
 
@@ -162,46 +156,55 @@ export class Dot[Name] extends DotElement {
 ```css
 /* ---- Host ---- */
 :host {
-  display: inline-block;        /* or block if the component is full-width */
-  font-family: var(--dot-font-sans);
+    display: inline-block;        /* or block if the component is full-width */
+    font-family: var(--dot-font-sans);
 }
 
 /* ---- Base ---- */
-.component-name {
-  /* Always use --dot-* tokens. Never hardcode colors, sizes, or fonts. */
-  color: var(--dot-text);
-  background-color: var(--dot-bg);
-  border: 1px solid var(--dot-border);
-  border-radius: var(--dot-radius-md);
-  font-size: var(--dot-text-base);
-  padding: var(--dot-space-2) var(--dot-space-4);
-  transition:
-    background-color var(--dot-duration-base) var(--dot-ease),
-    border-color var(--dot-duration-base) var(--dot-ease),
-    color var(--dot-duration-base) var(--dot-ease);
+.[name] {
+    /* Always use --dot-* tokens. Never hardcode colors, sizes, or fonts. */
+    color: var(--dot-text);
+    background-color: var(--dot-surface);
+    border: 1px solid var(--dot-border);
+    border-radius: var(--dot-radius-md);
+    font-size: var(--dot-text-sm);
+    padding: var(--dot-space-2) var(--dot-space-4);
+    transition:
+        background-color var(--dot-duration-base) var(--dot-ease),
+        border-color var(--dot-duration-base) var(--dot-ease),
+        color var(--dot-duration-base) var(--dot-ease);
 }
 
 /* ---- Variants ---- */
-.component-name--default { }
-.component-name--[variant] { }
+.[name]--default { }
+.[name]--[variant] { }
 
 /* ---- Sizes ---- */
-.component-name--sm { }
-.component-name--md { }
-.component-name--lg { }
+.[name]--sm { }
+.[name]--md { }
+.[name]--lg { }
 
 /* ---- States ---- */
-.component-name:hover { }
-.component-name:focus-visible {
-  outline: 2px solid var(--dot-border-focus);
-  outline-offset: 2px;
+.[name]:hover { }
+
+.[name]:focus-visible {
+    outline: 2px solid var(--dot-border-focus);
+    outline-offset: 2px;
 }
 
-/* ---- Disabled ---- */
-:host([disabled]) .component-name {
-  opacity: 0.4;
-  cursor: not-allowed;
-  pointer-events: none;
+/* ---- Boolean attribute states — use :host([attr]) not CSS classes ---- */
+:host([disabled]) .[name] {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+:host([open]) {
+    display: block;
+}
+
+:host(:not([open])) {
+    display: none;
 }
 ```
 
@@ -209,61 +212,27 @@ export class Dot[Name] extends DotElement {
 
 - **Never hardcode** colors, fonts, sizes, or spacing — always use `--dot-*` tokens
 - CSS nesting is **allowed** — ESLint is configured with `newly-available`
-- Disabled state is handled via `:host([disabled])`, not a CSS class
-- Loading state is handled via `:host([loading])`
-- Boolean attributes always use `:host([attr])` selector, not `.class`
+- Boolean attribute states use `:host([attr])` selector — not CSS classes
 - `focus-visible` is preferred over `focus` for keyboard accessibility
-- Shadows use `--dot-shadow-*` tokens only
 
 ---
 
-## Step 5 — index.ts
+## Step 5 — Register in src/index.ts
 
-```typescript
-import { Dot[Name] } from './dot-[name]'
-
-// Re-export everything from the component module
-export * from './dot-[name]'
-
-// Default export for ergonomic imports
-export default Dot[Name]
-
-// Register the custom element (safe — checks for existing registration)
-Dot[Name].define('dot-[name]')
-
-// TypeScript global declaration — enables autocomplete in HTML files
-declare global {
-  interface HTMLElementTagNameMap {
-    'dot-[name]': Dot[Name]
-  }
-}
-```
-
-### Rules for index.ts
-
-- This file is the **only place** where `define()` is called
-- `export *` ensures named types and constants are available to consumers
-- `export default` enables framework-style imports
-- The `declare global` block is required for every component — no exceptions
-
----
-
-## Step 6 — Register in src/index.ts
-
-Add the export to the library barrel. Always append at the end of the components block:
+Add the export to the library barrel. Import directly from the component file (no barrel per component):
 
 ```typescript
 // before
-export { default as DotButton } from '@/components/dot-button'
+export { default as DotButton } from '@/components/dot-button/dot-button'
 
 // after
-export { default as DotButton } from '@/components/dot-button'
-export { default as Dot[Name] } from '@/components/dot-[name]'
+export { default as DotButton } from '@/components/dot-button/dot-button'
+export { default as Dot[Name] } from '@/components/dot-[name]/dot-[name]'
 ```
 
 ---
 
-## Step 7 — Verify
+## Step 6 — Verify
 
 Run these commands in order. All must pass before the task is complete:
 
@@ -273,36 +242,51 @@ pnpm build       # tsc + vite build must succeed
 ```
 
 If `pnpm build` fails due to a TypeScript error, fix it before finishing.
-If `pnpm lint` reports warnings (not errors), they are acceptable.
 
 ---
 
 ## Events reference
 
 Use `this.emit()` from `DotElement` for all custom events.
-Never use `dispatchEvent` directly.
 
 ```typescript
-// Correct
-this.emit('change', { value: this.value })
 this.emit('close')
-
-// What this.emit() produces
-new CustomEvent('dot:change', {
-  detail: { value: this.value },
-  bubbles: true,
-  composed: true,   // REQUIRED — traverses shadow DOM boundary
-})
+this.emit('input', { value: this._input.value })
 ```
 
-| Event name   | When to emit                          |
-| ------------ | ------------------------------------- |
+Use `@event=${this.#handler}` syntax in the template — Lit cleans up listeners automatically.
+
+| Event name | When to emit |
+| --- | --- |
 | `dot:change` | Value changes (input, select, toggle) |
-| `dot:input`  | Every keystroke (text input)          |
-| `dot:focus`  | Component receives focus              |
-| `dot:blur`   | Component loses focus                 |
-| `dot:open`   | Overlay opens (modal, dropdown)       |
-| `dot:close`  | Overlay closes (modal, alert)         |
+| `dot:input` | Every keystroke (text input) |
+| `dot:focus` | Component receives focus |
+| `dot:blur` | Component loses focus |
+| `dot:open` | Overlay opens (modal, dropdown) |
+| `dot:close` | Overlay closes (modal, alert) |
+
+---
+
+## Slots with collapse behavior
+
+Named slots that can be empty should auto-collapse their container:
+
+```typescript
+@state() private _hasHeader = false
+
+// In render():
+html`
+    <div part="header" ?hidden=${!this._hasHeader}>
+        <slot name="header" @slotchange=${this.#onHeaderChange}></slot>
+    </div>
+`
+
+#onHeaderChange(e: Event) {
+    this._hasHeader = (e.target as HTMLSlotElement).assignedNodes({ flatten: true }).length > 0
+}
+```
+
+See [[composition]] in the wiki for the full pattern.
 
 ---
 
@@ -311,7 +295,6 @@ new CustomEvent('dot:change', {
 ```
 /* Parts — expose for external styling via ::part() */
 part="base"      root container of the component
-part="label"     main text label
 part="input"     native input element
 part="icon"      icon element
 part="spinner"   loading spinner
@@ -322,6 +305,7 @@ part="spinner"   loading spinner
 <slot name="end">      after main content (right icon)
 <slot name="header">   card / modal header
 <slot name="footer">   card / modal footer
+<slot name="icon">     alert / toast icon
 ```
 
 Only expose parts and slots that the component actually needs.
@@ -329,65 +313,17 @@ Do not add parts or slots speculatively.
 
 ---
 
-## Tokens quick reference
-
-```css
-/* Colors */
-var(--dot-text)           /* primary text */
-var(--dot-text-sub)       /* secondary text */
-var(--dot-text-muted)     /* muted/hint text */
-var(--dot-bg)             /* page background */
-var(--dot-surface)        /* elevated surface */
-var(--dot-surface-2)      /* double elevated surface */
-var(--dot-border)         /* default border */
-var(--dot-border-focus)   /* focus ring border */
-var(--dot-accent)         /* primary action color */
-var(--dot-accent-hover)   /* primary action hover */
-var(--dot-accent-fg)      /* text on accent background */
-
-/* Semantic */
-var(--dot-success) / --dot-success-bg / --dot-success-fg
-var(--dot-danger)  / --dot-danger-bg  / --dot-danger-fg
-var(--dot-warning) / --dot-warning-bg / --dot-warning-fg
-var(--dot-info)    / --dot-info-bg    / --dot-info-fg
-
-/* Spacing */
-var(--dot-space-1)  /* 4px  */   var(--dot-space-2)  /* 8px  */
-var(--dot-space-3)  /* 12px */   var(--dot-space-4)  /* 16px */
-var(--dot-space-6)  /* 24px */   var(--dot-space-8)  /* 32px */
-
-/* Radius */
-var(--dot-radius-sm)    /* 4px    */
-var(--dot-radius-md)    /* 6px    */
-var(--dot-radius-lg)    /* 8px    */
-var(--dot-radius-full)  /* 9999px */
-
-/* Shadows */
-var(--dot-shadow-xs) | var(--dot-shadow-sm) | var(--dot-shadow-md)
-
-/* Typography */
-var(--dot-font-sans) | var(--dot-font-mono)
-var(--dot-text-xs) /* 11px */ | var(--dot-text-sm) /* 13px */
-var(--dot-text-base) /* 15px */ | var(--dot-text-lg) /* 18px */
-var(--dot-weight-normal) /* 400 */ | var(--dot-weight-medium) /* 500 */ | var(--dot-weight-bold) /* 600 */
-
-/* Transitions */
-var(--dot-duration-fast) /* 100ms */ | var(--dot-duration-base) /* 150ms */
-var(--dot-duration-slow) /* 250ms */ | var(--dot-ease) /* ease-in-out */
-```
-
----
-
 ## What must never be done
 
 - ❌ Skip the JSDoc block — it is required on every component
-- ❌ Create `CSSStyleSheet` inside the class constructor or any method
+- ❌ Create an `index.ts` per component — `declare global` lives in the component `.ts` file
+- ❌ Use `observedAttributes`, getters, or setters — use `@property()` and `@state()`
+- ❌ Create `CSSStyleSheet` manually — use `static styles = unsafeCSS(styles)`
 - ❌ Use inline `<style>` tags inside the render template
-- ❌ Call `getAttribute` / `hasAttribute` / `setAttribute` / `removeAttribute` directly
-- ❌ Call `customElements.define()` directly — only `DotElement.define()` via `index.ts`
+- ❌ Call `customElements.define()` directly — use `@customElement()` decorator
 - ❌ Import CSS without `?inline` — causes FOUC
 - ❌ Hardcode any color, font, size, or spacing value
 - ❌ Use `any` type — use `unknown` + type guards
 - ❌ Emit events without `this.emit()` from `DotElement`
-- ❌ Create more than 3 files per component
+- ❌ Create more than 2 files per component
 - ❌ Create subfolders inside a component folder

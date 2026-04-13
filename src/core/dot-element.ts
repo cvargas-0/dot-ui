@@ -1,37 +1,22 @@
-export abstract class DotElement extends HTMLElement {
-    abstract render(): void
+import { LitElement } from 'lit'
 
-    static define(tag: string): void {
-        if (!customElements.get(tag)) {
-            customElements.define(tag, this as unknown as CustomElementConstructor)
-        }
-    }
-
-    protected setAttr(name: string, value: string | boolean | null): void {
-        if (value === null || value === false) {
-            this.removeAttribute(name)
-        } else if (value === true) {
-            this.setAttribute(name, '')
-        } else {
-            this.setAttribute(name, value)
-        }
-    }
-
-    attr(name: string, fallback = ''): string {
-        return this.getAttribute(name) ?? fallback
-    }
-
-    boolAttr(name: string): boolean {
-        return this.hasAttribute(name)
-    }
-
-    emit(name: string, detail?: unknown): void {
-        this.dispatchEvent(
-            new CustomEvent(`dot:${name}`, {
-                detail,
-                bubbles: true,
-                composed: true,
-            })
-        )
+/**
+ * Base class for all dot-ui components.
+ * Extends LitElement and adds the shared `emit()` helper for dispatching
+ * prefixed CustomEvents that bubble across Shadow DOM boundaries.
+ */
+export abstract class DotElement extends LitElement {
+    /**
+     * Dispatches a CustomEvent with the `dot:` prefix.
+     * Events bubble and are composed (cross Shadow DOM boundaries).
+     */
+    emit(name: string, detail?: unknown): CustomEvent {
+        const event = new CustomEvent(`dot:${name}`, {
+            detail,
+            bubbles: true,
+            composed: true,
+        })
+        this.dispatchEvent(event)
+        return event
     }
 }
