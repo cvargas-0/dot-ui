@@ -1,8 +1,7 @@
+import { html, unsafeCSS } from 'lit'
+import { customElement, property, state } from 'lit/decorators.js'
 import { DotElement } from '@/core/dot-element'
 import styles from './dot-card.css?inline'
-
-const sheet = new CSSStyleSheet()
-sheet.replaceSync(styles)
 
 /**
  * @summary Cards group related content and actions into a contained surface.
@@ -20,84 +19,51 @@ sheet.replaceSync(styles)
  * @csspart body - The container that wraps the default slot.
  * @csspart footer - The container that wraps the footer slot.
  *
- * @attr {string} variant - The visual style. Options: default | outlined | elevated.
- * @attr {string} padding - The inner padding of header, body and footer. Options: none | sm | md | lg.
+ * @attr {string} variant - The visual style. Options: default | outlined | elevated. Defaults to "default".
+ * @attr {string} padding - The inner padding of header, body and footer. Options: none | sm | md | lg. Defaults to "md".
  */
+
+@customElement('dot-card')
 export default class DotCard extends DotElement {
-    static observedAttributes = ['variant', 'padding']
+    static styles = unsafeCSS(styles)
 
-    /** The visual style of the card. */
-    get variant() {
-        return this.attr('variant', 'default')
-    }
-    set variant(v: string) {
-        this.setAttr('variant', v)
-    }
+    @property({ type: String }) variant: 'default' | 'outlined' | 'elevated' = 'default'
+    @property({ type: String }) padding: 'none' | 'sm' | 'md' | 'lg' = 'md'
 
-    /** The inner padding applied to header, body, and footer sections. */
-    get padding() {
-        return this.attr('padding', 'md')
-    }
-    set padding(v: string) {
-        this.setAttr('padding', v)
-    }
-
-    connectedCallback() {
-        this.attachShadow({ mode: 'open' })
-        this.shadowRoot!.adoptedStyleSheets = [sheet]
-        this.render()
-        this.#watchSlots()
-    }
-
-    disconnectedCallback() {}
-
-    // Only the className needs to change on attribute update — no DOM recreation.
-    // Avoids clearing slotchange listeners and losing projected content.
-    attributeChangedCallback() {
-        if (!this.shadowRoot) return
-        this.#updateAttributes()
-    }
+    @state() private _hasMedia = false
+    @state() private _hasHeader = false
+    @state() private _hasFooter = false
 
     render() {
-        this.shadowRoot!.innerHTML = /*html*/ `
-            <div part="base" class="${this.#buildClass()}">
-                <div part="media" hidden><slot name="media"></slot></div>
-                <div part="header" hidden><slot name="header"></slot></div>
-                <div part="body"><slot></slot></div>
-                <div part="footer" hidden><slot name="footer"></slot></div>
+        return html`
+            <div part="base" class="card card--${this.variant} card--pad-${this.padding}">
+                <div part="media" ?hidden=${!this._hasMedia}>
+                    <slot name="media" @slotchange=${this.#onSlotChange}></slot>
+                </div>
+                <div part="header" ?hidden=${!this._hasHeader}>
+                    <slot name="header" @slotchange=${this.#onSlotChange}></slot>
+                </div>
+                <div part="body">
+                    <slot></slot>
+                </div>
+                <div part="footer" ?hidden=${!this._hasFooter}>
+                    <slot name="footer" @slotchange=${this.#onSlotChange}></slot>
+                </div>
             </div>
         `
     }
 
-    #buildClass(): string {
-        return `card card--${this.variant} card--pad-${this.padding}`
+    #onSlotChange(e: Event) {
+        const slot = e.target as HTMLSlotElement
+        const hasNodes = slot.assignedNodes({ flatten: true }).length > 0
+        if (slot.name === 'media') this._hasMedia = hasNodes
+        else if (slot.name === 'header') this._hasHeader = hasNodes
+        else if (slot.name === 'footer') this._hasFooter = hasNodes
     }
+}
 
-    #updateAttributes() {
-        const base = this.shadowRoot?.querySelector('[part="base"]')
-        if (!base) {
-            this.render()
-            this.#watchSlots()
-            return
-        }
-        base.className = this.#buildClass()
-    }
-
-    // Show/hide named slot containers based on whether content is projected.
-    // Prevents empty padding gaps when slots are not used.
-    #watchSlots() {
-        const named = ['media', 'header', 'footer'] as const
-        named.forEach((name) => {
-            const slot = this.shadowRoot!.querySelector<HTMLSlotElement>(`slot[name="${name}"]`)
-            slot?.addEventListener('slotchange', () => this.#updateSlotVisibility(name))
-            this.#updateSlotVisibility(name)
-        })
-    }
-
-    #updateSlotVisibility(name: 'media' | 'header' | 'footer') {
-        const slot = this.shadowRoot!.querySelector<HTMLSlotElement>(`slot[name="${name}"]`)
-        const container = this.shadowRoot!.querySelector<HTMLElement>(`[part="${name}"]`)
-        if (!slot || !container) return
-        container.hidden = slot.assignedNodes({ flatten: true }).length === 0
+declare global {
+    interface HTMLElementTagNameMap {
+        'dot-card': DotCard
     }
 }

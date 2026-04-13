@@ -15,12 +15,12 @@
     import '@fontsource/dm-mono/400.css'
     import '@fontsource/dm-mono/500.css'
     import '/src/styles/fonts.css'
-    import '/src/components/dot-button/index.ts'
-    import '/src/components/dot-badge/index.ts'
-    import '/src/components/dot-alert/index.ts'
-    import '/src/components/dot-spinner/index.ts'
-    import '/src/components/dot-input/index.ts'
-    import '/src/components/dot-card/index.ts'
+    import '/src/components/dot-button/dot-button.ts'
+    import '/src/components/dot-badge/dot-badge.ts'
+    import '/src/components/dot-alert/dot-alert.ts'
+    import '/src/components/dot-spinner/dot-spinner.ts'
+    import '/src/components/dot-input/dot-input.ts'
+    import '/src/components/dot-card/dot-card.ts'
   </script>
 
   <style>
@@ -351,7 +351,8 @@
   <div class="section">
     <p class="section-title">Padding</p>
     <div class="row" style="align-items: flex-start;">
-      <dot-card padding="none" style="width: 160px;"><span style="background: var(--dot-surface-2); display: block; padding: 8px;">padding none</span></dot-card>
+      <dot-card padding="none" style="width: 160px;"><span
+          style="background: var(--dot-surface-2); display: block; padding: 8px;">padding none</span></dot-card>
       <dot-card padding="sm" style="width: 160px;"><span>padding sm</span></dot-card>
       <dot-card padding="md" style="width: 160px;"><span>padding md</span></dot-card>
       <dot-card padding="lg" style="width: 160px;"><span>padding lg</span></dot-card>
@@ -364,7 +365,8 @@
     <div class="row" style="align-items: flex-start;">
       <dot-card style="width: 240px;">
         <div slot="header" style="font-weight: 500; font-size: 14px;">Card title</div>
-        <p style="font-size: 13px; color: var(--dot-text-sub); margin: 0;">Body content goes here. This is the default slot.</p>
+        <p style="font-size: 13px; color: var(--dot-text-sub); margin: 0;">Body content goes here. This is the default
+          slot.</p>
         <div slot="footer" style="display: flex; gap: 8px;">
           <dot-button size="sm">Action</dot-button>
           <dot-button size="sm" variant="ghost">Cancel</dot-button>
@@ -377,7 +379,8 @@
       </dot-card>
 
       <dot-card variant="outlined" padding="none" style="width: 240px;">
-        <img slot="media" src="https://picsum.photos/seed/dot/480/200" alt="placeholder" style="width:100%;height:auto;display:block;" />
+        <img slot="media" src="https://picsum.photos/seed/dot/480/200" alt="placeholder"
+          style="width:100%;height:auto;display:block;" />
         <div style="padding: 16px;">
           <p style="font-weight: 500; font-size: 14px; margin: 0 0 4px;">Media card</p>
           <p style="font-size: 13px; color: var(--dot-text-sub); margin: 0;">Media slot fills edge-to-edge.</p>

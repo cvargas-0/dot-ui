@@ -8,8 +8,8 @@ Triggers: "add jsdoc to dot-[name]", "document dot-[name]", "create a new compon
 
 ## Overview
 
-Every dot-ui component class must have a JSDoc block placed **directly above the class declaration**,
-after the `sheet` module-level constant and before `export`.
+Every dot-ui component class must have a JSDoc block placed **directly above the `@customElement` decorator**,
+after the `declare global` block.
 
 The JSDoc block is the public contract of the component. It documents:
 - What the component does (`@summary`)
@@ -20,20 +20,25 @@ The JSDoc block is the public contract of the component. It documents:
 - Every slot it exposes (`@slot`)
 - Every CSS part it exposes (`@csspart`)
 - Every observed attribute (`@attr`)
-- Public methods (`@method`)
 
 ---
 
 ## Block structure
 
 ```typescript
+declare global {
+    interface HTMLElementTagNameMap {
+        'dot-[name]': Dot[Name]
+    }
+}
+
 /**
  * @summary One sentence describing what the component does.
  * @status stable | beta | experimental
  * @since 0.1.0
  *
- * @dependency dot:[name] - Description of the dependency.
- * 
+ * @dependency dot-spinner - Description of the dependency.
+ *
  * @event {CustomEvent} dot:[name] - Description of when this event fires.
  *
  * @slot - The component's default content.
@@ -41,8 +46,12 @@ The JSDoc block is the public contract of the component. It documents:
  *
  * @csspart base - The component's root wrapper.
  * @csspart [name] - Description of the part.
+ *
+ * @attr {string} variant - The visual style. Options: ... Defaults to "default".
+ * @attr {boolean} disabled - When present, disables the component.
  */
-export class Dot[Name] extends DotElement {
+@customElement('dot-[name]')
+export default class Dot[Name] extends DotElement {
 ```
 
 ---
@@ -56,13 +65,13 @@ export class Dot[Name] extends DotElement {
 - ❌ `A button component for dot-ui`
 
 ### `@status`
-Always one of these three values — nothing else:
+Always one of these three values:
 
-| Value          | Meaning                                              |
-| -------------- | ---------------------------------------------------- |
-| `experimental` | New, API may change, not production-ready            |
-| `beta`         | Mostly stable, minor API changes possible            |
-| `stable`       | Production-ready, API is locked                      |
+| Value | Meaning |
+| --- | --- |
+| `experimental` | New, API may change, not production-ready |
+| `beta` | Mostly stable, minor API changes possible |
+| `stable` | Production-ready, API is locked |
 
 New components always start as `experimental`.
 
@@ -77,70 +86,53 @@ One line per event. Format:
 @event {CustomEvent<Detail>} dot:[name] - Description of when it fires.
 ```
 
-- Always prefix with `dot:` — matches `this.emit()` convention
-- Include the detail type if it carries data
-- Use present tense: "Emitted when..." or direct description
-
 ```typescript
-// Examples
 @event {CustomEvent} dot:focus - Emitted when the component gains focus.
 @event {CustomEvent} dot:blur - Emitted when the component loses focus.
 @event {CustomEvent<{ value: string }>} dot:change - Emitted when the value changes.
 @event {CustomEvent} dot:close - Emitted when the component closes.
-@event {CustomEvent} dot:open - Emitted when the component opens.
 ```
 
 Only document events that the component actually emits via `this.emit()`.
-Do not document inherited or speculative events.
 
 ### `@slot`
 One line per slot. The default slot has no name:
 
 ```typescript
-// Default slot (no name attribute)
 @slot - The component's default content.
-@slot - The badge's content.
-@slot - The button's label.
-
-// Named slots
 @slot start - A presentational prefix icon or similar element.
 @slot end - A presentational suffix icon or similar element.
 @slot header - The component's header content.
-@slot footer - The component's footer content.
+@slot icon - An icon placed before the content.
 ```
 
-Only document slots that exist in the `render()` template.
-Match slot names exactly — `slot name="start"` → `@slot start`.
+Match slot names exactly — `<slot name="start">` → `@slot start`.
 
 ### `@csspart`
-One line per part. Format:
-
-```
-@csspart [name] - Description of what this part wraps.
-```
+One line per part:
 
 ```typescript
-// Examples
 @csspart base - The component's base wrapper.
-@csspart label - The component's text label.
 @csspart input - The native input element.
-@csspart prefix - The container that wraps the start slot.
-@csspart suffix - The container that wraps the end slot.
 @csspart spinner - The spinner shown during the loading state.
+@csspart close-button - The button that dismisses the component.
 ```
 
-Only document parts that exist in the `render()` template via `part="[name]"`.
+Only document parts that exist via `part="[name]"` in the template.
 
-### `@attr` (optional — for non-obvious attributes)
-Document attributes whose behavior is not self-evident:
+### `@attr`
+Document all public attributes:
 
 ```typescript
-@attr {string} variant - The visual variant. Options: solid | outline | ghost | danger.
-@attr {string} size - The component size. Options: sm | md | lg.
-@attr {boolean} disabled - Disables the component.
-@attr {boolean} loading - Shows a loading spinner and disables interaction.
-@attr {boolean} block - Renders the component as a full-width block element.
+@attr {string} variant - The visual style. Options: solid | outline | ghost | danger. Defaults to "solid".
+@attr {string} size - The component size. Options: sm | md | lg. Defaults to "md".
+@attr {boolean} disabled - When present, disables the component.
+@attr {boolean} loading - When present, shows a loading spinner and disables interaction.
+@attr {boolean} open - When present, the component is visible.
 ```
+
+Use "When present" for booleans — matches the HTML attribute convention.
+Always include the default value for string attributes.
 
 ---
 
@@ -151,8 +143,10 @@ Document attributes whose behavior is not self-evident:
 ```typescript
 /**
  * @summary Buttons represent actions that are available to the user.
- * @status stable
- * @since 0.1.0
+ * @status experimental
+ * @since 0.0.5
+ *
+ * @dependency dot-spinner - Used to render the loading indicator.
  *
  * @event {CustomEvent} dot:focus - Emitted when the button gains focus.
  * @event {CustomEvent} dot:blur - Emitted when the button loses focus.
@@ -161,15 +155,17 @@ Document attributes whose behavior is not self-evident:
  * @slot start - A presentational prefix icon or similar element.
  * @slot end - A presentational suffix icon or similar element.
  *
- * @csspart base - The component's base wrapper.
- * @csspart spinner - The spinner shown when the button is in the loading state.
+ * @csspart base - The component's base wrapper (button or anchor element).
+ * @csspart spinner - The dot-spinner element shown when the button is in the loading state.
  *
- * @attr {string} variant - The visual style. Options: solid | outline | ghost | danger.
- * @attr {string} size - The button size. Options: sm | md | lg.
- * @attr {boolean} disabled - Disables the button.
- * @attr {boolean} loading - Shows a loading spinner and disables interaction.
- * @attr {boolean} block - Renders the button as a full-width block element.
+ * @attr {string} variant - The visual style. Options: solid | outline | ghost | danger. Defaults to "solid".
+ * @attr {string} size - The button size. Options: sm | md | lg. Defaults to "md".
+ * @attr {string} href - When set, renders the button as an anchor element with this URL.
+ * @attr {boolean} disabled - When present, disables the button.
+ * @attr {boolean} loading - When present, shows a loading spinner and disables interaction.
+ * @attr {boolean} block - When present, renders the button as a full-width block element.
  */
+@customElement('dot-button')
 export default class DotButton extends DotElement {
 ```
 
@@ -177,97 +173,46 @@ export default class DotButton extends DotElement {
 
 ```typescript
 /**
- * @summary Badges are used to draw attention and display statuses or counts.
+ * @summary Badges are small visual indicators used to label, categorize, or highlight content.
  * @status experimental
- * @since 0.1.0
+ * @since 0.0.4
  *
- * @slot - The badge's content.
+ * @slot - The badge's content. Accepts text, icons, or a spinner.
  *
- * @csspart base - The component's base wrapper.
+ * @csspart base - The component's base wrapper element.
  *
- * @attr {string} variant - The visual style. Options: default | success | danger | warning | info.
- * @attr {string} size - The badge size. Options: sm | md | lg.
- * @attr {boolean} pill - Renders the badge with fully rounded corners.
+ * @attr {string} variant - The visual style. Options: default | success | danger | warning | info. Defaults to "default".
+ * @attr {string} size - The badge size. Options: sm | md | lg. Defaults to "md".
+ * @attr {boolean} pill - When present, renders the badge with fully rounded corners.
  */
-export class DotBadge extends DotElement {
-```
-
-### dot-input
-
-```typescript
-/**
- * @summary Inputs allow the user to enter data into a form field.
- * @status experimental
- * @since 0.1.0
- *
- * @event {CustomEvent<{ value: string }>} dot:input - Emitted on every keystroke.
- * @event {CustomEvent<{ value: string }>} dot:change - Emitted when the value is committed.
- * @event {CustomEvent} dot:focus - Emitted when the input gains focus.
- * @event {CustomEvent} dot:blur - Emitted when the input loses focus.
- *
- * @slot start - A presentational prefix icon or similar element.
- * @slot end - A presentational suffix icon or similar element.
- *
- * @csspart base - The component's base wrapper.
- * @csspart input - The native input element.
- * @csspart label - The input's label.
- *
- * @attr {string} type - The input type. Options: text | email | password | number | search.
- * @attr {string} value - The current value.
- * @attr {string} placeholder - Placeholder text shown when empty.
- * @attr {string} size - The input size. Options: sm | md | lg.
- * @attr {boolean} disabled - Disables the input.
- * @attr {boolean} readonly - Makes the input read-only.
- * @attr {boolean} required - Marks the input as required.
- */
-export class DotInput extends DotElement {
+@customElement('dot-badge')
+export default class DotBadge extends LitElement {
 ```
 
 ### dot-alert
 
 ```typescript
 /**
- * @summary Alerts display important messages inline or as toast notifications.
+ * @summary Alerts display a short, important message to attract the user's attention.
  * @status experimental
- * @since 0.1.0
+ * @since 0.0.4
  *
- * @event {CustomEvent} dot:close - Emitted when the alert is dismissed.
+ * @event {CustomEvent} dot:close - Emitted when the alert is dismissed via the close button.
  *
  * @slot - The alert's main content.
- * @slot icon - An icon to show in the alert.
+ * @slot icon - An icon or visual indicator placed before the content.
  *
- * @csspart base - The component's base wrapper.
- * @csspart icon - The container that wraps the icon slot.
- * @csspart content - The container that wraps the default slot.
- * @csspart close-button - The close button.
+ * @csspart base - The component's base wrapper element.
+ * @csspart icon - The container wrapping the icon slot.
+ * @csspart content - The container wrapping the default slot.
+ * @csspart close-button - The button that dismisses the alert.
  *
- * @attr {string} variant - The visual style. Options: default | success | danger | warning | info.
- * @attr {boolean} closable - Shows a close button to dismiss the alert.
- * @attr {boolean} open - Shows the alert when present.
+ * @attr {string} variant - The visual style. Options: default | success | danger | warning | info. Defaults to "default".
+ * @attr {boolean} open - When present, the alert is visible.
+ * @attr {boolean} closable - When present, shows a close button that dismisses the alert.
  */
-export class DotAlert extends DotElement {
-```
-
-### dot-card
-
-```typescript
-/**
- * @summary Cards group related content and actions into a contained surface.
- * @status experimental
- * @since 0.1.0
- *
- * @slot - The card's main body content.
- * @slot header - The card's header content.
- * @slot footer - The card's footer content.
- * @slot media - An image or media element displayed at the top.
- *
- * @csspart base - The component's base wrapper.
- * @csspart header - The container that wraps the header slot.
- * @csspart body - The container that wraps the default slot.
- * @csspart footer - The container that wraps the footer slot.
- * @csspart media - The container that wraps the media slot.
- */
-export class DotCard extends DotElement {
+@customElement('dot-alert')
+export default class DotAlert extends DotElement {
 ```
 
 ---
@@ -275,52 +220,28 @@ export class DotCard extends DotElement {
 ## Where the block goes
 
 ```typescript
+import { html, unsafeCSS } from 'lit'
+import { customElement, property } from 'lit/decorators.js'
 import { DotElement } from '@/core/dot-element'
 import styles from './dot-[name].css?inline'
 
-const sheet = new CSSStyleSheet()
-sheet.replaceSync(styles)
+declare global {
+    interface HTMLElementTagNameMap {
+        'dot-[name]': Dot[Name]
+    }
+}
 
-/**          ← JSDoc block starts HERE, after the sheet constant
+/**          ← JSDoc block starts HERE, after declare global
  * @summary ...
- * ...
  */
-export class Dot[Name] extends DotElement {   ← and ends HERE
+@customElement('dot-[name]')   ← decorator goes here, between JSDoc and class
+export default class Dot[Name] extends DotElement {
 ```
 
 Never place the JSDoc block:
 - Before the imports
-- Between imports and the `sheet` constant
 - Inside the class body
-- On `index.ts` — only on the class in `dot-[name].ts`
-
----
-
-## Property and method JSDoc
-
-In addition to the class block, document non-obvious properties and public methods inline:
-
-```typescript
-/** The visual style of the component. */
-get variant() { return this.attr('variant', 'solid') }
-
-/** Disables the component, preventing user interaction. */
-get disabled() { return this.boolAttr('disabled') }
-
-/** Sets focus on the underlying native element. */
-focus() { this.shadowRoot?.querySelector('button')?.focus() }
-
-/** Removes focus from the underlying native element. */
-blur() { this.shadowRoot?.querySelector('button')?.blur() }
-
-/** Programmatically shows the component. */
-show() { this.setAttr('open', true) }
-
-/** Programmatically hides the component. */
-hide() { this.setAttr('open', false) }
-```
-
-Keep property docs to one line. Only document what is not immediately obvious from the name.
+- On a separate file — only on the class in `dot-[name].ts`
 
 ---
 
@@ -332,5 +253,8 @@ Keep property docs to one line. Only document what is not immediately obvious fr
 - [ ] Every `this.emit('x')` call has a matching `@event dot:x`
 - [ ] Every `<slot name="x">` has a matching `@slot x`
 - [ ] Every `part="x"` in render() has a matching `@csspart x`
-- [ ] Block is placed after `sheet` constant, before `export class`
-- [ ] No `@event`, `@slot`, or `@csspart` entries that don't exist in code
+- [ ] Every `@property()` has a matching `@attr`
+- [ ] Boolean `@attr` entries use "When present" phrasing
+- [ ] String `@attr` entries include the default value
+- [ ] Block is placed after `declare global`, before `@customElement`
+- [ ] No entries that don't exist in the actual code

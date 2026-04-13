@@ -1,6 +1,6 @@
 # dot-ui — Agent Development Rules
 
-Web Components design system built with TypeScript, CSS custom properties, and Vite.
+Web Components design system built with Lit, TypeScript, CSS custom properties, and Vite.
 This document defines the rules every agent must follow when working on this project.
 
 ---
@@ -28,10 +28,10 @@ Use the slash commands below to run the full cycle.
 
 Before executing any task, read the relevant skill file from `scripts/skills/`:
 
-| Task                              | Skill                                    |
-| --------------------------------- | ---------------------------------------- |
-| Create a new component            | `scripts/skills/create-component/SKILL.md` |
-| Write or update JSDoc             | `scripts/skills/jsdoc/SKILL.md`          |
+| Task | Skill |
+| --- | --- |
+| Create a new component | `scripts/skills/create-component/SKILL.md` |
+| Write or update JSDoc | `scripts/skills/jsdoc/SKILL.md` |
 
 Skills take precedence over this file when there is a conflict.
 
@@ -39,15 +39,16 @@ Skills take precedence over this file when there is a conflict.
 
 ## Stack
 
-| Tool                | Version  | Purpose                      |
-| ------------------- | -------- | ---------------------------- |
-| TypeScript          | ~6.0     | Primary language             |
-| Vite                | ^8.0     | Dev server + build           |
-| ESLint              | ^10.0    | Linting (flat config)        |
-| Prettier            | ^3.8     | Code formatting              |
-| Husky + lint-staged | latest   | Git hooks                    |
-| pnpm                | 10.33.0  | Package manager              |
-| Node.js             | >=22.x   | Runtime                      |
+| Tool | Version | Purpose |
+| --- | --- | --- |
+| Lit | ^3.x | Web Components base library |
+| TypeScript | ~6.0 | Primary language |
+| Vite | ^8.0 | Dev server + build |
+| ESLint | ^10.0 | Linting (flat config) |
+| Prettier | ^3.8 | Code formatting |
+| Husky + lint-staged | latest | Git hooks |
+| pnpm | 10.33.0 | Package manager |
+| Node.js | >=22.x | Runtime |
 
 ---
 
@@ -85,11 +86,10 @@ dot-ui/
 │           └── SKILL.md            # skill: write JSDoc for a component
 ├── src/
 │   ├── core/
-│   │   └── dot-element.ts          # abstract base class
+│   │   └── dot-element.ts          # DotElement extends LitElement — adds emit()
 │   ├── components/
 │   │   └── dot-[name]/
-│   │       ├── index.ts            # component entry point
-│   │       ├── dot-[name].ts       # component class
+│   │       ├── dot-[name].ts       # component class + declare global
 │   │       └── dot-[name].css      # component styles
 │   ├── styles/
 │   │   ├── tokens.css              # global design tokens
@@ -108,13 +108,13 @@ dot-ui/
 ### Structure rules
 
 - Each component lives in its own folder `src/components/dot-[name]/`
+- Each component folder contains exactly **2 files**: `dot-[name].ts` and `dot-[name].css`
+- There is no `index.ts` per component — `declare global` lives in `dot-[name].ts`
 - Never create files outside `src/` except root-level config files and `scripts/`
 - Do not create subfolders inside a component folder
 - `dist/` is generated — never edit manually
-- `src/index.ts` is the only library barrel
+- `src/index.ts` imports directly from `dot-[name].ts`, not from a barrel
 - `AGENT.md` is the source of truth — never edit `CLAUDE.md` directly, run `setup-agent.sh` instead
-- Slash commands live in `scripts/commands/` — `setup-agent.sh` symlinks them to `.claude/commands/`
-- `scripts/claude-settings.json` is the source of truth for Claude Code hooks — `setup-agent.sh` copies it to `.claude/settings.json`
 
 ---
 
@@ -122,31 +122,29 @@ dot-ui/
 
 ```
 0.0.x  →  setup, infrastructure, tooling
-0.1.x  →  first complete component set
-0.2.x  →  second set / adjustments
+0.1.x  →  first complete component set + Lit migration
+0.2.x  →  second set (modal, toast, select, tabs, tooltip...)
 1.0.0  →  first stable public release
 ```
 
 - Run `pnpm bump` to bump the version interactively
 - New components always start with `@status experimental` and `@since` set to the current version
-- Bump to `0.1.0` when the first component set is complete and the build is clean
 - `@since` tags in JSDoc must match the version in `package.json` at the time the component is created
 
 ---
 
 ## Naming conventions
 
-| Element             | Convention              | Example                          |
-| ------------------- | ----------------------- | -------------------------------- |
-| HTML tag            | `dot-` + kebab-case     | `<dot-button>`                   |
-| TS class            | PascalCase              | `DotButton`                      |
-| Component file      | `dot-[name].ts`         | `dot-button.ts`                  |
-| Styles file         | `dot-[name].css`        | `dot-button.css`                 |
-| Entry point         | `index.ts`              | `components/dot-button/index.ts` |
-| CSS token           | `--dot-` + kebab-case   | `--dot-accent`                   |
-| Custom event        | `dot:` + kebab-case     | `dot:change`                     |
-| CSS parts           | kebab-case              | `part="base"`                    |
-| CSS slots           | kebab-case              | `slot="start"`                   |
+| Element | Convention | Example |
+| --- | --- | --- |
+| HTML tag | `dot-` + kebab-case | `<dot-button>` |
+| TS class | PascalCase | `DotButton` |
+| Component file | `dot-[name].ts` | `dot-button.ts` |
+| Styles file | `dot-[name].css` | `dot-button.css` |
+| CSS token | `--dot-` + kebab-case | `--dot-accent` |
+| Custom event | `dot:` + kebab-case | `dot:change` |
+| CSS parts | kebab-case | `part="base"` |
+| CSS slots | kebab-case | `slot="start"` |
 
 ---
 
@@ -155,7 +153,7 @@ dot-ui/
 All tokens are defined in `src/styles/tokens.css` under `:root`.
 **Never hardcode values in component styles** — always use tokens.
 
-### Available styles
+### Available tokens
 
 ```css
 /* colors — background */
@@ -198,7 +196,7 @@ All tokens are defined in `src/styles/tokens.css` under `:root`.
 
 ### Dark mode
 
-The system supports three modes (option C):
+The system supports three modes:
 
 - **Automatic** — `@media (prefers-color-scheme: dark)` with `:root:not(.light)`
 - **Force dark** — `.dark` class on `<html>`
@@ -212,129 +210,102 @@ Every component **must** extend `DotElement` from `@/core/dot-element`.
 
 ```typescript
 // src/core/dot-element.ts
-export abstract class DotElement extends HTMLElement {
-  abstract render(): void
+import { LitElement } from 'lit'
 
-  // Safely registers the custom element (prevents double registration)
-  static define(tag: string): void
-
-  // Syncs JS property → HTML attribute
-  protected setAttr(name: string, value: string | boolean | null): void
-
-  // Reads attribute with fallback
-  attr(name: string, fallback?: string): string
-
-  // Reads boolean attribute (presence = true)
-  boolAttr(name: string): boolean
-
-  // Dispatches a CustomEvent with dot: prefix that traverses the shadow DOM
-  emit(name: string, detail?: unknown): void
+export abstract class DotElement extends LitElement {
+    // Dispatches a CustomEvent with dot: prefix that bubbles across Shadow DOM
+    emit(name: string, detail?: unknown): CustomEvent
 }
 ```
 
----
-
-## JSDoc
-
-Every component class **must** have a JSDoc block. Read `scripts/skills/jsdoc/SKILL.md` for the full spec.
-
-Minimum required block:
-
-```typescript
-/**
- * @summary One sentence describing what this component does.
- * @status experimental | beta | stable
- * @since [current version from package.json]
- *
- * @slot - The component's default content.
- *
- * @csspart base - The component's base wrapper.
- */
-export class Dot[Name] extends DotElement {
-```
-
----
-
-## Component inventory
-
-| Component     | Tag            | Status       | Since  | Notes                                    |
-| ------------- | -------------- | ------------ | ------ | ---------------------------------------- |
-| `DotButton`   | `<dot-button>` | experimental | 0.0.3  | variants, sizes, states, href, form      |
-| `DotBadge`    | `<dot-badge>`  | experimental | 0.0.4  | variants, sizes, pill                    |
-| `DotAlert`    | `<dot-alert>`  | experimental | 0.0.4  | variants, open/closable, icon slot, dot:close |
-| `DotSpinner`  | `<dot-spinner>` | experimental | 0.0.5 | variants, sizes, CSS animation               |
-| `DotInput`    | `<dot-input>`  | experimental | 0.0.6  | types, sizes, states, slots, form-ready       |
-
----
-
-## New component template
-
-Read `scripts/skills/create-component/SKILL.md` for the full step-by-step guide.
-
-Quick reference — 3 files, always the same structure:
-
-```
-src/components/dot-[name]/
-├── index.ts            ← define() + export * + export default + declare global
-├── dot-[name].ts       ← JSDoc + class extending DotElement
-└── dot-[name].css      ← styles using --dot-* tokens only
-```
-
-Register in `src/index.ts`:
-
-```typescript
-export { default as Dot[Name] } from '@/components/dot-[name]'
-```
+`DotElement` extends `LitElement`. All Lit decorators, directives, and lifecycle methods are available.
 
 ---
 
 ## Component rules
 
-### Lifecycle
+### Reactive properties
 
-| Method                     | Required | Purpose                                    |
-| -------------------------- | -------- | ------------------------------------------ |
-| `connectedCallback`        | Yes      | attachShadow + adoptedStyleSheets + render |
-| `disconnectedCallback`     | Yes      | clean up listeners, timers, observers      |
-| `attributeChangedCallback` | Yes      | re-render only if shadowRoot exists        |
-| `render`                   | Yes      | builds the shadowRoot innerHTML            |
+Use Lit decorators — never `observedAttributes`, getters, or setters:
+
+```typescript
+@property({ type: String }) variant = 'default'         // string attr
+@property({ type: Boolean }) disabled = false           // boolean attr
+@property({ type: Boolean, reflect: true }) open = false // reflected boolean (needed for CSS :host([open]))
+@state() private _hasIcon = false                       // internal state — no HTML attr, triggers re-render
+@query('[part="input"]') private _input!: HTMLInputElement // shadow DOM query
+```
+
+Use `reflect: true` only when the attribute is needed in CSS (`:host([open])`, `:host([disabled])`).
 
 ### Styles
 
-- Import CSS with `?inline` → synchronous `CSSStyleSheet` (prevents FOUC)
-- The `CSSStyleSheet` instance is created **at module level** (outside the class), never inside the constructor
-- Never use inline `<style>` tags in templates
-- Always use `adoptedStyleSheets` — never inject styles by any other means
-- CSS nesting is allowed (ESLint configured with `newly-available`)
+```typescript
+import { unsafeCSS } from 'lit'
+import styles from './dot-[name].css?inline'
 
-### Attributes and properties
+static styles = unsafeCSS(styles)
+```
 
-- Every observed attribute must have a corresponding JS getter/setter
-- Boolean attributes follow the HTML standard: presence = `true`, absence = `false`
-- Use `this.attr()` and `this.boolAttr()` — never call `getAttribute`/`hasAttribute` directly
-- Use `this.setAttr()` — never call `setAttribute`/`removeAttribute` directly
+- Import CSS with `?inline` — prevents FOUC
+- `static styles` is the only way to apply styles — never `adoptedStyleSheets` manually, never `<style>` tags
+- Never create `CSSStyleSheet` manually
+
+### Render
+
+```typescript
+import { html, nothing } from 'lit'
+import { classMap } from 'lit/directives/class-map.js'
+import { ifDefined } from 'lit/directives/if-defined.js'
+import { live } from 'lit/directives/live.js'
+
+render() {
+    return html`
+        <div
+            part="base"
+            class=${classMap({ '[name]': true, [`[name]--${this.variant}`]: true })}
+        >
+            <slot></slot>
+        </div>
+    `
+}
+```
+
+### Lit directives reference
+
+| Directive | Import | When to use |
+| --- | --- | --- |
+| `classMap` | `lit/directives/class-map.js` | Conditional class names — replaces `#buildClass()` |
+| `ifDefined` | `lit/directives/if-defined.js` | Optional attrs — avoids `attr=""` in the DOM |
+| `live` | `lit/directives/live.js` | Controlled inputs — forces value sync with DOM |
+| `nothing` | `lit` | Conditional rendering with no empty node |
 
 ### Events
 
 - Always use `this.emit()` from `DotElement`
-- Prefix is required: `dot:` → `dot:change`, `dot:close`, `dot:open`
-- Always set `bubbles: true` and `composed: true` to traverse the shadow DOM
-- Always explicitly type the `detail` payload
+- Prefix is required: `dot:` → `dot:change`, `dot:close`
+- Events bubble and are composed — they traverse Shadow DOM boundaries automatically
 
-### Parts and slots
-
+```typescript
+this.emit('close')
+this.emit('input', { value: this._input.value })
 ```
-part="base"     → component root container
-part="label"    → main text
-part="input"    → input field
-part="icon"     → icons
-part="spinner"  → loading indicator
 
-slot (default)       → main content
-slot name="start"    → before content (left icons)
-slot name="end"      → after content (right icons)
-slot name="header"   → header area (card, modal)
-slot name="footer"   → footer area (card, modal)
+Use `@event=${this.#handler}` in templates — Lit cleans up listeners automatically on disconnect.
+
+### Slots
+
+Named slots that can be empty must track their state with `@state()` + `@slotchange`:
+
+```typescript
+@state() private _hasIcon = false
+
+// In render():
+<slot name="icon" @slotchange=${this.#onIconChange}></slot>
+
+#onIconChange(e: Event) {
+    this._hasIcon = (e.target as HTMLSlotElement).assignedNodes().length > 0
+}
 ```
 
 ### Accessibility
@@ -346,23 +317,59 @@ slot name="footer"   → footer area (card, modal)
 - Explicit `role` when the native element does not provide one
 - Expose `focus()` and `blur()` methods on interactive components
 
+### Parts and slots reference
+
+```
+part="base"      → component root container
+part="input"     → native input element
+part="icon"      → icon container
+part="spinner"   → loading indicator
+
+slot (default)       → main content
+slot name="start"    → before content (left icons)
+slot name="end"      → after content (right icons)
+slot name="header"   → header area (card, modal)
+slot name="footer"   → footer area (card, modal)
+slot name="icon"     → icon (alert, toast)
+```
+
 ---
 
-## Web APIs — standard usage
+## JSDoc
 
-Use modern native browser APIs. Avoid polyfills unless strictly necessary.
+Every component class **must** have a JSDoc block. Read `scripts/skills/jsdoc/SKILL.md` for the full spec.
 
-| API                    | Correct usage                                           |
-| ---------------------- | ------------------------------------------------------- |
-| `CSSStyleSheet`        | `new CSSStyleSheet()` + `adoptedStyleSheets`            |
-| Custom Elements        | `customElements.define()` via `DotElement.define()`     |
-| Shadow DOM             | `attachShadow({ mode: 'open' })`                        |
-| Custom Events          | `new CustomEvent(name, { bubbles, composed, detail })`  |
-| CSS Custom Properties  | `var(--dot-token)` — never hardcoded values             |
-| CSS Nesting            | Allowed — `newly-available` support                     |
-| `AbortController`      | Cancel fetch requests and clean up listeners            |
-| `IntersectionObserver` | Lazy loading and visibility detection                   |
-| `ResizeObserver`       | Reactivity to size changes                              |
+The block goes **directly before the class declaration** (after `declare global`, before `@customElement`):
+
+```typescript
+declare global {
+    interface HTMLElementTagNameMap { 'dot-[name]': Dot[Name] }
+}
+
+/**
+ * @summary One sentence describing what this component does.
+ * @status experimental
+ * @since [current version from package.json]
+ *
+ * @slot - The component's default content.
+ * @csspart base - The component's base wrapper.
+ */
+@customElement('dot-[name]')
+export default class Dot[Name] extends DotElement {
+```
+
+---
+
+## Component inventory
+
+| Component | Tag | Status | Since | Notes |
+| --- | --- | --- | --- | --- |
+| `DotButton` | `<dot-button>` | experimental | 0.0.5 | variants, sizes, href→anchor, loading, block, active |
+| `DotBadge` | `<dot-badge>` | experimental | 0.0.4 | variants, sizes, pill |
+| `DotAlert` | `<dot-alert>` | experimental | 0.0.4 | variants, open/closable, icon slot, dot:close |
+| `DotSpinner` | `<dot-spinner>` | experimental | 0.0.5 | color variants, sizes, CSS animation |
+| `DotInput` | `<dot-input>` | experimental | 0.0.5 | types, sizes, states, slots, form-ready |
+| `DotCard` | `<dot-card>` | experimental | 0.0.6 | variants, padding, collapsible slots |
 
 ---
 
@@ -371,10 +378,10 @@ Use modern native browser APIs. Avoid polyfills unless strictly necessary.
 - `target: es2023` — use modern syntax
 - `moduleResolution: bundler` — `.ts` extension imports allowed
 - `verbatimModuleSyntax: true` — use `import type` for pure types
-- `noUnusedLocals` and `noUnusedParameters` are active — no unused variables
+- `experimentalDecorators: true` — required for Lit decorators
+- `useDefineForClassFields: false` — required for Lit decorators to work correctly
+- `noUnusedLocals` and `noUnusedParameters` are active
 - Never use `any` — use `unknown` + type guards
-- Cast to `CustomElementConstructor` only with `as unknown as CustomElementConstructor`
-- Global types and module declarations go in `src/env.d.ts`
 
 ---
 
@@ -382,7 +389,6 @@ Use modern native browser APIs. Avoid polyfills unless strictly necessary.
 
 - ESLint v10 with flat config (`eslint.config.ts`)
 - Prettier is the formatter — ESLint does not format
-- `eslint-config-prettier` disables conflicting ESLint format rules
 - Husky blocks commits that have lint errors
 - lint-staged runs only on staged files
 
@@ -414,17 +420,18 @@ Use modern native browser APIs. Avoid polyfills unless strictly necessary.
 ## What must never be done
 
 - ❌ Skip JSDoc on a component — it is required
-- ❌ Use inline `<style>` tags in templates — use `adoptedStyleSheets`
-- ❌ Call `getAttribute`/`setAttribute` directly — use `DotElement` helpers
-- ❌ Call `customElements.define()` directly — use `DotElement.define()`
+- ❌ Use `observedAttributes`, getters, or setters — use `@property()` and `@state()`
+- ❌ Create `CSSStyleSheet` manually — use `static styles = unsafeCSS(styles)`
+- ❌ Use inline `<style>` tags in templates
+- ❌ Call `getAttribute`/`setAttribute` directly — use `@property()` and Lit bindings
+- ❌ Call `customElements.define()` directly — use `@customElement()` decorator
+- ❌ Create an `index.ts` per component — `declare global` lives in the component file
 - ❌ Hardcode colors, sizes, or fonts — use `--dot-*` tokens
 - ❌ Import CSS without `?inline` in components — causes FOUC
-- ❌ Create `CSSStyleSheet` inside the class — create it at module level
 - ❌ Use `npm` or `yarn` — only `pnpm`
 - ❌ Edit `dist/` manually
 - ❌ Edit `CLAUDE.md` directly — edit `AGENT.md` and run `setup-agent.sh`
-- ❌ Edit `.claude/commands/*.md` directly — edit `scripts/commands/` and re-run `setup-agent.sh`
-- ❌ Edit `.claude/settings.json` directly — edit `scripts/claude-settings.json` and re-run `setup-agent.sh`
 - ❌ Emit events without the `dot:` prefix
 - ❌ Emit events without `composed: true` — they won't traverse the shadow DOM
 - ❌ Skip Research and Plan steps — always read the skill and plan before writing code
+- ❌ Use `any` type — use `unknown` + type guards

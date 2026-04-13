@@ -32,3 +32,9 @@ export default class DotBadge extends LitElement {
         `
     }
 }
+
+declare global {
+    interface HTMLElementTagNameMap {
+        'dot-badge': DotBadge
+    }
+}
