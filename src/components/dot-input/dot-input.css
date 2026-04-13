@@ -47,7 +47,7 @@
     border: none;
     outline: none;
     color: var(--dot-text);
-    font-family: inherit;
+    font-family: var(--dot-font-sans);
     font-size: inherit;
     line-height: var(--dot-leading-base);
     padding: 0;
