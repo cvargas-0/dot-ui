@@ -2,15 +2,30 @@
   "name": "dot-ui",
   "version": "0.2.0-beta",
   "description": "UI components using HTML semantic elements.",
-  "main": "index.js",
+  "main": "dist/dot-ui.min.js",
+  "style": "dist/dot-ui.min.css",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/dot-ui.min.js"
+    },
+    "./style": "./dist/dot-ui.min.css"
+  },
   "scripts": {
     "build": "node esbuild.mjs",
-    "css":   "node esbuild.mjs --css",
-    "js":    "node esbuild.mjs --js",
+    "css": "node esbuild.mjs --css",
+    "js": "node esbuild.mjs --js",
     "clean": "rm -rf dist"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "components",
+    "css",
+    "javascript",
+    "ui"
+  ],
+  "author": "Camilo Vargas",
   "license": "MIT",
   "packageManager": "pnpm@10.33.0",
   "engines": {
