@@ -1,10 +1,10 @@
 /**
- * dot-ui docs — Theme switcher
+ * dot-ui docs  Theme switcher
  * Runs synchronously in <head> to avoid flash of wrong theme.
  * Stores preference in localStorage under 'dot-ui-theme'.
  */
 (function () {
-  const KEY  = 'dot-ui-theme';
+  const KEY = 'dot-ui-theme';
   const root = document.documentElement;
 
   // Apply stored theme immediately, before first paint
@@ -31,7 +31,7 @@
     if (!btn) return;
     btn.dataset.theme = theme;
     btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
-    btn.setAttribute('title',      theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    btn.setAttribute('title', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
   }
 
   document.addEventListener('DOMContentLoaded', function () {

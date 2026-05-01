@@ -33,7 +33,7 @@
     }
 
     &[aria-selected=true] {
-      color: light-dark(var(--foreground), var(--foreground));
+      color: var(--foreground);
       border-bottom-color: var(--primary);
     }
 

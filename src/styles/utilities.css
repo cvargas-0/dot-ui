@@ -315,7 +315,7 @@
     .xl\:w-auto   { width: auto; }
   }
 
-  @media (width >= 96rem) { /* 2xl — selector starts with digit, requires \32 unicode escape */
+  @media (width >= 96rem) { /* 2xl  selector starts with digit, requires \32 unicode escape */
     .\32 xl\:flex         { display: flex; }
     .\32 xl\:grid         { display: grid; }
     .\32 xl\:block        { display: block; }

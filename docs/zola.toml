@@ -5,4 +5,10 @@ build_search_index = false
 
 
 [extra]
-description = "Semantic UI components — no framework required."
+description = "Semantic UI components no framework required."
+
+
+[markdown]
+highlighting = {
+    theme = "catppuccin-mocha"
+}

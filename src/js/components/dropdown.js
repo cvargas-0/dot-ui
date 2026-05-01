@@ -1,5 +1,5 @@
 /**
- * dot-ui — Dropdown Component
+ * dot-ui  Dropdown Component
  * Popover API-based dropdown with keyboard navigation and auto-positioning.
  * Uses the native Popover API; the commandfor/command polyfill handles Safari.
  *
@@ -17,33 +17,33 @@
  * The `id` on <menu> is auto-generated if omitted.
  *
  * Keyboard:
- *   ArrowDown / ArrowUp — navigate menu items
- *   Home / End          — jump to first / last item
- *   Escape              — close, return focus to trigger
- *   Tab                 — close, continue natural tab order
+ *   ArrowDown / ArrowUp  navigate menu items
+ *   Home / End           jump to first / last item
+ *   Escape               close, return focus to trigger
+ *   Tab                  close, continue natural tab order
  *
  * Events:
- *   dot:open  — fired when popover opens
- *   dot:close — fired when popover closes
+ *   dot:open   fired when popover opens
+ *   dot:close  fired when popover closes
  */
 import { DotBase } from '../core/base.js';
 
 const KEY_ARROW_DOWN = 'ArrowDown';
-const KEY_ARROW_UP   = 'ArrowUp';
-const KEY_ESCAPE     = 'Escape';
-const KEY_TAB        = 'Tab';
+const KEY_ARROW_UP = 'ArrowUp';
+const KEY_ESCAPE = 'Escape';
+const KEY_TAB = 'Tab';
 
 export class DotDropdown extends DotBase {
   #trigger = null;
-  #menu    = null;
+  #menu = null;
   /** @type {Element[]|null} cached on open, cleared on close */
-  #items   = null;
+  #items = null;
   /** Arrow fn stored so scroll/resize listeners can be removed */
-  #pos     = null;
+  #pos = null;
 
   init() {
     this.#trigger = this.$('[popovertarget]');
-    this.#menu    = this.$('[popover]');
+    this.#menu = this.$('[popover]');
 
     if (!this.#menu || !this.#trigger) return;
 
@@ -55,12 +55,12 @@ export class DotDropdown extends DotBase {
 
     this.#pos = () => this.#position();
 
-    this.#menu.addEventListener('toggle',  this);
+    this.#menu.addEventListener('toggle', this);
     this.#menu.addEventListener('keydown', this);
   }
 
   cleanup() {
-    this.#menu?.removeEventListener('toggle',  this);
+    this.#menu?.removeEventListener('toggle', this);
     this.#menu?.removeEventListener('keydown', this);
     this.#removePositionListeners();
   }
@@ -96,7 +96,7 @@ export class DotDropdown extends DotBase {
 
     if (!this.#items?.length) return;
 
-    const idx  = this.#items.indexOf(document.activeElement);
+    const idx = this.#items.indexOf(document.activeElement);
     const next = this.keyNav(e, idx >= 0 ? idx : 0, this.#items.length, KEY_ARROW_UP, KEY_ARROW_DOWN, true);
     if (next >= 0) this.#items[next].focus();
   }
@@ -107,22 +107,17 @@ export class DotDropdown extends DotBase {
   }
 
   #position() {
-    const menu    = this.#menu;
+    const menu = this.#menu;
     const trigger = this.#trigger;
-    const tRect   = trigger.getBoundingClientRect();
-    const vSpace  = window.innerHeight - tRect.bottom;
-    const side    = vSpace >= 200 || vSpace >= tRect.top ? 'bottom' : 'top';
+    const r = trigger.getBoundingClientRect();
+    const m = menu.getBoundingClientRect();
 
     menu.style.position = 'fixed';
-    menu.style.minWidth = `${tRect.width}px`;
-    menu.style.left     = `${tRect.left}px`;
+    menu.style.minWidth = `${r.width}px`;
 
-    if (side === 'bottom') {
-      menu.style.top    = `${tRect.bottom + 4}px`;
-      menu.style.bottom = '';
-    } else {
-      menu.style.bottom = `${window.innerHeight - tRect.top + 4}px`;
-      menu.style.top    = '';
-    }
+    // Flip vertically if menu overflows the bottom of the viewport
+    menu.style.top = `${r.bottom + m.height > window.innerHeight ? r.top - m.height - 4 : r.bottom + 4}px`;
+    // Flip horizontally if menu overflows the right of the viewport
+    menu.style.left = `${r.left + m.width > window.innerWidth ? r.right - m.width : r.left}px`;
   }
 }

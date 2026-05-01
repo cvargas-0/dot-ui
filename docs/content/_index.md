@@ -6,10 +6,10 @@ sort_by = "title"
 <div class="doc-section">
   <h2>dot-ui</h2>
   <p style="font-size:var(--text-lg);color:var(--muted-fg);margin-bottom:var(--space-6)">
-    Semantic UI components — no framework required.
+    Semantic UI components no framework required.
   </p>
   <p>dot-ui is a CSS-first component library built on native HTML elements and Web Components.
-  No build step required for consumers — just drop in a <code>&lt;link&gt;</code> and <code>&lt;script&gt;</code>.</p>
+  No build step required for consumers  just drop in a <code>&lt;link&gt;</code> and <code>&lt;script&gt;</code>.</p>
 </div>
 
 <div class="doc-section">
@@ -24,10 +24,10 @@ sort_by = "title"
 <div class="doc-section">
   <h2>Design principles</h2>
   <ul>
-    <li><strong>Semantic HTML first</strong> — uses real <code>&lt;button&gt;</code>, <code>&lt;input&gt;</code>, <code>&lt;dialog&gt;</code> elements.</li>
-    <li><strong>CSS custom properties</strong> — fully themeable, light/dark automatic via <code>light-dark()</code>.</li>
-    <li><strong>No Shadow DOM</strong> — components enhance light DOM so your styles always apply.</li>
-    <li><strong>Keyboard accessible</strong> — roving tabindex, ARIA roles, and focus management built-in.</li>
+    <li><strong>Semantic HTML first</strong>  uses real <code>&lt;button&gt;</code>, <code>&lt;input&gt;</code>, <code>&lt;dialog&gt;</code> elements.</li>
+    <li><strong>CSS custom properties</strong>  fully themeable, light/dark automatic via <code>light-dark()</code>.</li>
+    <li><strong>No Shadow DOM</strong>  components enhance light DOM so your styles always apply.</li>
+    <li><strong>Keyboard accessible</strong>  roving tabindex, ARIA roles, and focus management built-in.</li>
   </ul>
 </div>
 

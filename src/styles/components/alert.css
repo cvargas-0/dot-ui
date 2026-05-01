@@ -42,7 +42,8 @@
       border-inline-start-color: var(--warning);
       color: var(--foreground);
 
-      & strong { color: var(--warning-fg); }
+      /* --warning-fg dark value is too dark on tinted bg; use --warning token instead */
+      & strong { color: light-dark(var(--warning-fg), var(--warning)); }
     }
 
     &[data-variant="danger"] {

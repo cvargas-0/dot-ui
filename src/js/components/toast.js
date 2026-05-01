@@ -1,5 +1,5 @@
 /**
- * dot-ui — Toast Component
+ * dot-ui  Toast Component
  * JS API for transient notification toasts using the Popover API.
  * Toasts stack in a singleton region element appended to <body>.
  *
@@ -19,14 +19,14 @@
  */
 import { DotBase } from '../core/base.js';
 
-const REGION_TAG  = 'dot-toast-region';
-const DEFAULTS    = { variant: 'default', duration: 4000, position: 'bottom-right' };
+const REGION_TAG = 'dot-toast-region';
+const DEFAULTS = { variant: 'default', duration: 4000, position: 'bottom-right' };
 
 export class DotToast extends DotBase {
   static show(message, opts = {}) {
     const { variant, duration, position } = { ...DEFAULTS, ...opts };
     const region = DotToast.#getRegion(position);
-    const toast  = DotToast.#build(message, variant);
+    const toast = DotToast.#build(message, variant);
 
     region.appendChild(toast);
     toast.showPopover();

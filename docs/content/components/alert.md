@@ -45,7 +45,7 @@ description = "Contextual feedback messages for user actions or system state."
     <thead><tr><th>Attribute</th><th>Values</th><th>Description</th></tr></thead>
     <tbody>
       <tr><td><code>data-variant</code></td><td><code>success</code> · <code>warning</code> · <code>danger</code></td><td>Semantic color. Omit for neutral/info.</td></tr>
-      <tr><td><code>role="alert"</code></td><td>—</td><td>Required for screen reader announcements</td></tr>
+      <tr><td><code>role="alert"</code></td><td></td><td>Required for screen reader announcements</td></tr>
     </tbody>
   </table>
 </div>

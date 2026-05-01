@@ -95,11 +95,11 @@ description = "Trigger for actions. Applies to native button elements and links.
     <thead><tr><th>Attribute / Class</th><th>Values</th><th>Description</th></tr></thead>
     <tbody>
       <tr><td><code>data-variant</code></td><td><code>secondary</code> · <code>danger</code></td><td>Color variant</td></tr>
-      <tr><td><code>.outline</code></td><td>—</td><td>Transparent background, visible border</td></tr>
-      <tr><td><code>.ghost</code></td><td>—</td><td>Transparent, no border</td></tr>
-      <tr><td><code>.small</code></td><td>—</td><td>Reduced padding and font size</td></tr>
-      <tr><td><code>.large</code></td><td>—</td><td>Larger padding and font size</td></tr>
-      <tr><td><code>.icon</code></td><td>—</td><td>Square 1:1 icon-only button</td></tr>
+      <tr><td><code>.outline</code></td><td></td><td>Transparent background, visible border</td></tr>
+      <tr><td><code>.ghost</code></td><td></td><td>Transparent, no border</td></tr>
+      <tr><td><code>.small</code></td><td></td><td>Reduced padding and font size</td></tr>
+      <tr><td><code>.large</code></td><td></td><td>Larger padding and font size</td></tr>
+      <tr><td><code>.icon</code></td><td></td><td>Square 1:1 icon-only button</td></tr>
     </tbody>
   </table>
 </div>

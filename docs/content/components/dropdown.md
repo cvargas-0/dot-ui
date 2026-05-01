@@ -43,6 +43,7 @@ The `id` on `<menu>` is auto-generated if omitted.
     <thead><tr><th>Key</th><th>Action</th></tr></thead>
     <tbody>
       <tr><td><code>ArrowDown</code> / <code>ArrowUp</code></td><td>Move focus between menu items</td></tr>
+      <tr><td><code>Home</code> / <code>End</code></td><td>Jump to first / last menu item</td></tr>
       <tr><td><code>Escape</code></td><td>Close the dropdown, return focus to trigger</td></tr>
       <tr><td><code>Tab</code></td><td>Close the dropdown, continue natural tab order</td></tr>
       <tr><td><code>Enter</code> / <code>Space</code></td><td>Activate the focused item (native button behavior)</td></tr>

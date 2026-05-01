@@ -1,5 +1,5 @@
 /**
- * dot-ui — Tabs Component
+ * dot-ui  Tabs Component
  * Keyboard navigation and ARIA state management for tabbed interfaces.
  * Follows the ARIA Tabs Pattern with roving tabindex.
  *
@@ -14,34 +14,34 @@
  * </dot-tabs>
  *
  * Keyboard:
- *   ArrowLeft / ArrowRight — move focus between tabs (wraps)
- *   Home / End             — jump to first / last tab
- *   Enter / Space          — activate focused tab
+ *   ArrowLeft / ArrowRight  move focus between tabs (wraps)
+ *   Home / End              jump to first / last tab
+ *   Enter / Space           activate focused tab
  *
  * Events:
- *   dot:change — { index: number, tab: HTMLElement }
+ *   dot:change  { index: number, tab: HTMLElement }
  */
 import { DotBase } from '../core/base.js';
 
-const KEY_ARROW_LEFT  = 'ArrowLeft';
+const KEY_ARROW_LEFT = 'ArrowLeft';
 const KEY_ARROW_RIGHT = 'ArrowRight';
-const KEY_ENTER       = 'Enter';
-const KEY_SPACE       = ' ';
+const KEY_ENTER = 'Enter';
+const KEY_SPACE = ' ';
 
 export class DotTabs extends DotBase {
-  #tabs   = [];
+  #tabs = [];
   #panels = [];
 
   init() {
-    this.#tabs   = this.$$('[role=tab]');
+    this.#tabs = this.$$('[role=tab]');
     this.#panels = this.$$('[role=tabpanel]');
-    this.addEventListener('click',   this);
+    this.addEventListener('click', this);
     this.addEventListener('keydown', this);
     this.#syncFromDOM();
   }
 
   cleanup() {
-    this.removeEventListener('click',   this);
+    this.removeEventListener('click', this);
     this.removeEventListener('keydown', this);
   }
 
@@ -61,8 +61,8 @@ export class DotTabs extends DotBase {
     const tab = e.target.closest('[role=tab]');
     if (!tab) return;
 
-    const idx  = this.#tabs.indexOf(tab);
-    const len  = this.#tabs.length;
+    const idx = this.#tabs.indexOf(tab);
+    const len = this.#tabs.length;
 
     if (e.key === KEY_ENTER || e.key === KEY_SPACE) {
       e.preventDefault();
@@ -83,7 +83,7 @@ export class DotTabs extends DotBase {
 
     this.#panels.forEach((panel, i) => {
       if (i === idx) panel.removeAttribute('hidden');
-      else           panel.setAttribute('hidden', '');
+      else panel.setAttribute('hidden', '');
     });
 
     if (emit) this.emit('change', { index: idx, tab: this.#tabs[idx] });

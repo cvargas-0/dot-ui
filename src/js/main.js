@@ -1,4 +1,5 @@
 import './core/polyfills.js';
+import './components/sidebar.js';
 import { DotTabs }     from './components/tabs.js';
 import { DotDropdown } from './components/dropdown.js';
 import { DotToast }    from './components/toast.js';

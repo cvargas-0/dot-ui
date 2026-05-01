@@ -77,6 +77,6 @@ document.querySelector('dot-tabs').addEventListener('dot:change', (e) => {
     <li>Add <code>aria-label</code> on the <code>[role=tablist]</code> to describe the tab group.</li>
     <li>Connect each tab to its panel with <code>aria-controls</code> / <code>id</code> pairs.</li>
     <li>Add <code>aria-labelledby</code> on panels pointing back to their tab.</li>
-    <li>Set <code>hidden</code> on inactive panels in HTML — the component manages it from there.</li>
+    <li>Set <code>hidden</code> on inactive panels in HTML  the component manages it from there.</li>
   </ul>
 </div>
