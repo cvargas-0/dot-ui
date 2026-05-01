@@ -1,5 +1,5 @@
 {
-  "name": "dot-ui",
+  "name": "@usedot/ui",
   "version": "0.2.0-beta",
   "description": "UI components using HTML semantic elements.",
   "main": "dist/dot-ui.min.js",
@@ -17,7 +17,7 @@
     "build": "node esbuild.mjs",
     "css": "node esbuild.mjs --css",
     "js": "node esbuild.mjs --js",
-    "clean": "rm -rf dist"
+    "clean": "node -e \"require('fs').rmSync('dist', { recursive: true, force: true })\""
   },
   "keywords": [
     "components",
