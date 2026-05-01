@@ -6,10 +6,10 @@ sort_by = "title"
 <div class="doc-section">
   <h2>dot-ui</h2>
   <p style="font-size:var(--text-lg);color:var(--muted-fg);margin-bottom:var(--space-6)">
-    Semantic UI components no framework required.
+    Semantic UI components — no framework required.
   </p>
   <p>dot-ui is a CSS-first component library built on native HTML elements and Web Components.
-  No build step required for consumers  just drop in a <code>&lt;link&gt;</code> and <code>&lt;script&gt;</code>.</p>
+  No build step required — just drop in a <code>&lt;link&gt;</code> and <code>&lt;script&gt;</code>.</p>
 </div>
 
 <div class="doc-section">

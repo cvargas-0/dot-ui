@@ -1,6 +1,6 @@
 +++
 title = "Toast"
-description = "Transient notification messages triggered via a JavaScript API."
+description = "Brief notification messages triggered via JavaScript."
 +++
 
 <div class="doc-section">
@@ -33,7 +33,7 @@ DotToast.show('File deleted.', {
     <tbody>
       <tr><td><code>variant</code></td><td><code>string</code></td><td><code>'default'</code></td><td>Visual style. <code>danger</code> uses <code>role="alert"</code> (assertive).</td></tr>
       <tr><td><code>duration</code></td><td><code>number</code></td><td><code>4000</code></td><td>Auto-dismiss delay in ms. <code>0</code> = persistent.</td></tr>
-      <tr><td><code>position</code></td><td><code>string</code></td><td><code>'bottom-right'</code></td><td>Where toasts appear. Applies to the singleton region.</td></tr>
+      <tr><td><code>position</code></td><td><code>string</code></td><td><code>'bottom-right'</code></td><td>Where toasts stack on screen. Affects all toasts.</td></tr>
     </tbody>
   </table>
 </div>
@@ -54,8 +54,8 @@ DotToast.show('Action required: verify your email.', {
 <div class="doc-section">
   <h2>Accessibility</h2>
   <ul>
-    <li><code>default</code>, <code>success</code>, <code>warning</code> toasts use <code>role="status"</code>  polite announcement, does not interrupt.</li>
-    <li><code>danger</code> toasts use <code>role="alert"</code>  assertive, interrupts the screen reader immediately.</li>
+    <li><code>default</code>, <code>success</code>, <code>warning</code> toasts use <code>role="status"</code> — polite announcement, does not interrupt.</li>
+    <li><code>danger</code> toasts use <code>role="alert"</code> — assertive, interrupts the screen reader immediately.</li>
     <li>Each toast includes a visible ✕ dismiss button.</li>
   </ul>
 </div>

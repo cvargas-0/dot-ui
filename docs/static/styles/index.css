@@ -61,12 +61,6 @@
 
 
 
-.docs-main {
-  min-width: 68rem;
-  margin: 0 auto;
-  padding: var(--space-10) var(--space-8);
-}
-
 .component-header {
   margin-bottom: var(--space-8);
   padding-bottom: var(--space-6);
@@ -154,8 +148,20 @@
 
 
 
+@media (width >= 48rem) {
+  .docs-logo-topnav {
+    display: none;
+  }
+}
+
 @media (width < 48rem) {
-  .docs-main {
-    padding: var(--space-6) var(--space-4);
+  .props-table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .example-preview {
+    padding: var(--space-4);
   }
 }

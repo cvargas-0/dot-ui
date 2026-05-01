@@ -24,7 +24,6 @@
     }
   }
 
-  /* Top-layer elements (dialog, popover) don't inherit from body  set explicitly. */
   body,
   dialog,
   [popover] {

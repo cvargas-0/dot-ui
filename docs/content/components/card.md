@@ -1,6 +1,6 @@
 +++
 title = "Card"
-description = "Container for grouped content with optional header and footer sections."
+description = "Content container with optional header and footer."
 +++
 
 <div class="doc-section">
@@ -10,7 +10,7 @@ description = "Container for grouped content with optional header and footer sec
       <div class="card" style="width:20rem">
         <div class="card-header">Card title</div>
         <div class="card-body">
-          <p>Card body text. Place any content here  text, images, or other components.</p>
+          <p>Card body text. Place any content here — text, images, or other components.</p>
         </div>
         <div class="card-footer">
           <button class="small">Action</button>
@@ -41,7 +41,7 @@ description = "Container for grouped content with optional header and footer sec
     <div class="example-preview">
       <div class="card" style="width:18rem">
         <div class="card-body">
-          <p>A simple card with just a body. Header and footer are optional.</p>
+          <p>A simple card with just a body.</p>
         </div>
       </div>
     </div>
@@ -49,7 +49,7 @@ description = "Container for grouped content with optional header and footer sec
 ```html
 <div class="card">
   <div class="card-body">
-    <p>A simple card with just a body.</p>
+    <p>Card body text.</p>
   </div>
 </div>
 ```

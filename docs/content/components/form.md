@@ -137,10 +137,10 @@ description = "Input controls styled by element type. No class needed on most na
   <table class="props-table">
     <thead><tr><th>Class</th><th>Description</th></tr></thead>
     <tbody>
-      <tr><td><code>.form-group</code></td><td>Flex column container with <code>gap-1</code> between label, input, and hint</td></tr>
+      <tr><td><code>.form-group</code></td><td>Stacks label, input, and hint vertically</td></tr>
       <tr><td><code>.form-hint</code></td><td>Secondary help text below the field</td></tr>
-      <tr><td><code>.form-error</code></td><td>Error message in danger color</td></tr>
-      <tr><td><code>aria-invalid="true"</code></td><td>Triggers red border on the input (no class needed)</td></tr>
+      <tr><td><code>.form-error</code></td><td>Validation error message below the field</td></tr>
+      <tr><td><code>aria-invalid="true"</code></td><td>Applies invalid styling to the input — no class needed</td></tr>
     </tbody>
   </table>
 </div>

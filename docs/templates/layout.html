@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}{{ config.title }}{% endblock %}</title>
   <meta name="description" content="{{ config.extra.description }}">
+  <link rel="icon" type="image/icon" href="/imgs/favicon.ico">
+
   <link rel="stylesheet" href="/styles/dot-ui.min.css">
   <script src="/js/dot-ui.min.js" defer></script>
 
@@ -19,8 +21,12 @@
 
     <aside data-sidebar>
       <div data-sidebar-header>
-        <div class="docs-logo">
-          <a href="/">dot<span>-ui</span></a>
+        <div class="docs-logo flex gap-2 justify-start items-center">
+          <img src="/imgs/logo.png" alt="logo" class="rounded" style="width: 32px;">
+          <a href="/">
+            dot
+            <span class="font-bold text-2xl" style="text-transform: uppercase;">ui</span>
+          </a>
         </div>
       </div>
 

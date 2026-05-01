@@ -1,6 +1,6 @@
 +++
 title = "Dropdown"
-description = "Popover-based contextual menu anchored to a trigger button."
+description = "Contextual menu anchored to a trigger button."
 +++
 
 <div class="doc-section">
@@ -56,8 +56,8 @@ The `id` on `<menu>` is auto-generated if omitted.
   <table class="props-table">
     <thead><tr><th>Event</th><th>Description</th></tr></thead>
     <tbody>
-      <tr><td><code>dot:open</code></td><td>Fires when the popover opens</td></tr>
-      <tr><td><code>dot:close</code></td><td>Fires when the popover closes</td></tr>
+      <tr><td><code>dot:open</code></td><td>Fires when the dropdown opens</td></tr>
+      <tr><td><code>dot:close</code></td><td>Fires when the dropdown closes</td></tr>
     </tbody>
   </table>
 
