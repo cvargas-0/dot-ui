@@ -1,0 +1,8 @@
+base_url = "/"
+title = "dot-ui"
+compile_sass = false
+build_search_index = false
+
+
+[extra]
+description = "Semantic UI components — no framework required."

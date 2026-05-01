@@ -4,10 +4,19 @@
   "description": "UI components using HTML semantic elements.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node esbuild.mjs",
+    "css":   "node esbuild.mjs --css",
+    "js":    "node esbuild.mjs --js",
+    "clean": "rm -rf dist"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
-  "packageManager": "pnpm@10.33.0"
+  "packageManager": "pnpm@10.33.0",
+  "engines": {
+    "node": ">=22.x"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.0"
+  }
 }

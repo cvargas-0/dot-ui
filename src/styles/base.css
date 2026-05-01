@@ -1,0 +1,277 @@
+@layer theme, base, components, animations, utilities;
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  * {
+    margin: 0;
+  }
+
+  html {
+    font-size: 100%;
+    tab-size: 4;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  /* Top-layer elements (dialog, popover) don't inherit from body — set explicitly. */
+  body,
+  dialog,
+  [popover] {
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    color: var(--foreground);
+  }
+
+  body {
+    background-color: var(--background);
+    min-height: 100dvh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    overflow-wrap: break-word;
+  }
+
+  /* --- Heading scale --- */
+  h1 {
+    font-size: var(--text-3xl);
+    font-weight: var(--font-bold);
+    line-height: var(--leading-tight);
+    margin-block: var(--space-6) var(--space-4);
+  }
+
+  h2 {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-bold);
+    line-height: var(--leading-tight);
+    margin-block: var(--space-6) var(--space-3);
+  }
+
+  h3 {
+    font-size: var(--text-xl);
+    font-weight: var(--font-semibold);
+    line-height: var(--leading-tight);
+    margin-block: var(--space-5) var(--space-3);
+  }
+
+  h4 {
+    font-size: var(--text-lg);
+    font-weight: var(--font-semibold);
+    line-height: var(--leading-tight);
+    margin-block: var(--space-4) var(--space-2);
+  }
+
+  h5 {
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+    line-height: var(--leading-normal);
+    margin-block: var(--space-4) var(--space-2);
+  }
+
+  h6 {
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    line-height: var(--leading-normal);
+    color: var(--muted-fg);
+    margin-block: var(--space-3) var(--space-2);
+  }
+
+  :is(h1, h2, h3, h4, h5, h6):first-child {
+    margin-block-start: 0;
+  }
+
+  /* --- Paragraph --- */
+  p {
+    margin-block-end: var(--space-4);
+  }
+
+  p:last-child {
+    margin-block-end: 0;
+  }
+
+  /* --- Inline text --- */
+  strong,
+  b {
+    font-weight: var(--font-semibold);
+  }
+
+  em,
+  i {
+    font-style: italic;
+  }
+
+  small {
+    font-size: var(--text-sm);
+  }
+
+  /* --- Anchor --- */
+  a {
+    color: var(--primary);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+    transition: color var(--transition-fast);
+  }
+
+  a:hover {
+    opacity: 0.8;
+  }
+
+  /* --- Code (inline) --- */
+  code {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    background-color: var(--muted);
+    border-radius: var(--radius-sm);
+    padding-inline: var(--space-1);
+    padding-block: 0.1em;
+  }
+
+  /* --- Pre (block code) --- */
+  pre {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+    background-color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    overflow-x: auto;
+    margin-block-end: var(--space-4);
+  }
+
+  pre code {
+    background-color: transparent;
+    border-radius: 0;
+    padding: 0;
+    font-size: inherit;
+  }
+
+  /* --- Blockquote --- */
+  blockquote {
+    border-inline-start: 3px solid var(--border);
+    padding-inline-start: var(--space-4);
+    color: var(--muted-fg);
+    font-style: italic;
+    margin-block: var(--space-4);
+  }
+
+  /* --- Horizontal rule --- */
+  hr {
+    border: none;
+    border-block-start: 1px solid var(--border);
+    margin-block: var(--space-6);
+  }
+
+  /* --- Lists --- */
+  ul,
+  ol {
+    padding-inline-start: var(--space-6);
+    margin-block-end: var(--space-4);
+  }
+
+  ul:last-child,
+  ol:last-child {
+    margin-block-end: 0;
+  }
+
+  li {
+    margin-block-end: var(--space-1);
+  }
+
+  li:last-child {
+    margin-block-end: 0;
+  }
+
+  /* --- Mark --- */
+  mark {
+    background-color: var(--warning);
+    color: var(--warning-fg);
+    border-radius: var(--radius-sm);
+    padding-inline: var(--space-1);
+    padding-block: 0.1em;
+  }
+
+  /* --- Table baseline --- */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th,
+  td {
+    text-align: start;
+    padding: var(--space-2) var(--space-3);
+    border-block-end: 1px solid var(--border);
+  }
+
+  th {
+    font-weight: var(--font-semibold);
+    font-size: var(--text-sm);
+    color: var(--muted-fg);
+  }
+
+  /* --- Form element inheritance --- */
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  fieldset {
+    border: none;
+    padding: 0;
+  }
+
+  /* --- Visibility --- */
+  [hidden] {
+    display: none !important;
+  }
+
+  /* --- Focus ring (shadcn pattern) --- */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  /* --- Disabled state baseline --- */
+  :disabled,
+  [aria-disabled="true"] {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}

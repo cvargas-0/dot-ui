@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{{ config.title }}{% endblock %}</title>
+  <meta name="description" content="{{ config.extra.description }}">
+  <link rel="stylesheet" href="/styles/dot-ui.min.css">
+  <script src="/js/dot-ui.min.js" defer></script>
+
+  <link rel="stylesheet" href="/styles/index.css">
+  <script src="/js/theme.js"></script>
+
+</head>
+
+<body>
+  <div class="docs-layout">
+
+    <aside class="docs-sidebar">
+      <div class="docs-logo">
+        <a href="/">dot<span>-ui</span></a>
+      </div>
+      <nav>
+        <div class="docs-nav-group">
+          <p class="docs-nav-label">Getting Started</p>
+          <ul>
+            <li><a href="/">Introduction</a></li>
+          </ul>
+        </div>
+        <div class="docs-nav-group">
+          <p class="docs-nav-label">Components</p>
+          <ul>
+            <li><a href="/components/button/">Button</a></li>
+            <li><a href="/components/badge/">Badge</a></li>
+            <li><a href="/components/alert/">Alert</a></li>
+            <li><a href="/components/card/">Card</a></li>
+            <li><a href="/components/form/">Form</a></li>
+            <li><a href="/components/tabs/">Tabs</a></li>
+            <li><a href="/components/dropdown/">Dropdown</a></li>
+            <li><a href="/components/toast/">Toast</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="docs-sidebar-footer">
+        <button id="theme-toggle" class="theme-toggle" aria-label="Switch to dark mode" title="Switch to dark mode">
+          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          Toggle theme
+        </button>
+      </div>
+    </aside>
+
+    <main class="docs-main">
+      {% block content %}{% endblock %}
+    </main>
+
+  </div>
+</body>
+
+</html>

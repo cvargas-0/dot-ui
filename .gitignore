@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Build
+docs/static/js/dot-ui.min.js
+docs/static/styles/dot-ui.min.css
