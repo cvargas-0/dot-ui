@@ -1,0 +1,101 @@
+@layer components {
+  :is(button, [type=submit], [type=reset], a.button):not([role="menuitem"]):not([role="tab"]):not([data-sidebar-trigger]) {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    border-radius: var(--radius);
+    border: 1px solid transparent;
+    background-color: var(--primary);
+    color: var(--primary-fg);
+    text-decoration: none;
+    transition: background-color var(--transition-fast), opacity var(--transition-fast);
+
+    &:not(:disabled) {
+      cursor: pointer;
+    }
+
+    &:hover:not(:disabled) {
+      background-color: color-mix(in oklch, var(--primary), var(--background) 15%);
+    }
+
+    &:active:not(:disabled) {
+      transform: translate(1px, 1px);
+    }
+
+    /* --- Variants --- */
+    &[data-variant="secondary"] {
+      background-color: var(--secondary);
+      color: var(--secondary-fg);
+
+      &:hover:not(:disabled) {
+        background-color: color-mix(in oklch, var(--secondary), var(--foreground) 8%);
+      }
+    }
+
+    &[data-variant="danger"] {
+      background-color: var(--danger);
+      color: var(--danger-fg);
+
+      &:hover:not(:disabled) {
+        /* darken in light, lighten in dark */
+        background-color: light-dark(
+          color-mix(in oklch, var(--danger), black 15%),
+          color-mix(in oklch, var(--danger), white 15%)
+        );
+      }
+    }
+
+    /* --- Modifiers --- */
+    &.outline {
+      background-color: transparent;
+      color: var(--foreground);
+      border-color: var(--border);
+
+      &:hover:not(:disabled) {
+        background-color: var(--accent);
+      }
+
+      &[data-variant="danger"] {
+        color: var(--danger);
+        border-color: var(--danger);
+
+        &:hover:not(:disabled) {
+          background-color: light-dark(
+            color-mix(in oklch, var(--danger), transparent 90%),
+            color-mix(in oklch, var(--danger), transparent 85%)
+          );
+        }
+      }
+    }
+
+    &.ghost {
+      background-color: transparent;
+      color: var(--foreground);
+      border-color: transparent;
+
+      &:hover:not(:disabled) {
+        background-color: var(--accent);
+      }
+    }
+
+    /* --- Sizes --- */
+    &.small {
+      padding: var(--space-1) var(--space-3);
+      font-size: var(--text-xs);
+    }
+
+    &.large {
+      padding: var(--space-3) var(--space-6);
+      font-size: var(--text-base);
+    }
+
+    &.icon {
+      width: 2.5rem;
+      padding: 0;
+      aspect-ratio: 1;
+    }
+  }
+}

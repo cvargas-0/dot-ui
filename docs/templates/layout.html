@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{{ config.title }}{% endblock %}</title>
+  <meta name="description" content="{{ config.extra.description }}">
+  <link rel="stylesheet" href="/styles/dot-ui.min.css">
+  <script src="/js/dot-ui.min.js" defer></script>
+
+  <link rel="stylesheet" href="/styles/index.css">
+  <script src="/js/theme.js"></script>
+
+</head>
+
+<body>
+  <div data-sidebar-provider>
+
+    <aside data-sidebar>
+      <div data-sidebar-header>
+        <div class="docs-logo">
+          <a href="/">dot<span>-ui</span></a>
+        </div>
+      </div>
+
+      <div data-sidebar-content>
+        <div data-sidebar-group>
+          <p data-sidebar-group-label>Getting Started</p>
+          <ul data-sidebar-menu>
+            <li data-sidebar-menu-item>
+              <a href="/" data-sidebar-menu-button>Introduction</a>
+            </li>
+          </ul>
+        </div>
+        <div data-sidebar-group>
+          <p data-sidebar-group-label>Components</p>
+          <ul data-sidebar-menu>
+            <li data-sidebar-menu-item><a href="/components/button/" data-sidebar-menu-button>Button</a></li>
+            <li data-sidebar-menu-item><a href="/components/badge/" data-sidebar-menu-button>Badge</a></li>
+            <li data-sidebar-menu-item><a href="/components/alert/" data-sidebar-menu-button>Alert</a></li>
+            <li data-sidebar-menu-item><a href="/components/card/" data-sidebar-menu-button>Card</a></li>
+            <li data-sidebar-menu-item><a href="/components/form/" data-sidebar-menu-button>Form</a></li>
+            <li data-sidebar-menu-item><a href="/components/tabs/" data-sidebar-menu-button>Tabs</a></li>
+            <li data-sidebar-menu-item><a href="/components/dropdown/" data-sidebar-menu-button>Dropdown</a></li>
+            <li data-sidebar-menu-item><a href="/components/toast/" data-sidebar-menu-button>Toast</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div data-sidebar-footer>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Switch to dark mode" title="Switch to dark mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4" />
+            <path
+              d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+          Toggle theme
+        </button>
+      </div>
+
+    </aside>
+
+    <div data-sidebar-inset>
+      <nav data-topnav>
+        <button data-sidebar-trigger aria-label="Toggle sidebar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+        <a href="/" class="docs-logo-topnav">dot<span>-ui</span></a>
+      </nav>
+
+      <main class="container">
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+@layer components {
+  .alert {
+    display: flex;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    border-inline-start: 4px solid var(--border);
+    background-color: var(--muted);
+    color: var(--muted-fg);
+    font-size: var(--text-sm);
+
+    & strong {
+      font-weight: var(--font-semibold);
+      color: var(--foreground);
+    }
+
+    &[data-variant="success"] {
+      background-color: light-dark(
+        color-mix(in oklch, var(--success), transparent 88%),
+        color-mix(in oklch, var(--success), transparent 82%)
+      );
+      border-color: light-dark(
+        color-mix(in oklch, var(--success), transparent 60%),
+        color-mix(in oklch, var(--success), transparent 50%)
+      );
+      border-inline-start-color: var(--success);
+      color: var(--foreground);
+
+      & strong { color: var(--success); }
+    }
+
+    &[data-variant="warning"] {
+      background-color: light-dark(
+        color-mix(in oklch, var(--warning), transparent 88%),
+        color-mix(in oklch, var(--warning), transparent 82%)
+      );
+      border-color: light-dark(
+        color-mix(in oklch, var(--warning), transparent 60%),
+        color-mix(in oklch, var(--warning), transparent 50%)
+      );
+      border-inline-start-color: var(--warning);
+      color: var(--foreground);
+
+      /* --warning-fg dark value is too dark on tinted bg; use --warning token instead */
+      & strong { color: light-dark(var(--warning-fg), var(--warning)); }
+    }
+
+    &[data-variant="danger"] {
+      background-color: light-dark(
+        color-mix(in oklch, var(--danger), transparent 88%),
+        color-mix(in oklch, var(--danger), transparent 82%)
+      );
+      border-color: light-dark(
+        color-mix(in oklch, var(--danger), transparent 60%),
+        color-mix(in oklch, var(--danger), transparent 50%)
+      );
+      border-inline-start-color: var(--danger);
+      color: var(--foreground);
+
+      & strong { color: var(--danger); }
+    }
+  }
+}

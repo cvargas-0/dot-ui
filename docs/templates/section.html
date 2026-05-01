@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ section.title }} {{ config.title }}{% endblock %}
+
+{% block content %}
+<article>
+  <header class="component-header">
+    <h1>{{ section.title }}</h1>
+    {% if section.description %}
+    <p>{{ section.description }}</p>
+    {% endif %}
+  </header>
+  {{ section.content | safe }}
+</article>
+{% endblock %}

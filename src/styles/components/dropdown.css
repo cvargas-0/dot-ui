@@ -1,0 +1,112 @@
+@layer components {
+  dot-dropdown {
+    display: inline-block;
+    position: relative;
+  }
+
+  dot-dropdown [popover] {
+    margin: 0;
+    padding: var(--space-1);
+    min-width: 10rem;
+    background-color: var(--popover);
+    color: var(--popover-fg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    list-style: none;
+
+    /* CSS-native open/close animation */
+    opacity: 0;
+    transform: translateY(-4px) scale(0.98);
+    transition:
+      opacity var(--transition-fast),
+      transform var(--transition-fast),
+      display var(--transition-fast) allow-discrete,
+      overlay var(--transition-fast) allow-discrete;
+
+    &:popover-open {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    @starting-style {
+      &:popover-open {
+        opacity: 0;
+        transform: translateY(-4px) scale(0.98);
+      }
+    }
+  }
+
+  /*
+   * Trigger: mirror button.css specificity chain to guarantee override.
+   * (0,4,2) beats button.css base (0,3,1); (0,6,2) beats button.css :active (0,5,1).
+   * transform:none on :active prevents the 1px shift that misaligns #position().
+   */
+  dot-dropdown > [popovertarget]:is(button, [type=submit], [type=reset], a.button):not([role="menuitem"]):not([role="tab"]) {
+    background-color: var(--secondary);
+    color: var(--secondary-fg);
+    border-color: var(--border);
+
+    &:hover:not(:disabled) {
+      background-color: color-mix(in oklch, var(--secondary), var(--foreground) 8%);
+    }
+
+    &:active:not(:disabled) {
+      transform: none;
+    }
+  }
+
+  dot-dropdown menu li {
+    display: contents;
+  }
+
+  /* hr or [role=separator] as divider */
+  dot-dropdown menu hr,
+  dot-dropdown [role=separator] {
+    border: none;
+    height: 1px;
+    background-color: var(--border);
+    margin: var(--space-1) 0;
+  }
+
+  dot-dropdown menu button,
+  dot-dropdown menu a {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: var(--space-2);
+    width: 100%;
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    color: var(--foreground);
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-sm);
+    text-align: start;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+
+    &:hover:not(:disabled),
+    &:focus-visible {
+      background-color: var(--accent);
+      outline: none;
+    }
+
+    &[data-variant=danger] {
+      color: var(--danger);
+
+      &:hover:not(:disabled),
+      &:focus-visible {
+        background-color: light-dark(
+          color-mix(in oklch, var(--danger), transparent 90%),
+          color-mix(in oklch, var(--danger), transparent 85%)
+        );
+      }
+    }
+  }
+}

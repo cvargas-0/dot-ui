@@ -23,6 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 
-# AI assistants
-CLAUDE.md
-.claude/*
+# Build
+docs/static/js/dot-ui.min.js
+docs/static/styles/dot-ui.min.css
