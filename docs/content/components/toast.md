@@ -54,8 +54,8 @@ DotToast.show('Action required: verify your email.', {
 <div class="doc-section">
   <h2>Accessibility</h2>
   <ul>
-    <li><code>default</code>, <code>success</code>, <code>warning</code> toasts use <code>role="status"</code> — polite announcement, does not interrupt.</li>
-    <li><code>danger</code> toasts use <code>role="alert"</code> — assertive, interrupts the screen reader immediately.</li>
+    <li><code>default</code>, <code>success</code>, <code>warning</code> toasts use <code>role="status"</code> - polite announcement, does not interrupt.</li>
+    <li><code>danger</code> toasts use <code>role="alert"</code> - assertive, interrupts the screen reader immediately.</li>
     <li>Each toast includes a visible ✕ dismiss button.</li>
   </ul>
 </div>

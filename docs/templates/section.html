@@ -1,9 +1,9 @@
 {% extends "layout.html" %}
 
-{% block title %}{{ section.title }} {{ config.title }}{% endblock %}
+{% block title %}{{ section.title }} - {{ config.title }}{% endblock %}
 
 {% block content %}
-<article>
+<article class="docs-article">
   <header class="component-header">
     <h1>{{ section.title }}</h1>
     {% if section.description %}

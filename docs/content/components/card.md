@@ -10,7 +10,7 @@ description = "Content container with optional header and footer."
       <div class="card" style="width:20rem">
         <div class="card-header">Card title</div>
         <div class="card-body">
-          <p>Card body text. Place any content here — text, images, or other components.</p>
+          <p>Card body text. Place any content here - text, images, or other components.</p>
         </div>
         <div class="card-footer">
           <button class="small">Action</button>

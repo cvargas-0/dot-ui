@@ -1,18 +1,13 @@
 {
   "name": "@usedot/ui",
-  "version": "0.2.0-beta",
+  "version": "0.2.1-beta",
   "description": "UI components using HTML semantic elements.",
-  "main": "dist/dot-ui.min.js",
-  "style": "dist/dot-ui.min.css",
+  "main": "dot-ui.min.js",
+  "style": "dot-ui.min.css",
   "files": [
-    "dist"
+    "dot-ui.min.js",
+    "dot-ui.min.css"
   ],
-  "exports": {
-    ".": {
-      "import": "./dist/dot-ui.min.js"
-    },
-    "./style": "./dist/dot-ui.min.css"
-  },
   "scripts": {
     "build": "node esbuild.mjs",
     "css": "node esbuild.mjs --css",
@@ -33,5 +28,6 @@
   },
   "devDependencies": {
     "esbuild": "^0.28.0"
-  }
+  },
+  "unpkg": "dot-ui.min.js"
 }

@@ -1,0 +1,8 @@
+<div class="example">
+  <div class="example-preview block">
+    <div class="alert" role="status">
+      <strong>Ready.</strong> Once these lines are in your page, all components work immediately.
+    </div>
+  </div>
+  {{ body | replace(from="VERSION", to=config.extra.version) | markdown | safe }}
+</div>

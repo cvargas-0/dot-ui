@@ -1,7 +1,163 @@
 {% extends "layout.html" %}
 
-{% block title %}{{ config.title }}{% endblock %}
+{% block title %}{{ config.title }} - Semantic UI components{% endblock %}
 
 {% block content %}
-{{ section.content | safe }}
+{% set version = config.extra.version | default(value="latest") %}
+<section class="docs-hero">
+  <div class="docs-hero-eyebrow">
+    <span class="badge" data-variant="secondary">v{{ version }}</span>
+    <span class="docs-hero-sep">-</span>
+    <span>Semantic UI components</span>
+  </div>
+  <h1 class="docs-hero-title">dot<span class="docs-hero-title-sep">·</span>ui</h1>
+  <p class="docs-hero-subtitle">UI components using HTML semantic elements.<br>No framework. No dependencies. Just HTML.
+  </p>
+
+  <div class="docs-hero-install">
+    <code class="docs-install-code">npm install @usedot/ui@{{ version }}</code>
+    <button class="docs-install-copy ghost icon" id="copy-install" aria-label="Copy install command"
+      title="Copy to clipboard" data-copy="npm install @usedot/ui@{{ version }}">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+      </svg>
+    </button>
+  </div>
+
+  <div class="docs-hero-actions">
+    <a href="/components/button/" class="button">Get started →</a>
+    <a href="https://github.com/cvargas-0/dot-ui" class="button" data-variant="secondary" target="_blank"
+      rel="noopener noreferrer">GitHub ↗</a>
+  </div>
+</section>
+
+<section class="docs-components-section">
+  <h2 class="docs-components-heading">Components</h2>
+  <div class="docs-components-grid">
+
+    <div class="comp-card">
+      <div class="comp-card-preview" aria-hidden="true" inert>
+        <button>Primary</button>
+        <button data-variant="secondary">Secondary</button>
+        <button class="ghost">Ghost</button>
+      </div>
+      <div class="comp-card-body">
+        <h3><a href="/components/button/" class="comp-card-link">Button</a></h3>
+        <p>Action trigger with variants and sizes.</p>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-card-preview" aria-hidden="true" inert>
+        <span class="badge">Default</span>
+        <span class="badge" data-variant="success">Success</span>
+        <span class="badge" data-variant="warning">Warning</span>
+        <span class="badge" data-variant="danger">Danger</span>
+      </div>
+      <div class="comp-card-body">
+        <h3><a href="/components/badge/" class="comp-card-link">Badge</a></h3>
+        <p>Inline status labels and counters.</p>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-card-preview comp-card-preview--block" aria-hidden="true" inert>
+        <div class="alert" role="alert"><strong>Note:</strong> This is a contextual message.</div>
+      </div>
+      <div class="comp-card-body">
+        <h3><a href="/components/alert/" class="comp-card-link">Alert</a></h3>
+        <p>Contextual feedback messages.</p>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-card-preview comp-card-preview--block" aria-hidden="true" inert>
+        <div class="card">
+          <div class="card-header"><strong>Card title</strong></div>
+          <div class="card-body" style="font-size:var(--text-sm);color:var(--muted-fg)">Card content goes here.</div>
+        </div>
+      </div>
+      <div class="comp-card-body">
+        <h3><a href="/components/card/" class="comp-card-link">Card</a></h3>
+        <p>Content container with header and footer.</p>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-card-preview comp-card-preview--block" aria-hidden="true" inert>
+        <div class="form-group">
+          <label for="hp-demo-input">Email</label>
+          <input id="hp-demo-input" type="email" placeholder="you@example.com">
+        </div>
+      </div>
+      <div class="comp-card-body">
+        <h3><a href="/components/form/" class="comp-card-link">Form</a></h3>
+        <p>Input, textarea, select, and form helpers.</p>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-card-preview comp-card-preview--block" aria-hidden="true" inert>
+        <dot-tabs>
+          <div role="tablist" aria-label="Demo tabs">
+            <button role="tab" aria-selected="true" aria-controls="hp-panel-1" id="hp-tab-1">Overview</button>
+            <button role="tab" aria-selected="false" aria-controls="hp-panel-2" id="hp-tab-2" tabindex="-1">API</button>
+          </div>
+          <div role="tabpanel" id="hp-panel-1" aria-labelledby="hp-tab-1"
+            style="padding:var(--space-3);font-size:var(--text-sm)">Overview content</div>
+          <div role="tabpanel" id="hp-panel-2" aria-labelledby="hp-tab-2" hidden
+            style="padding:var(--space-3);font-size:var(--text-sm)">API content</div>
+        </dot-tabs>
+      </div>
+      <div class="comp-card-body">
+        <h3><a href="/components/tabs/" class="comp-card-link">Tabs</a></h3>
+        <p>Tabbed interface with keyboard navigation.</p>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-card-preview" aria-hidden="true" inert>
+        <dot-dropdown>
+          <button data-variant="secondary">Options ▾</button>
+          <menu id="hp-menu" popover>
+            <li><button role="menuitem">Edit</button></li>
+            <li><button role="menuitem">Duplicate</button></li>
+            <li role="separator"></li>
+            <li><button role="menuitem" data-variant="danger">Delete</button></li>
+          </menu>
+        </dot-dropdown>
+      </div>
+      <div class="comp-card-body">
+        <h3><a href="/components/dropdown/" class="comp-card-link">Dropdown</a></h3>
+        <p>Popover-based contextual menu.</p>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-card-preview" aria-hidden="true" inert>
+        <div class="alert" role="status" style="border-left-color:var(--foreground)">
+          <strong>Toast:</strong> Action completed successfully.
+        </div>
+      </div>
+      <div class="comp-card-body">
+        <h3><a href="/components/toast/" class="comp-card-link">Toast</a></h3>
+        <p>Transient notification via JS API.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  document.getElementById('copy-install')?.addEventListener('click', function () {
+    navigator.clipboard?.writeText(this.dataset.copy).then(() => {
+      this.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+      setTimeout(() => {
+        this.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
+      }, 1800);
+    });
+  });
+</script>
 {% endblock %}

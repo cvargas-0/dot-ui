@@ -140,7 +140,7 @@ description = "Input controls styled by element type. No class needed on most na
       <tr><td><code>.form-group</code></td><td>Stacks label, input, and hint vertically</td></tr>
       <tr><td><code>.form-hint</code></td><td>Secondary help text below the field</td></tr>
       <tr><td><code>.form-error</code></td><td>Validation error message below the field</td></tr>
-      <tr><td><code>aria-invalid="true"</code></td><td>Applies invalid styling to the input — no class needed</td></tr>
+      <tr><td><code>aria-invalid="true"</code></td><td>Applies invalid styling to the input - no class needed</td></tr>
     </tbody>
   </table>
 </div>

@@ -1,15 +1,20 @@
 {% extends "layout.html" %}
 
-{% block title %}{{ page.title }} {{ config.title }}{% endblock %}
+{% block title %}{{ page.title }} - {{ config.title }}{% endblock %}
 
 {% block content %}
-<article>
+<article class="docs-article">
   <header class="component-header">
+    {% if "components" in current_path %}<span class="docs-badge-section">Component</span>{% else %}<span class="docs-badge-section">Guide</span>{% endif %}
     <h1>{{ page.title }}</h1>
     {% if page.description %}
     <p>{{ page.description }}</p>
     {% endif %}
   </header>
   {{ page.content | safe }}
+  <footer class="docs-article-footer">
+    <a href="https://github.com/cvargas-0/dot-ui/edit/main/docs/content/{{ page.relative_path }}" class="docs-edit-link"
+      target="_blank" rel="noopener noreferrer">Edit this page on GitHub ↗</a>
+  </footer>
 </article>
 {% endblock %}

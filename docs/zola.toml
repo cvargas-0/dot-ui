@@ -1,11 +1,12 @@
 base_url = "/"
-title = "dot-ui"
+title = "Dot UI"
 compile_sass = false
 build_search_index = false
 
 
 [extra]
-description = "Semantic UI components — no framework required."
+description = "Semantic UI components - no framework required."
+version = "0.2.1-beta"
 
 
 [markdown]
