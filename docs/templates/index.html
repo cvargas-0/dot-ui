@@ -6,13 +6,13 @@
 
 {% block content %}
 {% set version = config.extra.version | default(value="latest") %}
-<section class="docs-hero">
-  <div class="docs-hero-eyebrow">
+<section class="docs-hero flex items-center flex-col text-center">
+  <div class="docs-hero-eyebrow flex items-center gap-3 text-sm text-muted">
     <span class="badge" data-variant="secondary">v{{ version }}</span>
     <span class="docs-hero-sep">-</span>
     <span>Semantic UI componentss</span>
   </div>
-  <h1 class="docs-hero-title">
+  <h1 class="docs-hero-title flex justify-center gap-1">
     dot
     <span class="docs-hero-title-sep font-bold">·</span>
     <span class="docs-logo-ui">ui</span>
@@ -32,7 +32,7 @@
     </button>
   </div>
 
-  <div class="docs-hero-actions">
+  <div class="flex flex-wrap gap-3 items-center">
     <a href="/components/button/" class="button">Get started →</a>
     <a href="https://github.com/cvargas-0/dot-ui" class="button" data-variant="secondary" target="_blank"
       rel="noopener noreferrer">GitHub ↗</a>

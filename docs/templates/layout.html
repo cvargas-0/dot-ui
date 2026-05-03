@@ -36,7 +36,7 @@
 
     <aside data-sidebar>
       <div data-sidebar-header>
-        <div class="docs-logo">
+        <div class="docs-logo flex items-baseline gap-3">
           <a href="/">
             <span class="docs-logo-dot">dot</span><span class="docs-logo-sep">·</span><span
               class="docs-logo-ui">ui</span>
@@ -96,7 +96,7 @@
       </div>
 
       <div data-sidebar-footer>
-        <button id="theme-toggle" class="theme-toggle" aria-label="Switch to dark mode" title="Switch to dark mode">
+        <button id="theme-toggle" class="theme-toggle flex items-center gap-2 w-full text-sm" aria-label="Switch to dark mode" title="Switch to dark mode">
           <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="4" />
@@ -109,7 +109,7 @@
           </svg>
           Toggle theme
         </button>
-        <a href="https://github.com/cvargas-0/dot-ui" class="docs-github-link" target="_blank"
+        <a href="https://github.com/cvargas-0/dot-ui" class="docs-github-link flex items-center gap-2 w-full text-sm" target="_blank"
           rel="noopener noreferrer">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path
@@ -122,8 +122,8 @@
     </aside>
 
     <div data-sidebar-inset>
-      <nav data-topnav>
-        <div class="topnav-left">
+      <nav data-topnav class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
           <button data-sidebar-trigger aria-label="Toggle sidebar">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
               stroke-linecap="round" stroke-linejoin="round">
@@ -134,7 +134,7 @@
           </button>
           <a href="/" class="docs-logo-topnav">dot<span>·ui</span></a>
         </div>
-        <div class="topnav-right">
+        <div class="topnav-right flex items-center gap-3">
           <span class="docs-version-badge">v{{ config.extra.version }}</span>
           <a href="https://github.com/cvargas-0/dot-ui" class="topnav-github" target="_blank" rel="noopener noreferrer"
             aria-label="GitHub repository">
