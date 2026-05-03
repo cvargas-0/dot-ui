@@ -90,8 +90,8 @@ description = "Low-level CSS utility classes for layout, spacing, and compositio
       <tr><td><code>flex</code></td><td><code>display: flex</code></td></tr>
       <tr><td><code>flex-row</code> / <code>flex-col</code></td><td>Flex direction</td></tr>
       <tr><td><code>flex-wrap</code></td><td><code>flex-wrap: wrap</code></td></tr>
-      <tr><td><code>flex-1</code></td><td><code>flex: 1 1 0%</code> — fills available space equally</td></tr>
-      <tr><td><code>flex-none</code></td><td><code>flex: none</code> — fixed size, no grow/shrink</td></tr>
+      <tr><td><code>flex-1</code></td><td><code>flex: 1 1 0%</code> - fills available space equally</td></tr>
+      <tr><td><code>flex-none</code></td><td><code>flex: none</code> - fixed size, no grow/shrink</td></tr>
       <tr><td><code>items-start</code> / <code>items-center</code> / <code>items-end</code></td><td>Align items on the cross axis</td></tr>
       <tr><td><code>justify-start</code> / <code>justify-center</code> / <code>justify-between</code></td><td>Distribute items on the main axis</td></tr>
       <tr><td><code>gap-1</code> → <code>gap-8</code></td><td>Gap using <code>--space-*</code> tokens</td></tr>
@@ -276,8 +276,8 @@ description = "Low-level CSS utility classes for layout, spacing, and compositio
   <h2>Best practices</h2>
   <ul>
     <li>Use utilities for one-off layouts. Extract a component once the same combination repeats 3 or more times.</li>
-    <li>Avoid stacking more than 4-5 utility classes on a single element — that signals a missing component abstraction.</li>
+    <li>Avoid stacking more than 4-5 utility classes on a single element - that signals a missing component abstraction.</li>
     <li>Use responsive prefixes (<code>md:flex-row</code>) rather than inline <code>@media</code> overrides.</li>
-    <li>Use <code>gap-*</code> for spacing inside flex and grid containers — not margins between siblings.</li>
+    <li>Use <code>gap-*</code> for spacing inside flex and grid containers - not margins between siblings.</li>
   </ul>
 </div>
