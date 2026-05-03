@@ -174,18 +174,22 @@ body {
 
 
 .docs-hero {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
   padding: var(--space-12) 0 var(--space-10);
   border-bottom: 1px solid var(--border);
   margin-bottom: var(--space-10);
 }
 
 .docs-hero-eyebrow {
-  display: flex;
-  align-items: center;
+  align-self: self-start;
   gap: var(--space-3);
   margin-bottom: var(--space-6);
   font-size: var(--text-sm);
   color: var(--muted-fg);
+  
 }
 
 .docs-hero-sep {
@@ -200,6 +204,7 @@ body {
   line-height: 1;
   margin: 0 0 var(--space-4);
   color: var(--foreground);
+  gap: var(--space-1);
 }
 
 .docs-hero-title-sep {
@@ -259,18 +264,10 @@ body {
 }
 
 .docs-components-heading {
-  font-size: var(--text-sm);
-  font-weight: var(--font-semibold);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted-fg);
   margin: 0 0 var(--space-6);
-}
-
-.docs-components-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-4);
 }
 
 .comp-card {

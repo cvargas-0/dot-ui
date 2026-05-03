@@ -2,7 +2,7 @@
 
 dist: css js
 
-STYLES := $(shell find src/styles -type f -name "*.css")
+STYLES := src/styles/base.css $(filter-out src/styles/base.css,$(shell find src/styles -type f -name "*.css" | sort))
 
 css:
 	@mkdir -p dist
