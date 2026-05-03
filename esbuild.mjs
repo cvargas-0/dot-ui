@@ -26,6 +26,8 @@ async function buildCSS() {
 
   const min = readFileSync('dist/dot-ui.min.css');
   writeFileSync('dist/dot-ui.min.css.gz', gzipSync(min, { level: 9 }));
+
+  mkdirSync('docs/static/styles', { recursive: true });
   copyFileSync('dist/dot-ui.min.css', 'docs/static/styles/dot-ui.min.css');
 
   console.log('CSS:');
@@ -52,6 +54,8 @@ async function buildJS() {
 
   const min = readFileSync('dist/dot-ui.min.js');
   writeFileSync('dist/dot-ui.min.js.gz', gzipSync(min, { level: 9 }));
+
+  mkdirSync('docs/static/js', { recursive: true });
   copyFileSync('dist/dot-ui.min.js', 'docs/static/js/dot-ui.min.js');
 
   console.log('JS:');
