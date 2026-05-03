@@ -20,8 +20,5 @@
   "engines": {
     "node": ">=22.x"
   },
-  "devDependencies": {
-    "esbuild": "^0.28.0"
-  },
   "unpkg": "dot-ui.min.js"
 }
