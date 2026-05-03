@@ -5,9 +5,9 @@ build_search_index = false
 
 
 [extra]
-description = "Semantic UI components - no framework required."
+description = "dot-ui is a lightweight UI component library built on semantic HTML elements. No framework, no dependencies - drop in two tags and start building."
 version = "0.2.1-beta"
-
+web = "https://usedot.dev"
 
 [markdown]
 highlighting = {

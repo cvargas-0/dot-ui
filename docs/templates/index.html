@@ -1,6 +1,8 @@
 {% extends "layout.html" %}
 
-{% block title %}{{ config.title }} - Semantic UI components{% endblock %}
+{% block title %}{{ config.title }} — Semantic UI Components, No Framework Required{% endblock %}
+{% block og_title %}{{ config.title }} — Semantic UI Components, No Framework Required{% endblock %}
+{% block twitter_title %}{{ config.title }} — Semantic UI Components, No Framework Required{% endblock %}
 
 {% block content %}
 {% set version = config.extra.version | default(value="latest") %}

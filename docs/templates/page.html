@@ -1,6 +1,14 @@
 {% extends "layout.html" %}
 
-{% block title %}{{ page.title }} - {{ config.title }}{% endblock %}
+{% block title %}{% if "components" in current_path %}{{ page.title }} Component — {{ config.title }}{% else %}{{ page.title }} — {{ config.title }}{% endif %}{% endblock %}
+
+{% if page.description %}
+{% block description %}{{ page.description }}{% endblock %}
+{% block og_title %}{% if "components" in current_path %}{{ page.title }} Component — {{ config.title }}{% else %}{{ page.title }} — {{ config.title }}{% endif %}{% endblock %}
+{% block og_description %}{{ page.description }}{% endblock %}
+{% block twitter_title %}{% if "components" in current_path %}{{ page.title }} Component — {{ config.title }}{% else %}{{ page.title }} — {{ config.title }}{% endif %}{% endblock %}
+{% block twitter_description %}{{ page.description }}{% endblock %}
+{% endif %}
 
 {% block content %}
 <article class="docs-article">
