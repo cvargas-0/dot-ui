@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typography - Dot UI</title>
+  <meta name="description" content="dot-ui is a lightweight UI component library built on semantic HTML elements. No framework, no dependencies - drop in two tags and start building.">
+  <link rel="canonical" href="https:&#x2F;&#x2F;usedot.dev">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Dot UI">
+  <meta property="og:title" content="Dot UI">
+  <meta property="og:description" content="dot-ui is a lightweight UI component library built on semantic HTML elements. No framework, no dependencies - drop in two tags and start building.">
+  <meta property="og:url" content="https:&#x2F;&#x2F;usedot.dev">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Dot UI">
+  <meta name="twitter:description"
+    content="dot-ui is a lightweight UI component library built on semantic HTML elements. No framework, no dependencies - drop in two tags and start building.">
+
+  <link rel="icon" type="image/x-icon" href="/imgs/favicon.ico">
+
+  <link rel="stylesheet" href="/styles/fonts.css">
+  <link rel="stylesheet" href="/styles/index.css">
+  <script src="/js/theme.js"></script>
+
+  <link rel="stylesheet" href="https://usedot.dev/styles/dot-ui.min.css">
+  <script src="https://usedot.dev/js/dot-ui.min.js"></script>
+</head>
+
+<body>
+  <div data-sidebar-provider>
+
+    <aside data-sidebar>
+      <div data-sidebar-header>
+        <div class="docs-logo flex items-baseline gap-3">
+          <a href="/">
+            <span class="docs-logo-dot">dot</span><span class="docs-logo-sep">·</span><span
+              class="docs-logo-ui">ui</span>
+          </a>
+          <span class="docs-version">v0.2.1-beta</span>
+        </div>
+      </div>
+
+      <div data-sidebar-content>
+        <div data-sidebar-group>
+          <p data-sidebar-group-label>Getting Started</p>
+          <ul data-sidebar-menu>
+            <li data-sidebar-menu-item>
+              <a href="/" data-sidebar-menu-button >Introduction</a>
+            </li>
+            <li data-sidebar-menu-item>
+              <a href="/usage/" data-sidebar-menu-button >Usage</a>
+            </li>
+          </ul>
+        </div>
+        <div data-sidebar-group>
+          <p data-sidebar-group-label>Foundations</p>
+          <ul data-sidebar-menu>
+            <li data-sidebar-menu-item>
+              <a href="/typography/" data-sidebar-menu-button aria-current="page"
+                >Typography</a>
+            </li>
+            <li data-sidebar-menu-item>
+              <a href="/utilities/" data-sidebar-menu-button >Utilities</a>
+            </li>
+          </ul>
+        </div>
+        <div data-sidebar-group>
+          <p data-sidebar-group-label>Components</p>
+          <ul data-sidebar-menu>
+            <li data-sidebar-menu-item><a href="/components/button/" data-sidebar-menu-button >Button</a></li>
+            <li data-sidebar-menu-item><a href="/components/badge/" data-sidebar-menu-button >Badge</a></li>
+            <li data-sidebar-menu-item><a href="/components/alert/" data-sidebar-menu-button >Alert</a></li>
+            <li data-sidebar-menu-item><a href="/components/card/" data-sidebar-menu-button >Card</a></li>
+            <li data-sidebar-menu-item><a href="/components/form/" data-sidebar-menu-button >Form</a></li>
+            <li data-sidebar-menu-item><a href="/components/tabs/" data-sidebar-menu-button >Tabs</a></li>
+            <li data-sidebar-menu-item><a href="/components/dropdown/" data-sidebar-menu-button >Dropdown</a></li>
+            <li data-sidebar-menu-item><a href="/components/toast/" data-sidebar-menu-button >Toast</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div data-sidebar-footer>
+        <button id="theme-toggle" class="theme-toggle flex items-center gap-2 w-full text-sm" aria-label="Switch to dark mode" title="Switch to dark mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4" />
+            <path
+              d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+          Toggle theme
+        </button>
+        <a href="https://github.com/cvargas-0/dot-ui" class="docs-github-link flex items-center gap-2 w-full text-sm" target="_blank"
+          rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+          </svg>
+          GitHub
+        </a>
+      </div>
+
+    </aside>
+
+    <div data-sidebar-inset>
+      <nav data-topnav class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <button data-sidebar-trigger aria-label="Toggle sidebar">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+          </button>
+          <a href="/" class="docs-logo-topnav">dot<span>·ui</span></a>
+        </div>
+        <div class="topnav-right flex items-center gap-3">
+          <span class="docs-version-badge">v0.2.1-beta</span>
+          <a href="https://github.com/cvargas-0/dot-ui" class="topnav-github" target="_blank" rel="noopener noreferrer"
+            aria-label="GitHub repository">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+            </svg>
+          </a>
+        </div>
+      </nav>
+
+      <main class="container">
+        
+<article class="docs-article">
+  <header class="component-header">
+    <span
+      class="docs-badge-section">Guide</span>
+    <h1>Typography</h1>
+    
+    <p>Typefaces, type scale, and semantic text elements used across dot-ui.</p>
+    
+  </header>
+  <div class="doc-section">
+  <h2>Heading scale</h2>
+  <p>Headings <code>h1</code> through <code>h6</code> are styled by the design system. Use them for semantic document structure - not as a visual sizing tool.</p>
+  <div class="example">
+    <div class="example-preview block">
+      <h1 style="margin:0 0 var(--space-2)">Heading 1</h1>
+      <h2 style="margin:0 0 var(--space-2)">Heading 2</h2>
+      <h3 style="margin:0 0 var(--space-2)">Heading 3</h3>
+      <h4 style="margin:0 0 var(--space-2)">Heading 4</h4>
+      <h5 style="margin:0 0 var(--space-2)">Heading 5</h5>
+      <h6 style="margin:0">Heading 6</h6>
+    </div>
+<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;"><code data-lang="html"><span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">h1</span><span style="color: #94E2D5;">&gt;</span><span>Heading 1</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">h1</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">h2</span><span style="color: #94E2D5;">&gt;</span><span>Heading 2</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">h2</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">h3</span><span style="color: #94E2D5;">&gt;</span><span>Heading 3</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">h3</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">h4</span><span style="color: #94E2D5;">&gt;</span><span>Heading 4</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">h4</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">h5</span><span style="color: #94E2D5;">&gt;</span><span>Heading 5</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">h5</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">h6</span><span style="color: #94E2D5;">&gt;</span><span>Heading 6</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">h6</span><span style="color: #94E2D5;">&gt;</span></span></code></pre>  </div>
+</div>
+<div class="doc-section">
+  <h2>Type scale</h2>
+  <p>Use <code>.text-{size}</code> classes to override font size. Each class maps to a CSS custom property.</p>
+  <div class="example">
+    <div class="example-preview block">
+      <p class="text-xs" style="margin:0 0 var(--space-2)"><code class="text-xs">text-xs</code> - Extra small</p>
+      <p class="text-sm" style="margin:0 0 var(--space-2)"><code class="text-xs">text-sm</code> - Small</p>
+      <p class="text-base" style="margin:0 0 var(--space-2)"><code class="text-xs">text-base</code> - Base (default)</p>
+      <p class="text-lg" style="margin:0 0 var(--space-2)"><code class="text-xs">text-lg</code> - Large</p>
+      <p class="text-xl" style="margin:0 0 var(--space-2)"><code class="text-xs">text-xl</code> - Extra large</p>
+      <p class="text-2xl" style="margin:0 0 var(--space-2)"><code class="text-xs">text-2xl</code> - 2x large</p>
+      <p class="text-3xl" style="margin:0"><code class="text-xs">text-3xl</code> - 3x large</p>
+    </div>
+<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;"><code data-lang="html"><span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">p</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;text-xs&quot;</span><span style="color: #94E2D5;">&gt;</span><span>Extra small</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">p</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">p</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;text-sm&quot;</span><span style="color: #94E2D5;">&gt;</span><span>Small</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">p</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">p</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;text-base&quot;</span><span style="color: #94E2D5;">&gt;</span><span>Base</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">p</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">p</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;text-lg&quot;</span><span style="color: #94E2D5;">&gt;</span><span>Large</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">p</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">p</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;text-xl&quot;</span><span style="color: #94E2D5;">&gt;</span><span>Extra large</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">p</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">p</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;text-2xl&quot;</span><span style="color: #94E2D5;">&gt;</span><span>2x large</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">p</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">p</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;text-3xl&quot;</span><span style="color: #94E2D5;">&gt;</span><span>3x large</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">p</span><span style="color: #94E2D5;">&gt;</span></span></code></pre>  </div>
+</div>
+<div class="doc-section">
+  <h2>Font weight</h2>
+  <div class="example">
+    <div class="example-preview block">
+      <p style="margin:0 0 var(--space-2)">Regular - default body weight</p>
+      <p class="font-medium" style="margin:0 0 var(--space-2)">font-medium</p>
+      <p class="font-semibold" style="margin:0 0 var(--space-2)">font-semibold</p>
+      <p class="font-bold" style="margin:0">font-bold</p>
+    </div>
+<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;"><code data-lang="html"><span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">p</span><span style="color: #94E2D5;">&gt;</span><span>Regular</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">p</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">p</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;font-medium&quot;</span><span style="color: #94E2D5;">&gt;</span><span>Medium</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">p</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">p</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;font-semibold&quot;</span><span style="color: #94E2D5;">&gt;</span><span>Semibold</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">p</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">p</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;font-bold&quot;</span><span style="color: #94E2D5;">&gt;</span><span>Bold</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">p</span><span style="color: #94E2D5;">&gt;</span></span></code></pre>  </div>
+</div>
+<div class="doc-section">
+  <h2>Semantic text elements</h2>
+  <p>Use native HTML elements. The design system applies consistent styles automatically.</p>
+  <div class="example">
+    <div class="example-preview block">
+      <p style="margin:0 0 var(--space-3)"><strong>strong</strong> - bold importance &nbsp; <em>em</em> - emphasis &nbsp; <small>small</small> - fine print</p>
+      <p style="margin:0 0 var(--space-3)"><code>code</code> - inline code</p>
+      <p style="margin:0"><a href="#">Link text</a> - navigable reference</p>
+    </div>
+<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;"><code data-lang="html"><span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">strong</span><span style="color: #94E2D5;">&gt;</span><span>Bold importance</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">strong</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">em</span><span style="color: #94E2D5;">&gt;</span><span>Emphasized text</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">em</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">small</span><span style="color: #94E2D5;">&gt;</span><span>Fine print</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">small</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">code</span><span style="color: #94E2D5;">&gt;</span><span>inline code</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">code</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">a</span><span style="color: #F9E2AF;"> href</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;/path&quot;</span><span style="color: #94E2D5;">&gt;</span><span>Link</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">a</span><span style="color: #94E2D5;">&gt;</span></span></code></pre>  </div>
+</div>
+<div class="doc-section">
+  <h2>Color utilities</h2>
+  <p>Semantic color classes communicate meaning without hardcoding hex values.</p>
+  <div class="example">
+    <div class="example-preview block">
+      <p style="margin:0 0 var(--space-2)">Default foreground</p>
+      <p class="text-muted" style="margin:0 0 var(--space-2)">text-muted - secondary copy</p>
+      <p class="text-danger" style="margin:0 0 var(--space-2)">text-danger - error or destructive</p>
+      <p class="text-success" style="margin:0 0 var(--space-2)">text-success - positive state</p>
+      <p class="text-warning" style="margin:0">text-warning - caution</p>
+    </div>
+<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;"><code data-lang="html"><span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">p</span><span style="color: #94E2D5;">&gt;</span><span>Default</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">p</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">p</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;text-muted&quot;</span><span style="color: #94E2D5;">&gt;</span><span>Secondary</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">p</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">p</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;text-danger&quot;</span><span style="color: #94E2D5;">&gt;</span><span>Error</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">p</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">p</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;text-success&quot;</span><span style="color: #94E2D5;">&gt;</span><span>Success</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">p</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">p</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;text-warning&quot;</span><span style="color: #94E2D5;">&gt;</span><span>Warning</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">p</span><span style="color: #94E2D5;">&gt;</span></span></code></pre>  </div>
+</div>
+<div class="doc-section">
+  <h2>Best practices</h2>
+  <ul>
+    <li>Use one <code>&lt;h1&gt;</code> per page. Heading levels must not skip - <code>h1</code> → <code>h2</code> → <code>h3</code>, never <code>h1</code> → <code>h3</code>.</li>
+    <li>Reserve <code>var(--font-display)</code> for large display text only - hero titles, section banners. Not body copy.</li>
+    <li>Use <code>.text-muted</code> for supporting or secondary text. Avoid freeform <code>opacity</code> hacks for contrast reduction.</li>
+    <li>Prefer <code>&lt;strong&gt;</code> and <code>&lt;em&gt;</code> over <code>.font-bold</code> when the intent is semantic (importance vs. visual style).</li>
+    <li>Use <code>.text-danger</code> / <code>.text-success</code> alongside icon or label context - never as the sole signal for color-blind users.</li>
+  </ul>
+</div>
+
+  <footer class="docs-article-footer">
+    <a href="https://github.com/cvargas-0/dot-ui/edit/main/docs/content/typography.md" class="docs-edit-link"
+      target="_blank" rel="noopener noreferrer">Edit this page on GitHub ↗</a>
+  </footer>
+</article>
+
+      </main>
+    </div>
+
+  </div>
+</body>
+
+</html>

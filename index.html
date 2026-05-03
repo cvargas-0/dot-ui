@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dot UI - Semantic UI Components, No Framework Required</title>
+  <meta name="description" content="dot-ui is a lightweight UI component library built on semantic HTML elements. No framework, no dependencies - drop in two tags and start building.">
+  <link rel="canonical" href="https:&#x2F;&#x2F;usedot.dev">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Dot UI">
+  <meta property="og:title" content="Dot UI - Semantic UI Components, No Framework Required">
+  <meta property="og:description" content="dot-ui is a lightweight UI component library built on semantic HTML elements. No framework, no dependencies - drop in two tags and start building.">
+  <meta property="og:url" content="https:&#x2F;&#x2F;usedot.dev">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Dot UI - Semantic UI Components, No Framework Required">
+  <meta name="twitter:description"
+    content="dot-ui is a lightweight UI component library built on semantic HTML elements. No framework, no dependencies - drop in two tags and start building.">
+
+  <link rel="icon" type="image/x-icon" href="/imgs/favicon.ico">
+
+  <link rel="stylesheet" href="/styles/fonts.css">
+  <link rel="stylesheet" href="/styles/index.css">
+  <script src="/js/theme.js"></script>
+
+  <link rel="stylesheet" href="https://usedot.dev/styles/dot-ui.min.css">
+  <script src="https://usedot.dev/js/dot-ui.min.js"></script>
+</head>
+
+<body>
+  <div data-sidebar-provider>
+
+    <aside data-sidebar>
+      <div data-sidebar-header>
+        <div class="docs-logo flex items-baseline gap-3">
+          <a href="/">
+            <span class="docs-logo-dot">dot</span><span class="docs-logo-sep">·</span><span
+              class="docs-logo-ui">ui</span>
+          </a>
+          <span class="docs-version">v0.2.1-beta</span>
+        </div>
+      </div>
+
+      <div data-sidebar-content>
+        <div data-sidebar-group>
+          <p data-sidebar-group-label>Getting Started</p>
+          <ul data-sidebar-menu>
+            <li data-sidebar-menu-item>
+              <a href="/" data-sidebar-menu-button aria-current="page" >Introduction</a>
+            </li>
+            <li data-sidebar-menu-item>
+              <a href="/usage/" data-sidebar-menu-button >Usage</a>
+            </li>
+          </ul>
+        </div>
+        <div data-sidebar-group>
+          <p data-sidebar-group-label>Foundations</p>
+          <ul data-sidebar-menu>
+            <li data-sidebar-menu-item>
+              <a href="/typography/" data-sidebar-menu-button >Typography</a>
+            </li>
+            <li data-sidebar-menu-item>
+              <a href="/utilities/" data-sidebar-menu-button >Utilities</a>
+            </li>
+          </ul>
+        </div>
+        <div data-sidebar-group>
+          <p data-sidebar-group-label>Components</p>
+          <ul data-sidebar-menu>
+            <li data-sidebar-menu-item><a href="/components/button/" data-sidebar-menu-button >Button</a></li>
+            <li data-sidebar-menu-item><a href="/components/badge/" data-sidebar-menu-button >Badge</a></li>
+            <li data-sidebar-menu-item><a href="/components/alert/" data-sidebar-menu-button >Alert</a></li>
+            <li data-sidebar-menu-item><a href="/components/card/" data-sidebar-menu-button >Card</a></li>
+            <li data-sidebar-menu-item><a href="/components/form/" data-sidebar-menu-button >Form</a></li>
+            <li data-sidebar-menu-item><a href="/components/tabs/" data-sidebar-menu-button >Tabs</a></li>
+            <li data-sidebar-menu-item><a href="/components/dropdown/" data-sidebar-menu-button >Dropdown</a></li>
+            <li data-sidebar-menu-item><a href="/components/toast/" data-sidebar-menu-button >Toast</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div data-sidebar-footer>
+        <button id="theme-toggle" class="theme-toggle flex items-center gap-2 w-full text-sm" aria-label="Switch to dark mode" title="Switch to dark mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4" />
+            <path
+              d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+          Toggle theme
+        </button>
+        <a href="https://github.com/cvargas-0/dot-ui" class="docs-github-link flex items-center gap-2 w-full text-sm" target="_blank"
+          rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+          </svg>
+          GitHub
+        </a>
+      </div>
+
+    </aside>
+
+    <div data-sidebar-inset>
+      <nav data-topnav class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <button data-sidebar-trigger aria-label="Toggle sidebar">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+          </button>
+          <a href="/" class="docs-logo-topnav">dot<span>·ui</span></a>
+        </div>
+        <div class="topnav-right flex items-center gap-3">
+          <span class="docs-version-badge">v0.2.1-beta</span>
+          <a href="https://github.com/cvargas-0/dot-ui" class="topnav-github" target="_blank" rel="noopener noreferrer"
+            aria-label="GitHub repository">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+            </svg>
+          </a>
+        </div>
+      </nav>
+
+      <main class="container">
+        
+
+<section class="docs-hero flex items-center flex-col text-center">
+  <div class="docs-hero-eyebrow flex items-center gap-3 text-sm text-muted">
+    <span class="badge" data-variant="secondary">v0.2.1-beta</span>
+    <span class="docs-hero-sep">-</span>
+    <span>Semantic UI componentss</span>
+  </div>
+  <h1 class="docs-hero-title flex justify-center gap-1">
+    dot
+    <span class="docs-hero-title-sep font-bold">·</span>
+    <span class="docs-logo-ui">ui</span>
+  </h1>
+  <p class="docs-hero-subtitle">UI components using HTML semantic elements.<br>No framework. No dependencies. Just HTML.
+  </p>
+
+  <div class="docs-hero-install">
+    <code class="docs-install-code">npm install @usedot/ui@0.2.1-beta</code>
+    <button class="docs-install-copy ghost icon" id="copy-install" aria-label="Copy install command"
+      title="Copy to clipboard" data-copy="npm install @usedot/ui@0.2.1-beta">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+      </svg>
+    </button>
+  </div>
+
+  <div class="flex flex-wrap gap-3 items-center">
+    <a href="/components/button/" class="button">Get started →</a>
+    <a href="https://github.com/cvargas-0/dot-ui" class="button" data-variant="secondary" target="_blank"
+      rel="noopener noreferrer">GitHub ↗</a>
+  </div>
+</section>
+
+<section class="docs-components-section">
+  <h2 class="docs-components-heading text-center font-bold text-xl">Components</h2>
+  <div class="grid grid-cols-3 gap-4">
+    <div class="comp-card">
+      <div class="comp-card-preview" aria-hidden="true" inert>
+        <button>Primary</button>
+        <button data-variant="secondary">Secondary</button>
+        <button class="ghost">Ghost</button>
+      </div>
+      <div class="comp-card-body">
+        <h3><a href="/components/button/" class="comp-card-link">Button</a></h3>
+        <p>Action trigger with variants and sizes.</p>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-card-preview" aria-hidden="true" inert>
+        <span class="badge">Default</span>
+        <span class="badge" data-variant="success">Success</span>
+        <span class="badge" data-variant="warning">Warning</span>
+        <span class="badge" data-variant="danger">Danger</span>
+      </div>
+      <div class="comp-card-body">
+        <h3><a href="/components/badge/" class="comp-card-link">Badge</a></h3>
+        <p>Inline status labels and counters.</p>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-card-preview comp-card-preview--block" aria-hidden="true" inert>
+        <div class="alert" role="alert"><strong>Note:</strong> This is a contextual message.</div>
+      </div>
+      <div class="comp-card-body">
+        <h3><a href="/components/alert/" class="comp-card-link">Alert</a></h3>
+        <p>Contextual feedback messages.</p>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-card-preview comp-card-preview--block" aria-hidden="true" inert>
+        <div class="card">
+          <div class="card-header"><strong>Card title</strong></div>
+          <div class="card-body" style="font-size:var(--text-sm);color:var(--muted-fg)">Card content goes here.</div>
+        </div>
+      </div>
+      <div class="comp-card-body">
+        <h3><a href="/components/card/" class="comp-card-link">Card</a></h3>
+        <p>Content container with header and footer.</p>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-card-preview comp-card-preview--block" aria-hidden="true" inert>
+        <div class="form-group">
+          <label for="hp-demo-input">Email</label>
+          <input id="hp-demo-input" type="email" placeholder="you@example.com">
+        </div>
+      </div>
+      <div class="comp-card-body">
+        <h3><a href="/components/form/" class="comp-card-link">Form</a></h3>
+        <p>Input, textarea, select, and form helpers.</p>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-card-preview comp-card-preview--block" aria-hidden="true" inert>
+        <dot-tabs>
+          <div role="tablist" aria-label="Demo tabs">
+            <button role="tab" aria-selected="true" aria-controls="hp-panel-1" id="hp-tab-1">Overview</button>
+            <button role="tab" aria-selected="false" aria-controls="hp-panel-2" id="hp-tab-2" tabindex="-1">API</button>
+          </div>
+          <div role="tabpanel" id="hp-panel-1" aria-labelledby="hp-tab-1"
+            style="padding:var(--space-3);font-size:var(--text-sm)">Overview content</div>
+          <div role="tabpanel" id="hp-panel-2" aria-labelledby="hp-tab-2" hidden
+            style="padding:var(--space-3);font-size:var(--text-sm)">API content</div>
+        </dot-tabs>
+      </div>
+      <div class="comp-card-body">
+        <h3><a href="/components/tabs/" class="comp-card-link">Tabs</a></h3>
+        <p>Tabbed interface with keyboard navigation.</p>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-card-preview" aria-hidden="true" inert>
+        <dot-dropdown>
+          <button data-variant="secondary">Options ▾</button>
+          <menu id="hp-menu" popover>
+            <li><button role="menuitem">Edit</button></li>
+            <li><button role="menuitem">Duplicate</button></li>
+            <li role="separator"></li>
+            <li><button role="menuitem" data-variant="danger">Delete</button></li>
+          </menu>
+        </dot-dropdown>
+      </div>
+      <div class="comp-card-body">
+        <h3><a href="/components/dropdown/" class="comp-card-link">Dropdown</a></h3>
+        <p>Popover-based contextual menu.</p>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-card-preview" aria-hidden="true" inert>
+        <div class="alert" role="status" style="border-left-color:var(--foreground)">
+          <strong>Toast:</strong> Action completed successfully.
+        </div>
+      </div>
+      <div class="comp-card-body">
+        <h3><a href="/components/toast/" class="comp-card-link">Toast</a></h3>
+        <p>Transient notification via JS API.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  document.getElementById('copy-install')?.addEventListener('click', function () {
+    navigator.clipboard?.writeText(this.dataset.copy).then(() => {
+      this.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+      setTimeout(() => {
+        this.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
+      }, 1800);
+    });
+  });
+</script>
+
+      </main>
+    </div>
+
+  </div>
+</body>
+
+</html>

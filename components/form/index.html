@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Component - Dot UI</title>
+  <meta name="description" content="dot-ui is a lightweight UI component library built on semantic HTML elements. No framework, no dependencies - drop in two tags and start building.">
+  <link rel="canonical" href="https:&#x2F;&#x2F;usedot.dev">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Dot UI">
+  <meta property="og:title" content="Dot UI">
+  <meta property="og:description" content="dot-ui is a lightweight UI component library built on semantic HTML elements. No framework, no dependencies - drop in two tags and start building.">
+  <meta property="og:url" content="https:&#x2F;&#x2F;usedot.dev">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Dot UI">
+  <meta name="twitter:description"
+    content="dot-ui is a lightweight UI component library built on semantic HTML elements. No framework, no dependencies - drop in two tags and start building.">
+
+  <link rel="icon" type="image/x-icon" href="/imgs/favicon.ico">
+
+  <link rel="stylesheet" href="/styles/fonts.css">
+  <link rel="stylesheet" href="/styles/index.css">
+  <script src="/js/theme.js"></script>
+
+  <link rel="stylesheet" href="https://usedot.dev/styles/dot-ui.min.css">
+  <script src="https://usedot.dev/js/dot-ui.min.js"></script>
+</head>
+
+<body>
+  <div data-sidebar-provider>
+
+    <aside data-sidebar>
+      <div data-sidebar-header>
+        <div class="docs-logo flex items-baseline gap-3">
+          <a href="/">
+            <span class="docs-logo-dot">dot</span><span class="docs-logo-sep">·</span><span
+              class="docs-logo-ui">ui</span>
+          </a>
+          <span class="docs-version">v0.2.1-beta</span>
+        </div>
+      </div>
+
+      <div data-sidebar-content>
+        <div data-sidebar-group>
+          <p data-sidebar-group-label>Getting Started</p>
+          <ul data-sidebar-menu>
+            <li data-sidebar-menu-item>
+              <a href="/" data-sidebar-menu-button >Introduction</a>
+            </li>
+            <li data-sidebar-menu-item>
+              <a href="/usage/" data-sidebar-menu-button >Usage</a>
+            </li>
+          </ul>
+        </div>
+        <div data-sidebar-group>
+          <p data-sidebar-group-label>Foundations</p>
+          <ul data-sidebar-menu>
+            <li data-sidebar-menu-item>
+              <a href="/typography/" data-sidebar-menu-button >Typography</a>
+            </li>
+            <li data-sidebar-menu-item>
+              <a href="/utilities/" data-sidebar-menu-button >Utilities</a>
+            </li>
+          </ul>
+        </div>
+        <div data-sidebar-group>
+          <p data-sidebar-group-label>Components</p>
+          <ul data-sidebar-menu>
+            <li data-sidebar-menu-item><a href="/components/button/" data-sidebar-menu-button >Button</a></li>
+            <li data-sidebar-menu-item><a href="/components/badge/" data-sidebar-menu-button >Badge</a></li>
+            <li data-sidebar-menu-item><a href="/components/alert/" data-sidebar-menu-button >Alert</a></li>
+            <li data-sidebar-menu-item><a href="/components/card/" data-sidebar-menu-button >Card</a></li>
+            <li data-sidebar-menu-item><a href="/components/form/" data-sidebar-menu-button aria-current="page" >Form</a></li>
+            <li data-sidebar-menu-item><a href="/components/tabs/" data-sidebar-menu-button >Tabs</a></li>
+            <li data-sidebar-menu-item><a href="/components/dropdown/" data-sidebar-menu-button >Dropdown</a></li>
+            <li data-sidebar-menu-item><a href="/components/toast/" data-sidebar-menu-button >Toast</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div data-sidebar-footer>
+        <button id="theme-toggle" class="theme-toggle flex items-center gap-2 w-full text-sm" aria-label="Switch to dark mode" title="Switch to dark mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4" />
+            <path
+              d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+          Toggle theme
+        </button>
+        <a href="https://github.com/cvargas-0/dot-ui" class="docs-github-link flex items-center gap-2 w-full text-sm" target="_blank"
+          rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+          </svg>
+          GitHub
+        </a>
+      </div>
+
+    </aside>
+
+    <div data-sidebar-inset>
+      <nav data-topnav class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <button data-sidebar-trigger aria-label="Toggle sidebar">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+          </button>
+          <a href="/" class="docs-logo-topnav">dot<span>·ui</span></a>
+        </div>
+        <div class="topnav-right flex items-center gap-3">
+          <span class="docs-version-badge">v0.2.1-beta</span>
+          <a href="https://github.com/cvargas-0/dot-ui" class="topnav-github" target="_blank" rel="noopener noreferrer"
+            aria-label="GitHub repository">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+            </svg>
+          </a>
+        </div>
+      </nav>
+
+      <main class="container">
+        
+<article class="docs-article">
+  <header class="component-header">
+    <span class="docs-badge-section">Component</span>
+    <h1>Form</h1>
+    
+    <p>Input controls styled by element type. No class needed on most native elements.</p>
+    
+  </header>
+  <div class="doc-section">
+  <h2>Text inputs</h2>
+  <div class="example">
+    <div class="example-preview block" style="max-width:24rem">
+      <div class="form-group">
+        <label for="demo-name">Full name</label>
+        <input id="demo-name" type="text" placeholder="Jane Smith">
+      </div>
+      <div class="form-group" style="margin-top:var(--space-4)">
+        <label for="demo-email">Email</label>
+        <input id="demo-email" type="email" placeholder="jane@example.com">
+        <p class="form-hint">We'll never share your email.</p>
+      </div>
+    </div>
+<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;"><code data-lang="html"><span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">div</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;form-group&quot;</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;</span><span style="color: #89B4FA;">label</span><span style="color: #F9E2AF;"> for</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;name&quot;</span><span style="color: #94E2D5;">&gt;</span><span>Full name</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">label</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;</span><span style="color: #89B4FA;">input</span><span style="color: #F9E2AF;"> id</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;name&quot;</span><span style="color: #F9E2AF;"> type</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;text&quot;</span><span style="color: #F9E2AF;"> placeholder</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;Jane Smith&quot;</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">div</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;form-group&quot;</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;</span><span style="color: #89B4FA;">label</span><span style="color: #F9E2AF;"> for</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;email&quot;</span><span style="color: #94E2D5;">&gt;</span><span>Email</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">label</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;</span><span style="color: #89B4FA;">input</span><span style="color: #F9E2AF;"> id</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;email&quot;</span><span style="color: #F9E2AF;"> type</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;email&quot;</span><span style="color: #F9E2AF;"> placeholder</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;jane@example.com&quot;</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;</span><span style="color: #89B4FA;">p</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;form-hint&quot;</span><span style="color: #94E2D5;">&gt;</span><span>We&#39;ll never share your email.</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">p</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span></span></code></pre>  </div>
+</div>
+<div class="doc-section">
+  <h2>Textarea &amp; Select</h2>
+  <div class="example">
+    <div class="example-preview block" style="max-width:24rem">
+      <div class="form-group">
+        <label for="demo-msg">Message</label>
+        <textarea id="demo-msg" placeholder="Write something…"></textarea>
+      </div>
+      <div class="form-group" style="margin-top:var(--space-4)">
+        <label for="demo-country">Country</label>
+        <select id="demo-country">
+          <option value="">Select a country</option>
+          <option>United States</option>
+          <option>Colombia</option>
+          <option>Spain</option>
+        </select>
+      </div>
+    </div>
+<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;"><code data-lang="html"><span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">div</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;form-group&quot;</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;</span><span style="color: #89B4FA;">label</span><span style="color: #F9E2AF;"> for</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;msg&quot;</span><span style="color: #94E2D5;">&gt;</span><span>Message</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">label</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;</span><span style="color: #89B4FA;">textarea</span><span style="color: #F9E2AF;"> id</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;msg&quot;</span><span style="color: #F9E2AF;"> placeholder</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;Write something…&quot;</span><span style="color: #94E2D5;">&gt;&lt;/</span><span style="color: #89B4FA;">textarea</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">div</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;form-group&quot;</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;</span><span style="color: #89B4FA;">label</span><span style="color: #F9E2AF;"> for</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;country&quot;</span><span style="color: #94E2D5;">&gt;</span><span>Country</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">label</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;</span><span style="color: #89B4FA;">select</span><span style="color: #F9E2AF;"> id</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;country&quot;</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">    &lt;</span><span style="color: #89B4FA;">option</span><span style="color: #F9E2AF;"> value</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;&quot;</span><span style="color: #94E2D5;">&gt;</span><span>Select a country</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">option</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">    &lt;</span><span style="color: #89B4FA;">option</span><span style="color: #94E2D5;">&gt;</span><span>United States</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">option</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;/</span><span style="color: #89B4FA;">select</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span></span></code></pre>  </div>
+</div>
+<div class="doc-section">
+  <h2>Validation state</h2>
+  <div class="example">
+    <div class="example-preview block" style="max-width:24rem">
+      <div class="form-group">
+        <label for="demo-invalid">Username</label>
+        <input id="demo-invalid" type="text" value="x" aria-invalid="true" aria-describedby="demo-invalid-err">
+        <p class="form-error" id="demo-invalid-err">Must be at least 3 characters.</p>
+      </div>
+    </div>
+<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;"><code data-lang="html"><span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">div</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;form-group&quot;</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;</span><span style="color: #89B4FA;">label</span><span style="color: #F9E2AF;"> for</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;username&quot;</span><span style="color: #94E2D5;">&gt;</span><span>Username</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">label</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;</span><span style="color: #89B4FA;">input</span><span style="color: #F9E2AF;"> id</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;username&quot;</span><span style="color: #F9E2AF;"> type</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;text&quot;</span><span style="color: #F9E2AF;"> value</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;x&quot;</span></span>
+<span class="giallo-l"><span style="color: #F9E2AF;">         aria-invalid</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;true&quot;</span><span style="color: #F9E2AF;"> aria-describedby</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;username-err&quot;</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;</span><span style="color: #89B4FA;">p</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;form-error&quot;</span><span style="color: #F9E2AF;"> id</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;username-err&quot;</span><span style="color: #94E2D5;">&gt;</span><span>Must be at least 3 characters.</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">p</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span></span></code></pre>  </div>
+</div>
+<div class="doc-section">
+  <h2>Checkbox &amp; Radio</h2>
+  <div class="example">
+    <div class="example-preview block">
+      <div class="form-group">
+        <label class="flex items-center gap-2">
+          <input type="checkbox" checked> Remember me
+        </label>
+      </div>
+      <fieldset style="margin-top:var(--space-4)">
+        <legend>Notifications</legend>
+        <div class="flex flex-col gap-2" style="margin-top:var(--space-3)">
+          <label class="flex items-center gap-2"><input type="radio" name="notif" checked> All</label>
+          <label class="flex items-center gap-2"><input type="radio" name="notif"> Mentions only</label>
+          <label class="flex items-center gap-2"><input type="radio" name="notif"> None</label>
+        </div>
+      </fieldset>
+    </div>
+<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;"><code data-lang="html"><span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">label</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;flex items-center gap-2&quot;</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;</span><span style="color: #89B4FA;">input</span><span style="color: #F9E2AF;"> type</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;checkbox&quot;</span><span style="color: #94E2D5;">&gt;</span><span> Remember me</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">label</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">fieldset</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;</span><span style="color: #89B4FA;">legend</span><span style="color: #94E2D5;">&gt;</span><span>Notifications</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">legend</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;</span><span style="color: #89B4FA;">label</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;flex items-center gap-2&quot;</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">    &lt;</span><span style="color: #89B4FA;">input</span><span style="color: #F9E2AF;"> type</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;radio&quot;</span><span style="color: #F9E2AF;"> name</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;notif&quot;</span><span style="color: #94E2D5;">&gt;</span><span> All</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;/</span><span style="color: #89B4FA;">label</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;</span><span style="color: #89B4FA;">label</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;flex items-center gap-2&quot;</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">    &lt;</span><span style="color: #89B4FA;">input</span><span style="color: #F9E2AF;"> type</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;radio&quot;</span><span style="color: #F9E2AF;"> name</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;notif&quot;</span><span style="color: #94E2D5;">&gt;</span><span> Mentions only</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;/</span><span style="color: #89B4FA;">label</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">fieldset</span><span style="color: #94E2D5;">&gt;</span></span></code></pre>  </div>
+</div>
+<div class="doc-section">
+  <h2>Helpers</h2>
+  <table class="props-table">
+    <thead><tr><th>Class</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><code>.form-group</code></td><td>Stacks label, input, and hint vertically</td></tr>
+      <tr><td><code>.form-hint</code></td><td>Secondary help text below the field</td></tr>
+      <tr><td><code>.form-error</code></td><td>Validation error message below the field</td></tr>
+      <tr><td><code>aria-invalid="true"</code></td><td>Applies invalid styling to the input - no class needed</td></tr>
+    </tbody>
+  </table>
+</div>
+
+  <footer class="docs-article-footer">
+    <a href="https://github.com/cvargas-0/dot-ui/edit/main/docs/content/components&#x2F;form.md" class="docs-edit-link"
+      target="_blank" rel="noopener noreferrer">Edit this page on GitHub ↗</a>
+  </footer>
+</article>
+
+      </main>
+    </div>
+
+  </div>
+</body>
+
+</html>

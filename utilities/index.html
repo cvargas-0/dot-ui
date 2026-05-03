@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Utilities - Dot UI</title>
+  <meta name="description" content="dot-ui is a lightweight UI component library built on semantic HTML elements. No framework, no dependencies - drop in two tags and start building.">
+  <link rel="canonical" href="https:&#x2F;&#x2F;usedot.dev">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Dot UI">
+  <meta property="og:title" content="Dot UI">
+  <meta property="og:description" content="dot-ui is a lightweight UI component library built on semantic HTML elements. No framework, no dependencies - drop in two tags and start building.">
+  <meta property="og:url" content="https:&#x2F;&#x2F;usedot.dev">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Dot UI">
+  <meta name="twitter:description"
+    content="dot-ui is a lightweight UI component library built on semantic HTML elements. No framework, no dependencies - drop in two tags and start building.">
+
+  <link rel="icon" type="image/x-icon" href="/imgs/favicon.ico">
+
+  <link rel="stylesheet" href="/styles/fonts.css">
+  <link rel="stylesheet" href="/styles/index.css">
+  <script src="/js/theme.js"></script>
+
+  <link rel="stylesheet" href="https://usedot.dev/styles/dot-ui.min.css">
+  <script src="https://usedot.dev/js/dot-ui.min.js"></script>
+</head>
+
+<body>
+  <div data-sidebar-provider>
+
+    <aside data-sidebar>
+      <div data-sidebar-header>
+        <div class="docs-logo flex items-baseline gap-3">
+          <a href="/">
+            <span class="docs-logo-dot">dot</span><span class="docs-logo-sep">·</span><span
+              class="docs-logo-ui">ui</span>
+          </a>
+          <span class="docs-version">v0.2.1-beta</span>
+        </div>
+      </div>
+
+      <div data-sidebar-content>
+        <div data-sidebar-group>
+          <p data-sidebar-group-label>Getting Started</p>
+          <ul data-sidebar-menu>
+            <li data-sidebar-menu-item>
+              <a href="/" data-sidebar-menu-button >Introduction</a>
+            </li>
+            <li data-sidebar-menu-item>
+              <a href="/usage/" data-sidebar-menu-button >Usage</a>
+            </li>
+          </ul>
+        </div>
+        <div data-sidebar-group>
+          <p data-sidebar-group-label>Foundations</p>
+          <ul data-sidebar-menu>
+            <li data-sidebar-menu-item>
+              <a href="/typography/" data-sidebar-menu-button >Typography</a>
+            </li>
+            <li data-sidebar-menu-item>
+              <a href="/utilities/" data-sidebar-menu-button aria-current="page" >Utilities</a>
+            </li>
+          </ul>
+        </div>
+        <div data-sidebar-group>
+          <p data-sidebar-group-label>Components</p>
+          <ul data-sidebar-menu>
+            <li data-sidebar-menu-item><a href="/components/button/" data-sidebar-menu-button >Button</a></li>
+            <li data-sidebar-menu-item><a href="/components/badge/" data-sidebar-menu-button >Badge</a></li>
+            <li data-sidebar-menu-item><a href="/components/alert/" data-sidebar-menu-button >Alert</a></li>
+            <li data-sidebar-menu-item><a href="/components/card/" data-sidebar-menu-button >Card</a></li>
+            <li data-sidebar-menu-item><a href="/components/form/" data-sidebar-menu-button >Form</a></li>
+            <li data-sidebar-menu-item><a href="/components/tabs/" data-sidebar-menu-button >Tabs</a></li>
+            <li data-sidebar-menu-item><a href="/components/dropdown/" data-sidebar-menu-button >Dropdown</a></li>
+            <li data-sidebar-menu-item><a href="/components/toast/" data-sidebar-menu-button >Toast</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div data-sidebar-footer>
+        <button id="theme-toggle" class="theme-toggle flex items-center gap-2 w-full text-sm" aria-label="Switch to dark mode" title="Switch to dark mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4" />
+            <path
+              d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+          Toggle theme
+        </button>
+        <a href="https://github.com/cvargas-0/dot-ui" class="docs-github-link flex items-center gap-2 w-full text-sm" target="_blank"
+          rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+          </svg>
+          GitHub
+        </a>
+      </div>
+
+    </aside>
+
+    <div data-sidebar-inset>
+      <nav data-topnav class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <button data-sidebar-trigger aria-label="Toggle sidebar">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+          </button>
+          <a href="/" class="docs-logo-topnav">dot<span>·ui</span></a>
+        </div>
+        <div class="topnav-right flex items-center gap-3">
+          <span class="docs-version-badge">v0.2.1-beta</span>
+          <a href="https://github.com/cvargas-0/dot-ui" class="topnav-github" target="_blank" rel="noopener noreferrer"
+            aria-label="GitHub repository">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+            </svg>
+          </a>
+        </div>
+      </nav>
+
+      <main class="container">
+        
+<article class="docs-article">
+  <header class="component-header">
+    <span
+      class="docs-badge-section">Guide</span>
+    <h1>Utilities</h1>
+    
+    <p>Low-level CSS utility classes for layout, spacing, and composition.</p>
+    
+  </header>
+  <div class="doc-section">
+  <h2>Overview</h2>
+  <p>Utility classes let you compose layouts directly in HTML without writing component CSS. They follow a mobile-first convention with responsive breakpoint prefixes: <code>sm:</code>, <code>md:</code>, <code>lg:</code>, <code>xl:</code>.</p>
+  <p>Use utilities for one-off adjustments. When a pattern repeats across 3 or more places, extract it into a component.</p>
+</div>
+<div class="doc-section">
+  <h2>Flexbox</h2>
+  <div class="example">
+    <div class="example-preview">
+      <div class="flex gap-2" style="width:100%">
+        <div class="util-demo-box flex-1">1</div>
+        <div class="util-demo-box flex-1">2</div>
+        <div class="util-demo-box flex-1">3</div>
+      </div>
+    </div>
+<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;"><code data-lang="html"><span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">div</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;flex gap-2&quot;</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span><span>1</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span><span>2</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span><span>3</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span></span></code></pre>  </div>
+  <div class="example">
+    <div class="example-preview">
+      <div class="flex items-center justify-center" style="width:100%;height:5rem;border:1px dashed var(--border);border-radius:var(--radius)">
+        <span class="text-muted text-sm">Centered</span>
+      </div>
+    </div>
+<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;"><code data-lang="html"><span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">div</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;flex items-center justify-center&quot;</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span>  Centered</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span></span></code></pre>  </div>
+  <div class="example">
+    <div class="example-preview">
+      <div class="flex items-center justify-between" style="width:100%;padding:var(--space-3);border:1px solid var(--border);border-radius:var(--radius)">
+        <strong>Title</strong>
+        <button data-variant="secondary" class="small">Action</button>
+      </div>
+    </div>
+<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;"><code data-lang="html"><span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">div</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;flex items-center justify-between&quot;</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;</span><span style="color: #89B4FA;">strong</span><span style="color: #94E2D5;">&gt;</span><span>Title</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">strong</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;</span><span style="color: #89B4FA;">button</span><span style="color: #F9E2AF;"> data-variant</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;secondary&quot;</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;small&quot;</span><span style="color: #94E2D5;">&gt;</span><span>Action</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">button</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span></span></code></pre>  </div>
+  <div class="example">
+    <div class="example-preview block">
+      <div class="flex flex-col gap-2" style="width:100%">
+        <div class="util-demo-box">First</div>
+        <div class="util-demo-box">Second</div>
+        <div class="util-demo-box">Third</div>
+      </div>
+    </div>
+<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;"><code data-lang="html"><span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">div</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;flex flex-col gap-2&quot;</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span><span>First</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span><span>Second</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span><span>Third</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span></span></code></pre>  </div>
+  <table class="props-table">
+    <thead>
+      <tr><th>Class</th><th>Property</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>flex</code></td><td><code>display: flex</code></td></tr>
+      <tr><td><code>flex-row</code> / <code>flex-col</code></td><td>Flex direction</td></tr>
+      <tr><td><code>flex-wrap</code></td><td><code>flex-wrap: wrap</code></td></tr>
+      <tr><td><code>flex-1</code></td><td><code>flex: 1 1 0%</code> - fills available space equally</td></tr>
+      <tr><td><code>flex-none</code></td><td><code>flex: none</code> - fixed size, no grow/shrink</td></tr>
+      <tr><td><code>items-start</code> / <code>items-center</code> / <code>items-end</code></td><td>Align items on the cross axis</td></tr>
+      <tr><td><code>justify-start</code> / <code>justify-center</code> / <code>justify-between</code></td><td>Distribute items on the main axis</td></tr>
+      <tr><td><code>gap-1</code> → <code>gap-8</code></td><td>Gap using <code>--space-*</code> tokens</td></tr>
+    </tbody>
+  </table>
+</div>
+<div class="doc-section">
+  <h2>Grid</h2>
+  <div class="example">
+    <div class="example-preview block">
+      <div class="grid grid-cols-2 gap-2">
+        <div class="util-demo-box">1</div>
+        <div class="util-demo-box">2</div>
+        <div class="util-demo-box">3</div>
+        <div class="util-demo-box">4</div>
+      </div>
+    </div>
+<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;"><code data-lang="html"><span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">div</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;grid grid-cols-2 gap-2&quot;</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span><span>1</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span><span>2</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span><span>3</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span><span>4</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span></span></code></pre>  </div>
+  <div class="example">
+    <div class="example-preview block">
+      <div class="grid grid-cols-3 gap-2">
+        <div class="util-demo-box">1</div>
+        <div class="util-demo-box">2</div>
+        <div class="util-demo-box">3</div>
+        <div class="util-demo-box">4</div>
+        <div class="util-demo-box">5</div>
+        <div class="util-demo-box">6</div>
+      </div>
+    </div>
+<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;"><code data-lang="html"><span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">div</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;grid grid-cols-3 gap-2&quot;</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #9399B2;font-style: italic;">  &lt;!-- 6 items --&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span></span></code></pre>  </div>
+  <div class="example">
+    <div class="example-preview block">
+      <div class="grid grid-cols-3 gap-2">
+        <div class="util-demo-box col-span-full">col-span-full</div>
+        <div class="util-demo-box col-span-2">col-span-2</div>
+        <div class="util-demo-box">1</div>
+        <div class="util-demo-box">1</div>
+        <div class="util-demo-box">1</div>
+        <div class="util-demo-box">1</div>
+      </div>
+    </div>
+<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;"><code data-lang="html"><span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">div</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;grid grid-cols-3 gap-2&quot;</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;</span><span style="color: #89B4FA;">div</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;col-span-full&quot;</span><span style="color: #94E2D5;">&gt;</span><span>Full width</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;</span><span style="color: #89B4FA;">div</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;col-span-2&quot;</span><span style="color: #94E2D5;">&gt;</span><span>Spans 2</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span><span>Spans 1</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #9399B2;font-style: italic;">  &lt;!-- ... --&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span></span></code></pre>  </div>
+  <table class="props-table">
+    <thead>
+      <tr><th>Class</th><th>Property</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>grid</code></td><td><code>display: grid</code></td></tr>
+      <tr><td><code>grid-cols-1</code> → <code>grid-cols-12</code></td><td>Equal-width column tracks</td></tr>
+      <tr><td><code>col-span-1</code> → <code>col-span-6</code></td><td>Column span count</td></tr>
+      <tr><td><code>col-span-full</code></td><td>Spans all columns (<code>1 / -1</code>)</td></tr>
+      <tr><td><code>gap-1</code> → <code>gap-8</code></td><td>Grid gap using space tokens</td></tr>
+    </tbody>
+  </table>
+</div>
+<div class="doc-section">
+  <h2>Combining flex + grid</h2>
+  <p>Grid structures the outer layout. Flex handles alignment within each cell.</p>
+  <div class="example">
+    <div class="example-preview block">
+      <div class="grid grid-cols-2 gap-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="flex items-center justify-between gap-2">
+              <strong>Users</strong>
+              <span class="badge" data-variant="success">Active</span>
+            </div>
+            <p class="text-muted text-sm" style="margin-top:var(--space-1);margin-bottom:0">1,204 total</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <div class="flex items-center justify-between gap-2">
+              <strong>Revenue</strong>
+              <span class="badge">Stable</span>
+            </div>
+            <p class="text-muted text-sm" style="margin-top:var(--space-1);margin-bottom:0">$8,420</p>
+          </div>
+        </div>
+      </div>
+    </div>
+<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;"><code data-lang="html"><span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">div</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;grid grid-cols-2 gap-3&quot;</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;</span><span style="color: #89B4FA;">div</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;card&quot;</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">    &lt;</span><span style="color: #89B4FA;">div</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;card-body&quot;</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">      &lt;</span><span style="color: #89B4FA;">div</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;flex items-center justify-between gap-2&quot;</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">        &lt;</span><span style="color: #89B4FA;">strong</span><span style="color: #94E2D5;">&gt;</span><span>Users</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">strong</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">        &lt;</span><span style="color: #89B4FA;">span</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;badge&quot;</span><span style="color: #F9E2AF;"> data-variant</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;success&quot;</span><span style="color: #94E2D5;">&gt;</span><span>Active</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">span</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">      &lt;/</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">      &lt;</span><span style="color: #89B4FA;">p</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;text-muted text-sm&quot;</span><span style="color: #94E2D5;">&gt;</span><span>1,204 total</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">p</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">    &lt;/</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;/</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;</span><span style="color: #89B4FA;">div</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;card&quot;</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">    &lt;</span><span style="color: #89B4FA;">div</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;card-body&quot;</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">      &lt;</span><span style="color: #89B4FA;">div</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;flex items-center justify-between gap-2&quot;</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">        &lt;</span><span style="color: #89B4FA;">strong</span><span style="color: #94E2D5;">&gt;</span><span>Revenue</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">strong</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">        &lt;</span><span style="color: #89B4FA;">span</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;badge&quot;</span><span style="color: #94E2D5;">&gt;</span><span>Stable</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">span</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">      &lt;/</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">      &lt;</span><span style="color: #89B4FA;">p</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;text-muted text-sm&quot;</span><span style="color: #94E2D5;">&gt;</span><span>$8,420</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">p</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">    &lt;/</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;/</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span></span></code></pre>  </div>
+</div>
+<div class="doc-section">
+  <h2>Responsive prefixes</h2>
+  <p>All layout utilities support breakpoint prefixes. Classes apply at the specified width and above (mobile-first).</p>
+  <table class="props-table">
+    <thead>
+      <tr><th>Prefix</th><th>Breakpoint</th><th>Example</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><em>none</em></td><td>All screens</td><td><code>flex</code></td></tr>
+      <tr><td><code>sm:</code></td><td>≥ 40rem (640px)</td><td><code>sm:grid-cols-2</code></td></tr>
+      <tr><td><code>md:</code></td><td>≥ 48rem (768px)</td><td><code>md:flex-row</code></td></tr>
+      <tr><td><code>lg:</code></td><td>≥ 64rem (1024px)</td><td><code>lg:grid-cols-3</code></td></tr>
+      <tr><td><code>xl:</code></td><td>≥ 80rem (1280px)</td><td><code>xl:grid-cols-4</code></td></tr>
+    </tbody>
+  </table>
+  <div class="example">
+    <div class="example-preview block">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+        <div class="util-demo-box">A</div>
+        <div class="util-demo-box">B</div>
+        <div class="util-demo-box">C</div>
+      </div>
+    </div>
+<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;"><code data-lang="html"><span class="giallo-l"><span style="color: #9399B2;font-style: italic;">&lt;!-- 1 col → 2 col at md → 3 col at lg --&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;</span><span style="color: #89B4FA;">div</span><span style="color: #F9E2AF;"> class</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">&quot;grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2&quot;</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span><span>A</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span><span>B</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">  &lt;</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span><span>C</span><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span></span>
+<span class="giallo-l"><span style="color: #94E2D5;">&lt;/</span><span style="color: #89B4FA;">div</span><span style="color: #94E2D5;">&gt;</span></span></code></pre>  </div>
+</div>
+<div class="doc-section">
+  <h2>Best practices</h2>
+  <ul>
+    <li>Use utilities for one-off layouts. Extract a component once the same combination repeats 3 or more times.</li>
+    <li>Avoid stacking more than 4-5 utility classes on a single element - that signals a missing component abstraction.</li>
+    <li>Use responsive prefixes (<code>md:flex-row</code>) rather than inline <code>@media</code> overrides.</li>
+    <li>Use <code>gap-*</code> for spacing inside flex and grid containers - not margins between siblings.</li>
+  </ul>
+</div>
+
+  <footer class="docs-article-footer">
+    <a href="https://github.com/cvargas-0/dot-ui/edit/main/docs/content/utilities.md" class="docs-edit-link"
+      target="_blank" rel="noopener noreferrer">Edit this page on GitHub ↗</a>
+  </footer>
+</article>
+
+      </main>
+    </div>
+
+  </div>
+</body>
+
+</html>
