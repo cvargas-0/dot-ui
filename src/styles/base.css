@@ -134,7 +134,7 @@
   /* --- Anchor --- */
   a {
     color: var(--primary);
-    text-decoration: underline;
+    text-decoration: none;
     text-decoration-thickness: 1px;
     text-underline-offset: 0.2em;
     transition: color var(--transition-fast);
