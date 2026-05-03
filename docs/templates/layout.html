@@ -43,6 +43,17 @@
           </ul>
         </div>
         <div data-sidebar-group>
+          <p data-sidebar-group-label>Foundations</p>
+          <ul data-sidebar-menu>
+            <li data-sidebar-menu-item>
+              <a href="/typography/" data-sidebar-menu-button {% if current_path == "/typography/" %}aria-current="page"{% endif %}>Typography</a>
+            </li>
+            <li data-sidebar-menu-item>
+              <a href="/utilities/" data-sidebar-menu-button {% if current_path == "/utilities/" %}aria-current="page"{% endif %}>Utilities</a>
+            </li>
+          </ul>
+        </div>
+        <div data-sidebar-group>
           <p data-sidebar-group-label>Components</p>
           <ul data-sidebar-menu>
             <li data-sidebar-menu-item><a href="/components/button/" data-sidebar-menu-button {% if current_path == "/components/button/" %}aria-current="page"{% endif %}>Button</a></li>

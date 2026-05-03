@@ -441,6 +441,18 @@ body {
 }
 
 
+/* Helper boxes for utility class demos */
+.util-demo-box {
+  background: var(--faint);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--muted-fg);
+  text-align: center;
+}
+
+
 .props-table {
   width: 100%;
   border-collapse: collapse;
