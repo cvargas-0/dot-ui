@@ -9,15 +9,15 @@ css:
 	@cat $(STYLES) > dist/dot-ui.css
 	@esbuild dist/dot-ui.css --minify --outfile=dist/dot-ui.min.css
 	@gzip -9 -k -f dist/dot-ui.min.css
-	@cp dist/dot-ui.min.css docs/static/dot-ui.min.css
+	@cp dist/dot-ui.min.css docs/static/styles/dot-ui.min.css
 	@echo "CSS: $$(wc -c < dist/dot-ui.min.css | tr -d ' ') bytes (minified)"
 
 js:
 	@mkdir -p dist
-	@esbuild src/js/index.js --bundle --format=iife --outfile=dist/dot-ui.js
-	@esbuild src/js/index.js --bundle --format=iife --minify --outfile=dist/dot-ui.min.js
+	@esbuild src/js/main.js --bundle --format=iife --outfile=dist/dot-ui.js
+	@esbuild src/js/main.js --bundle --format=iife --minify --outfile=dist/dot-ui.min.js
 	@gzip -9 -k -f dist/dot-ui.min.js
-	@cp dist/dot-ui.min.js docs/static/dot-ui.min.js
+	@cp dist/dot-ui.min.js docs/static/js/dot-ui.min.js
 	@echo "JS: $$(wc -c < dist/dot-ui.min.js | tr -d ' ') bytes (minified)"
 
 clean:
