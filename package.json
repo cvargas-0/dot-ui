@@ -8,12 +8,6 @@
     "dot-ui.min.js",
     "dot-ui.min.css"
   ],
-  "scripts": {
-    "build": "node esbuild.mjs",
-    "css": "node esbuild.mjs --css",
-    "js": "node esbuild.mjs --js",
-    "clean": "node -e \"require('fs').rmSync('dist', { recursive: true, force: true })\""
-  },
   "keywords": [
     "components",
     "css",
